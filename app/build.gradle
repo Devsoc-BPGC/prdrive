@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+ext {
+    compileVer = 27
+    minVer = 21
+    constraintVer = "1.1.0"
+    supportVer = "27.1.1"
+}
+
+android {
+    compileSdkVersion compileVer
+    defaultConfig {
+        applicationId "com.macbitsgoa.prdrive"
+        minSdkVersion minVer
+        targetSdkVersion compileVer
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:${supportVer}"
+    implementation "com.android.support.constraint:constraint-layout:${constraintVer}"
+}
