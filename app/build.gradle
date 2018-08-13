@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+<<<<<<< 7af3c4554ab09ce121e85c1fc730b1f748b97106
     implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0-rc01'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-rc01'
@@ -74,4 +75,12 @@ dependencies {
 apply plugin: 'com.google.gms.google-services'
 repositories {
     mavenCentral()
+=======
+    implementation 'androidx.constraintlayout:constraintlayout-solver:1.1.2'
+    implementation 'androidx.cardview:cardview:1.0.0-beta01'
+    implementation "com.android.support:appcompat-v7:${supportVer}"
+    implementation "com.android.support.constraint:constraint-layout:${constraintVer}"
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+>>>>>>> home activity made
 }
