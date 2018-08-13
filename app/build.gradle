@@ -42,7 +42,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.constraintlayout:constraintlayout-solver:1.1.2'
     implementation 'androidx.cardview:cardview:1.0.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     implementation "com.android.support:appcompat-v7:${supportVer}"
     implementation "com.android.support.constraint:constraint-layout:${constraintVer}"
     implementation 'com.android.support:recyclerview-v7:27.1.1'
