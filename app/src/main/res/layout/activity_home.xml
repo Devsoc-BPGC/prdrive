@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< 9fe44e614a09ac5564996522ca85ae47d9e4d822
 <<<<<<< 7af3c4554ab09ce121e85c1fc730b1f748b97106
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> home activity made
 =======
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 >>>>>>> home activity made
@@ -15,8 +19,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/homerv"/>
 
+<<<<<<< 9fe44e614a09ac5564996522ca85ae47d9e4d822
 <<<<<<< 7af3c4554ab09ce121e85c1fc730b1f748b97106
 </androidx.constraintlayout.widget.ConstraintLayout>
+=======
+
+</LinearLayout>
+>>>>>>> home activity made
 =======
 
 </LinearLayout>
