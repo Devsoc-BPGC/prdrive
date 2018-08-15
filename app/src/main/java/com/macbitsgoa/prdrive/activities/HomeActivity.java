@@ -1,19 +1,20 @@
 package com.macbitsgoa.prdrive.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.HomeAdapter;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class HomeActivity extends AppCompatActivity {
 
     RecyclerView rv;
     private HomeAdapter homeAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

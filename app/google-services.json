@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "424957922283",
+    "firebase_url": "https://prdrive-bd8db.firebaseio.com",
+    "project_id": "prdrive-bd8db",
+    "storage_bucket": "prdrive-bd8db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424957922283:android:bfc5145a2a02e43d",
+        "android_client_info": {
+          "package_name": "com.macbitsgoa.prdrive.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424957922283-ngoh6qllupgkrhr223h4f505e1ec7fpn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.macbitsgoa.prdrive.debug",
+            "certificate_hash": "691c9e26f5d642b23fe6899c9a699cd2645fd639"
+          }
+        },
+        {
+          "client_id": "424957922283-l0lmp510fmntdd8hpjf5jt57r48e1if3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmZ3NGWVwUL-4Yaxgihkr5KitGvdVaY0I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424957922283-l0lmp510fmntdd8hpjf5jt57r48e1if3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
