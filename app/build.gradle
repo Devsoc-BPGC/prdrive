@@ -60,16 +60,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.google.firebase:firebase-messaging:17.1.0'
     implementation 'com.google.firebase:firebase-storage:16.0.1'
-
     implementation 'com.facebook.fresco:fresco:1.10.0'
     implementation 'com.facebook.fresco:webpsupport:1.9.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-
     def lifecycle_version = "2.0.0-rc01"
-
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
 }
 apply plugin: 'com.google.gms.google-services'
 repositories {
