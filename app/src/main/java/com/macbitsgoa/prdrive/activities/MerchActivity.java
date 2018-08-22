@@ -15,14 +15,14 @@ import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 
 
 public class MerchActivity extends AppCompatActivity {
-
-   private RecyclerView rv;
-   private androidx.appcompat.widget.Toolbar toolbar;
-   private Button finishbtn;
+    
+   
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        androidx.appcompat.widget.Toolbar toolbar = null;
+        RecyclerView rv;
+        Button finishbtn;
         String hostelName = getIntent().getExtras().getString("hostel");
         Toast.makeText(this,"Hostel name : " + hostelName,Toast.LENGTH_LONG).show();
         setContentView(R.layout.activity_merch);

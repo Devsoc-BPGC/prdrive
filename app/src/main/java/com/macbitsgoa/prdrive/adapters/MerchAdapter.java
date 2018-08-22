@@ -26,11 +26,8 @@ import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implements ValueEventListener{
 
     private Context ctx;
-    private String size;
-    private String qty;
-
-
-
+    private String size=null;                                                      //size and qty are to be obtained from user.
+    private String qty=null;
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
@@ -46,13 +43,11 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             String merchName = child.child("name").getValue(String.class);
             String merchDesc = child.child("desc").getValue(String.class);
             String merchUrl = child.child("imageURL").getValue(String.class);
-            String merchId = child.child("merchId").getValue(String.class);
-            String size=null;                                                      //size and qty are to be obtained from user.
-            String qty=null;
+
              Uri merchUri;
              merchUri = Uri.parse(merchUrl);
 
-            merchModelList.add(new MerchModel(merchName,merchDesc,merchUri,merchId,size,qty));
+            merchModelList.add(new MerchModel(merchName,merchDesc,merchUri,size,qty));
         }
         notifyDataSetChanged();
     }

@@ -10,7 +10,7 @@ public class MerchModel {
    private String merchQty;
    private Uri merchUri;
 
-    public MerchModel (String merchName, String merchDesc, Uri merchUri , String merchId,String merchSize, String merchQty) {
+    public MerchModel (String merchName, String merchDesc, Uri merchUri ,String merchSize, String merchQty) {
 
           this.merchName = merchName;
           this.merchDesc = merchDesc;
