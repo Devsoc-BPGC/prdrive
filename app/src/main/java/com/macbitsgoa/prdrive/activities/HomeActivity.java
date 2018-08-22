@@ -3,6 +3,7 @@ package com.macbitsgoa.prdrive.activities;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.HomeAdapter;
 
@@ -17,6 +18,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Fresco.initialize(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 

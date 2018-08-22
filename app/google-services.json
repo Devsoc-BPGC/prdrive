@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "424957922283-mq9tqcce35v882t1i8vbm14630a2tmcc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.macbitsgoa.prdrive.debug",
+            "certificate_hash": "97830058aca35c734c7fe7368c5e9c0a4504fae8"
+          }
+        },
+        {
           "client_id": "424957922283-l0lmp510fmntdd8hpjf5jt57r48e1if3.apps.googleusercontent.com",
           "client_type": 3
         }
