@@ -1,6 +1,7 @@
 package com.macbitsgoa.prdrive.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -42,6 +43,10 @@ public class MerchActivity extends AppCompatActivity {
                 Log.e("DATA IN THE LIST",merchModelList.get(i).getMerchName()+" "+merchModelList.get(i).getMerchDesc()+" "+merchModelList.get(i).getMerchSize()+" "+merchModelList.get(i).getMerchQty());
                 //Log to ensure that the merchModelList going to the next activity is populated.
             }
+            Intent intent1 = new Intent(MerchActivity.this, CheckoutActivity.class);
+            startActivity(intent1);
+            finish();
+            Log.e("FINISH PRESSED","FINISH");
 
         });
     }

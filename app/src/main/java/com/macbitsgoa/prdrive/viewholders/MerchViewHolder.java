@@ -8,7 +8,7 @@ import com.macbitsgoa.prdrive.R;
 import androidx.recyclerview.widget.RecyclerView;
 import me.relex.photodraweeview.PhotoDraweeView;
 
-public class MerchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MerchViewHolder extends RecyclerView.ViewHolder  {
   public TextView merchName;
   public TextView merchDesc;
   public Spinner merchSize,merchQty;
@@ -25,13 +25,5 @@ public class MerchViewHolder extends RecyclerView.ViewHolder implements View.OnC
         merchQty  = itemView.findViewById(R.id.merchQty);
 
     }
-
-
-    @Override
-    public void onClick(View view) {
-
-        //This method will be empty.
-    }
-
 
 }
