@@ -20,9 +20,11 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView hostelName;
     private CardView cardView;
     private Context context;
+    private Activity activity;
     public HomeViewHolder(View itemView, Context context) {
         super(itemView);
         this.context = context;
+        this.activity = (Activity) this.context;
         hostelName = itemView.findViewById(R.id.ifhometv);
         cardView = itemView.findViewById(R.id.ifhomecard);
         cardView.setOnClickListener(this);
@@ -39,6 +41,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 Intent intent = new Intent(context, MerchActivity.class);
                 intent.putExtra("hostel",hostelName.getText().toString());
                 context.startActivity(intent);
+                activity.finish();
                 break;
         }
     }

@@ -1,24 +1,25 @@
 package com.macbitsgoa.prdrive;
 
-import android.widget.Spinner;
-
-import com.facebook.drawee.view.SimpleDraweeView;
+import android.net.Uri;
 
 public class MerchModel {
 
-    String merchName,merchDesc;
-    SimpleDraweeView merchImage;
-    Spinner merchSize,merchQty;
+   private String merchName;
+   private String merchDesc;
+   private String merchSize;
+   private String merchQty;
+   private String merchId;
+   private Uri merchUri;
 
-    public MerchModel (String merchName, String merchDesc, Spinner merchSize, Spinner merchQty, SimpleDraweeView merchImage ) {
+    public MerchModel (String merchName, String merchDesc, Uri merchUri , String merchId,String merchSize, String merchQty) {
 
           this.merchName = merchName;
           this.merchDesc = merchDesc;
-          this.merchSize = merchSize;
-          this.merchQty = merchQty;
-          this.merchImage = merchImage;
+          this.merchUri = merchUri;
+          this.merchId = merchId;
+          this.merchSize=merchSize;
+          this.merchQty=merchQty;
     }
-
     public String getMerchName() {
         return merchName;
     }
@@ -35,27 +36,22 @@ public class MerchModel {
         this.merchDesc = merchDesc;
     }
 
-    public SimpleDraweeView getMerchImage() {
-        return merchImage;
-    }
+    public Uri getMerchUri() { return merchUri; }
 
-    public void setMerchImage(SimpleDraweeView merchImage) {
-        this.merchImage = merchImage;
-    }
-
-    public Spinner getMerchSize() {
+    public String getMerchSize() {
         return merchSize;
     }
 
-    public void setMerchSize(Spinner merchSize) {
+    public void setMerchSize(String merchSize) {
         this.merchSize = merchSize;
     }
 
-    public Spinner getMerchQty() {
+    public String getMerchQty() {
         return merchQty;
     }
 
-    public void setMerchQty(Spinner merchQty) {
+    public void setMerchQty(String merchQty) {
         this.merchQty = merchQty;
     }
+
 }
