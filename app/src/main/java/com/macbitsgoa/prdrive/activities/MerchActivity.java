@@ -45,7 +45,6 @@ public class MerchActivity extends AppCompatActivity {
             }
             Intent intent1 = new Intent(MerchActivity.this, CheckoutActivity.class);
             startActivity(intent1);
-            finish();
             Log.e("FINISH PRESSED","FINISH");
 
         });

@@ -3,15 +3,11 @@ package com.macbitsgoa.prdrive.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.CheckoutAdapter;
-import com.macbitsgoa.prdrive.adapters.MerchAdapter;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,10 +22,11 @@ public class CheckoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        androidx.appcompat.widget.Toolbar toolbar = null;
+        Toolbar toolbar = null;
         RecyclerView rv_checkout;
-        Button editbtn, confirmbtn;
-        EditText room;
+        Button editbtn;
+        Button confirmbtn;
+       // EditText room;
         setSupportActionBar(toolbar);
 
         for (int i = 0; i < merchModelList.size(); i++) {
