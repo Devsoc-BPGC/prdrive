@@ -8,7 +8,6 @@ public class MerchModel {
    private String merchDesc;
    private String merchSize;
    private String merchQty;
-   private String merchId;
    private Uri merchUri;
 
     public MerchModel (String merchName, String merchDesc, Uri merchUri , String merchId,String merchSize, String merchQty) {
@@ -16,7 +15,6 @@ public class MerchModel {
           this.merchName = merchName;
           this.merchDesc = merchDesc;
           this.merchUri = merchUri;
-          this.merchId = merchId;
           this.merchSize=merchSize;
           this.merchQty=merchQty;
     }

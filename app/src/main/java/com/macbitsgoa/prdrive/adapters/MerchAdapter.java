@@ -25,19 +25,16 @@ import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 
 public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implements ValueEventListener{
 
-    private DatabaseReference databaseReference;
     private Context ctx;
-    private String merchName;
-    private String merchDesc;
-    private String merchId;
     private String size;
     private String qty;
-    private String merchUrl;
-    private Uri merchUri;
+
+
 
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
+        DatabaseReference databaseReference;
         databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("orgInfo").child("merch");
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);    //adding the firebase listener which currently points to "merch" in orgInfo.
@@ -46,12 +43,13 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
     public void onDataChange(DataSnapshot dataSnapshot) {
         merchModelList = new ArrayList<>();
         for (DataSnapshot child: dataSnapshot.getChildren()){                //traversing through each node of "merch".
-             merchName = child.child("name").getValue(String.class);
-             merchDesc = child.child("desc").getValue(String.class);
-             merchUrl = child.child("imageURL").getValue(String.class);
-             merchId = child.child("merchId").getValue(String.class);
-             size=null;                                                      //size and qty are to be obtained from user.
-             qty=null;
+            String merchName = child.child("name").getValue(String.class);
+            String merchDesc = child.child("desc").getValue(String.class);
+            String merchUrl = child.child("imageURL").getValue(String.class);
+            String merchId = child.child("merchId").getValue(String.class);
+            String size=null;                                                      //size and qty are to be obtained from user.
+            String qty=null;
+             Uri merchUri;
              merchUri = Uri.parse(merchUrl);
 
             merchModelList.add(new MerchModel(merchName,merchDesc,merchUri,merchId,size,qty));
@@ -102,6 +100,7 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
          @Override
           public void onNothingSelected(AdapterView<?> adapterView) {
 
+             //This is method will be empty.
          }
         }
         );
@@ -122,6 +121,7 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+                //This method will be empty.
             }
         });
     }

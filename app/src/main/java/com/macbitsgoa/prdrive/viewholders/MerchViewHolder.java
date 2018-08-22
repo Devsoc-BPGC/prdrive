@@ -13,7 +13,7 @@ public class MerchViewHolder extends RecyclerView.ViewHolder implements View.OnC
   public TextView merchDesc;
   public Spinner merchSize,merchQty;
   public PhotoDraweeView merchImage;
-  Context context;
+  public Context context;
 
     public MerchViewHolder(View itemView,Context context) {
         super(itemView);
@@ -30,6 +30,7 @@ public class MerchViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @Override
     public void onClick(View view) {
 
+        //This method will be empty.
     }
 
 

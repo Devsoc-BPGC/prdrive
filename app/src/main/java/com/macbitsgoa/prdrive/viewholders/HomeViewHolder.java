@@ -4,9 +4,9 @@ package com.macbitsgoa.prdrive.viewholders;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.activities.MerchActivity;
@@ -18,11 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     private TextView hostelName;
-    private CardView cardView;
     private Context context;
     private Activity activity;
     public HomeViewHolder(View itemView, Context context) {
         super(itemView);
+        CardView cardView;
         this.context = context;
         this.activity = (Activity) this.context;
         hostelName = itemView.findViewById(R.id.ifhometv);
@@ -43,6 +43,9 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 context.startActivity(intent);
                 activity.finish();
                 break;
+            default:
+                Toast.makeText(context,"Please select Hostel",Toast.LENGTH_LONG).show();
+                 break;
         }
     }
 }

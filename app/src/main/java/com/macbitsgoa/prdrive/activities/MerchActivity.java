@@ -1,15 +1,10 @@
 package com.macbitsgoa.prdrive.activities;
 
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import com.macbitsgoa.prdrive.BuildConfig;
-import com.macbitsgoa.prdrive.MerchModel;
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.MerchAdapter;
 
@@ -21,9 +16,9 @@ import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 
 public class MerchActivity extends AppCompatActivity {
 
-    RecyclerView rv;
-    androidx.appcompat.widget.Toolbar toolbar;
-    Button finishbtn;
+   private RecyclerView rv;
+   private androidx.appcompat.widget.Toolbar toolbar;
+   private Button finishbtn;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
