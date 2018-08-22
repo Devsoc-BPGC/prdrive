@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    card_view:cardCornerRadius="10dp"
+    android:layout_margin="5dp"
+    card_view:cardElevation="15dp"
+    style="@style/Base.CardView"
+    android:id="@+id/cv"
+    android:background="@color/red"
+    android:requiresFadingEdge="vertical"
+    card_view:cardBackgroundColor="#FFD700"
+    android:orientation="vertical"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="30dp"
+    >
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <me.relex.photodraweeview.PhotoDraweeView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/merchImage"
+        android:padding="2dp"
+        android:clickable="true"
+        android:layout_marginLeft="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/merchName"
+        android:text="Merch name here"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="450dp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/merchDesc"
+        android:text="Merch desc here"
+        android:textSize="25sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="450dp"
+      />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/merchSize"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_marginLeft="500dp"
+        >
+    </Spinner>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/merchQty"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_marginLeft="500dp"
+        >
+    </Spinner>
+
+
+</LinearLayout>
+</androidx.cardview.widget.CardView>
