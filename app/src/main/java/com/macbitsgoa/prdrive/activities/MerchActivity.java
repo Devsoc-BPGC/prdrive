@@ -1,6 +1,5 @@
 package com.macbitsgoa.prdrive.activities;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,18 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 
-
 public class MerchActivity extends AppCompatActivity {
-    
-   
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         androidx.appcompat.widget.Toolbar toolbar = null;
         RecyclerView rv;
         Button finishbtn;
-        String hostelName = getIntent().getExtras().getString("hostel");
-        Toast.makeText(this,"Hostel name : " + hostelName,Toast.LENGTH_LONG).show();
         setContentView(R.layout.activity_merch);
         setSupportActionBar(toolbar);                                              //Setting up the Finish order button.
 
@@ -45,6 +40,7 @@ public class MerchActivity extends AppCompatActivity {
             }
             Intent intent1 = new Intent(MerchActivity.this, CheckoutActivity.class);
             startActivity(intent1);
+            finish();
             Log.e("FINISH PRESSED","FINISH");
 
         });

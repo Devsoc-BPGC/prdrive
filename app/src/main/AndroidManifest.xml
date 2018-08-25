@@ -22,7 +22,14 @@
             android:label="@string/merch_activity_title">
         </activity>
         <activity android:name=".activities.CheckoutActivity"
-            android:label="Checkout Activity"></activity>
+            android:label="Checkout Activity">
+        </activity>
+        <activity android:name=".activities.ScanActivity"
+            android:label="Scan Activity">
+        </activity>
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="barcode" />
     </application>
 
 </manifest>
