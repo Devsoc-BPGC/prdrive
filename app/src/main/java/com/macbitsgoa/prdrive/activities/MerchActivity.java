@@ -53,6 +53,11 @@ public class MerchActivity extends AppCompatActivity {
             context.startActivity(intent);
             finish();
 
+            Intent intent = new Intent(MerchActivity.this, ScanActivity.class);
+            intent.putExtra("hostel", hostelName);
+            context.startActivity(intent);
+            finish();
+
         });
     }
 }

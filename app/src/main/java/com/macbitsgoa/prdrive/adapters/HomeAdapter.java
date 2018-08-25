@@ -17,6 +17,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
    /* public HomeAdapter(String hostelnames[]) {
        hostelnames = hostelNames;
     }*/
+
     public HomeAdapter() {
     }
 
