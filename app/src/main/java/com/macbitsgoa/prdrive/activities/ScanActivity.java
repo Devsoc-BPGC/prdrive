@@ -20,10 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ScanActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button scanBtn;
     private EditText scanEdt;
     private String hostelName = getIntent().getExtras().getString("hostel");
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel").child(hostelName);
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel").child(hostelName);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_scan);
 
         scanEdt = findViewById(R.id.scanedt);
-        scanBtn = findViewById(R.id.scanbtn);
+        Button scanBtn = findViewById(R.id.scanbtn);
         scanBtn.setOnClickListener(this);
     }
 

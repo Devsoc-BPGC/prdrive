@@ -17,7 +17,7 @@ public class HomeActivity extends AppCompatActivity {
 
     RecyclerView rv;
     private HomeAdapter homeAdapter;
-    EditText homeEdt;
+    private EditText homeEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
