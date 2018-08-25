@@ -8,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.macbitsgoa.prdrive.R;
-import com.macbitsgoa.prdrive.activities.HomeActivity;
 import com.macbitsgoa.prdrive.activities.MerchActivity;
 
 import androidx.annotation.NonNull;
