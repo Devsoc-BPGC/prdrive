@@ -1,5 +1,6 @@
 package com.macbitsgoa.prdrive.activities;
 
+import android.content.Context;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 
-
 public class MerchActivity extends AppCompatActivity {
-    
-   
+
+    Context context = MerchActivity.this;
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,11 @@ public class MerchActivity extends AppCompatActivity {
             Intent intent1 = new Intent(MerchActivity.this, CheckoutActivity.class);
             startActivity(intent1);
             Log.e("FINISH PRESSED","FINISH");
+
+            Intent intent = new Intent(MerchActivity.this, ScanActivity.class);
+            intent.putExtra("hostel", hostelName);
+            context.startActivity(intent);
+            finish();
 
         });
     }

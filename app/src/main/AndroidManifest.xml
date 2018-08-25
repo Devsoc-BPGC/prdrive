@@ -23,6 +23,9 @@
         </activity>
         <activity android:name=".activities.CheckoutActivity"
             android:label="Checkout Activity"></activity>
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="barcode" />
     </application>
 
 </manifest>

@@ -60,7 +60,6 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         return new MerchViewHolder(newView,ctx);
     }
 
-
     @Override
     public void onBindViewHolder(MerchViewHolder holder,int position) {
 
@@ -96,11 +95,8 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
           public void onNothingSelected(AdapterView<?> adapterView) {
 
              //This is method will be empty.
-         }
-        }
-        );
-
-
+          }
+        });
 
 
         holder.merchQty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
