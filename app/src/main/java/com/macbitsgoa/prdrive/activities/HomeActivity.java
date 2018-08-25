@@ -11,13 +11,11 @@ import com.macbitsgoa.prdrive.adapters.HomeAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
 public class HomeActivity extends AppCompatActivity {
 
     RecyclerView rv;
-    private HomeAdapter homeAdapter;
-    private EditText homeEdt;
+    public static EditText homeEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +25,10 @@ public class HomeActivity extends AppCompatActivity {
 
         homeEdt = findViewById(R.id.homeedt);
         rv = findViewById(R.id.homerv);
-        homeAdapter = new HomeAdapter();
+        HomeAdapter homeAdapter = new HomeAdapter();
         rv.setAdapter(homeAdapter);
         rv.setLayoutManager(new GridLayoutManager(this, span()));
         rv.setHasFixedSize(true);
-        sellerId = homeEdt.getText().toString();
     }
 
     private int span() {

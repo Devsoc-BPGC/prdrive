@@ -13,6 +13,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.R;
+
+import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
@@ -21,8 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ScanActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText scanEdt;
-    private String hostelName = getIntent().getExtras().getString("hostel");
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel").child(hostelName);
+    private DatabaseReference databaseReference = FirebaseDatabase
+            .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel").child(hostelname);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                     databaseReference.child("idno").child("merch" + i).child("qty").setValue(merchModelList.get(i).getMerchQty());
                 }
             }
+            Toast.makeText(this, "Order done", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(ScanActivity.this, MerchActivity.class));
         }
         else{
             Toast toast = Toast.makeText(getApplicationContext(),

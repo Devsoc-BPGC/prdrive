@@ -44,7 +44,6 @@ public class CheckoutActivity extends AppCompatActivity {
         confirmbtn.setOnClickListener(view -> {
             Toast.makeText(CheckoutActivity.this, "Order is confirmed", Toast.LENGTH_LONG).show();
             Intent intent1 = new Intent(CheckoutActivity.this, ScanActivity.class);
-            intent1.putExtra("hostel", getIntent().getExtras().getString("hostel"));
             startActivity(intent1);
             finish();
         });
@@ -52,6 +51,7 @@ public class CheckoutActivity extends AppCompatActivity {
         editbtn.setOnClickListener(view -> {
            Intent intent = new Intent(CheckoutActivity.this, MerchActivity.class);
            startActivity(intent);
+           finish();
        });
 
     }

@@ -14,7 +14,9 @@ import com.macbitsgoa.prdrive.activities.MerchActivity;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
+import static com.macbitsgoa.prdrive.activities.HomeActivity.homeEdt;
 
 public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -38,11 +40,12 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View view) {
+        sellerId = homeEdt.getText().toString();
         switch(view.getId()) {
             case R.id.ifhomecard :
-                if (sellerId != null){
+                if (sellerId.length() == 13){
                     Intent intent = new Intent(context, MerchActivity.class);
-                    intent.putExtra("hostel",hostelName.getText().toString());
+                    hostelname = hostelName.getText().toString();
                     context.startActivity(intent);
                     activity.finish();
                 }

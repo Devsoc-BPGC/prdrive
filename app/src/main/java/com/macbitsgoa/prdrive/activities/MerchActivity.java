@@ -21,8 +21,6 @@ public class MerchActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar = null;
         RecyclerView rv;
         Button finishbtn;
-        String hostelName = getIntent().getExtras().getString("hostel");
-        Toast.makeText(this,"Hostel name : " + hostelName,Toast.LENGTH_LONG).show();
         setContentView(R.layout.activity_merch);
         setSupportActionBar(toolbar);                                              //Setting up the Finish order button.
 
@@ -41,8 +39,8 @@ public class MerchActivity extends AppCompatActivity {
                 //Log to ensure that the merchModelList going to the next activity is populated.
             }
             Intent intent1 = new Intent(MerchActivity.this, CheckoutActivity.class);
-            intent1.putExtra("hostel", hostelName);
             startActivity(intent1);
+            finish();
             Log.e("FINISH PRESSED","FINISH");
 
         });
