@@ -43,7 +43,6 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 if (sellerId != null){
                     Intent intent = new Intent(context, MerchActivity.class);
                     intent.putExtra("hostel",hostelName.getText().toString());
-                    intent.putExtra("sellerid",sellerId);
                     context.startActivity(intent);
                     activity.finish();
                 }

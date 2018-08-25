@@ -14,6 +14,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.R;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
+import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,7 +41,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         if (scanningResult != null) {
             String scanContent = scanningResult.getContents();
             databaseReference.child("idno").child("buyerId").setValue(scanContent);
-            databaseReference.child("idno").child("sellerId").setValue(getIntent().getExtras().getString("sellerid"));
+            databaseReference.child("idno").child("sellerId").setValue(sellerId);
             int roomNo = Integer.parseInt(scanEdt.getText().toString());
             databaseReference.child("idno").child("room").setValue(roomNo);
             for (int i=0; i<merchModelList.size(); i++) {

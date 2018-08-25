@@ -16,7 +16,6 @@ import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 
 public class CheckoutActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +33,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
         }
 
-
         rv_checkout = findViewById(R.id.rv_checkout);
         editbtn = findViewById(R.id.edit);
         confirmbtn = findViewById(R.id.confirm);
@@ -43,9 +41,13 @@ public class CheckoutActivity extends AppCompatActivity {
         CheckoutAdapter checkoutAdapter = new CheckoutAdapter();
         rv_checkout.setAdapter(checkoutAdapter);
 
-
-        confirmbtn.setOnClickListener(view ->
-                Toast.makeText(CheckoutActivity.this,"Order is confirmed",Toast.LENGTH_LONG).show());
+        confirmbtn.setOnClickListener(view -> {
+            Toast.makeText(CheckoutActivity.this, "Order is confirmed", Toast.LENGTH_LONG).show();
+            Intent intent1 = new Intent(CheckoutActivity.this, ScanActivity.class);
+            intent1.putExtra("hostel", getIntent().getExtras().getString("hostel"));
+            startActivity(intent1);
+            finish();
+        });
 
         editbtn.setOnClickListener(view -> {
            Intent intent = new Intent(CheckoutActivity.this, MerchActivity.class);

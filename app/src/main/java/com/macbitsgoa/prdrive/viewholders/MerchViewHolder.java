@@ -23,7 +23,5 @@ public class MerchViewHolder extends RecyclerView.ViewHolder  {
         merchImage= itemView.findViewById(R.id.merchImage);
         merchSize = itemView.findViewById(R.id.merchSize);
         merchQty  = itemView.findViewById(R.id.merchQty);
-
     }
-
 }
