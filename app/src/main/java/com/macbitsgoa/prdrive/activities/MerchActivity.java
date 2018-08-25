@@ -1,6 +1,7 @@
 package com.macbitsgoa.prdrive.activities;
 
-
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -13,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 
-
 public class MerchActivity extends AppCompatActivity {
-    
-   
+
+    Context context = MerchActivity.this;
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,11 @@ public class MerchActivity extends AppCompatActivity {
                 Log.e("DATA IN THE LIST",merchModelList.get(i).getMerchName()+" "+merchModelList.get(i).getMerchDesc()+" "+merchModelList.get(i).getMerchSize()+" "+merchModelList.get(i).getMerchQty());
                 //Log to ensure that the merchModelList going to the next activity is populated.
             }
+
+            Intent intent = new Intent(MerchActivity.this, ScanActivity.class);
+            intent.putExtra("hostel", hostelName);
+            context.startActivity(intent);
+            finish();
 
         });
     }
