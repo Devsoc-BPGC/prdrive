@@ -8,14 +8,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scanedt"
-        android:text="Enter room no"
+        android:hint="Enter room no"
         android:layout_margin="@dimen/browser_actions_context_menu_min_padding"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scanbtn"
-        android:text="Take Picture"
+        android:text="Scan BITS ID"
         android:layout_margin="@dimen/browser_actions_context_menu_min_padding"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OR"
+        android:layout_marginLeft="175dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="USE SIGNATURE"
+        android:id="@+id/signbtn"
+        />
 
 </LinearLayout>

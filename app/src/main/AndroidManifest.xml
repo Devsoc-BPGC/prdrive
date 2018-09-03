@@ -3,6 +3,8 @@
     package="com.macbitsgoa.prdrive">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
 
         android:allowBackup="true"
@@ -12,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.HomeActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,13 +22,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MerchActivity"
-            android:label="@string/merch_activity_title">
+            android:label="Merch Activity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activities.CheckoutActivity"
-            android:label="Checkout Activity">
+            android:label="Checkout Activity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".activities.ScanActivity"
             android:label="Scan Activity">
+        </activity>
+        <activity android:name=".activities.SignActivity"
+            android:label="Sign Activity"
+            android:screenOrientation="landscape">
+
         </activity>
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"

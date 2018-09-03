@@ -22,11 +22,17 @@ public class MerchActivity extends AppCompatActivity {
         RecyclerView rv;
         Button finishbtn;
         setContentView(R.layout.activity_merch);
-        setSupportActionBar(toolbar);                                              //Setting up the Finish order button.
+                                                  //Setting up the Finish order button.
 
 
         finishbtn = findViewById(R.id.finish);
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Merch Activity");
+        setSupportActionBar(toolbar);
+
+
+
+
         rv=findViewById(R.id.merchrv);
         rv.setLayoutManager(new LinearLayoutManager(MerchActivity.this));
         rv.setHasFixedSize(false);
@@ -45,7 +51,9 @@ public class MerchActivity extends AppCompatActivity {
 
         });
     }
+
 }
+
 
 
 

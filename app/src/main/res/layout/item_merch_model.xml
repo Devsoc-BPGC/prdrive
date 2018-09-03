@@ -12,26 +12,26 @@
     android:id="@+id/cv"
     android:background="@color/red"
     android:requiresFadingEdge="vertical"
-    card_view:cardBackgroundColor="#FFD700"
+    card_view:cardBackgroundColor="#C0B5B3"
     android:orientation="vertical"
     >
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:weightSum="100"
     >
 
 
     <me.relex.photodraweeview.PhotoDraweeView
+        android:id="@+id/merchImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/merchImage"
-        android:padding="2dp"
-        android:clickable="true"
         android:layout_marginLeft="5dp"
+        android:clickable="true"
+        android:padding="2dp"
         />
     <TextView
         android:layout_width="wrap_content"

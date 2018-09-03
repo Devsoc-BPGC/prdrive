@@ -2,6 +2,7 @@ package com.macbitsgoa.prdrive.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,13 +27,17 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference databaseReference = FirebaseDatabase
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel").child(hostelname);
 
+   public Button scanBtn ;
+   public Button signBtn ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
 
         scanEdt = findViewById(R.id.scanedt);
-        Button scanBtn = findViewById(R.id.scanbtn);
+        signBtn = findViewById(R.id.signbtn);
+        scanBtn = findViewById(R.id.scanbtn);
+        signBtn.setOnClickListener(this);
         scanBtn.setOnClickListener(this);
     }
 
@@ -63,14 +68,37 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        int roomNo = Integer.parseInt(scanEdt.getText().toString());
-        if(roomNo>99 && roomNo<=400) {
-            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-            scanIntegrator.initiateScan();
-        }
-        else {
-            Toast.makeText(this, "Please enter proper room no", Toast.LENGTH_SHORT).show();
+
+
+        switch (view.getId())
+        {
+            case R.id.scanbtn :
+               // Log.e("EDITTEXT",scanEdt.getText().toString()+ " ");
+                if(!scanEdt.getText().toString().isEmpty()) {
+                    int roomNo = Integer.parseInt(scanEdt.getText().toString());
+                    if (roomNo > 99 && roomNo <= 400) {
+                        IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+                        scanIntegrator.initiateScan();
+                    }
+                    else {
+                        Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(this, "Please Enter Room Number", Toast.LENGTH_SHORT).show();
+                }
+               // Log.e("BUTTON","SCANBTN PRESSED");
+                break;
+            case R.id.signbtn :
+
+                Intent intent = new Intent(ScanActivity.this,PopActivity.class);
+                startActivity(intent);
+              //  Log.e("BUTTON","SIGN PRESSED");
+                break;
+            default: Toast.makeText(this,"Please Select A Mode",Toast.LENGTH_LONG).show();
+
         }
     }
+
 }
 
