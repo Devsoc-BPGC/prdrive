@@ -37,6 +37,13 @@
             android:screenOrientation="landscape">
 
         </activity>
+        <activity android:name=".activities.PopActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.PopAct"
+            >
+
+        </activity>
+
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
