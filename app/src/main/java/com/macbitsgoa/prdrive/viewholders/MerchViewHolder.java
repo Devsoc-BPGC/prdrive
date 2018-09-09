@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.github.chrisbanes.photoview.PhotoView;
 import com.macbitsgoa.prdrive.R;
 import androidx.recyclerview.widget.RecyclerView;
 import me.relex.photodraweeview.PhotoDraweeView;

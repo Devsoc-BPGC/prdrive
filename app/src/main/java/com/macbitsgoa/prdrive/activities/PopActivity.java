@@ -3,12 +3,9 @@ package com.macbitsgoa.prdrive.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.macbitsgoa.prdrive.R;
@@ -47,6 +44,7 @@ public class PopActivity extends AppCompatActivity {
             {
                 Intent intent = new Intent(PopActivity.this,SignActivity.class);
                 startActivity(intent);
+                finish();
             }
             else
                 Toast.makeText(PopActivity.this,"Please Enter Valid BITS ID",Toast.LENGTH_LONG).show();

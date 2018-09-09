@@ -118,6 +118,9 @@ public class SignActivity extends Activity {
                 }
             }
             break;
+            default:
+                 //Toast.makeText(SignActivity.this,"Write to External Storage successful", Toast.LENGTH_SHORT).show();
+            break;
         }
     }
 
