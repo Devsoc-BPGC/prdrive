@@ -5,35 +5,35 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+//import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Picture;
+//import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+//import android.widget.EditText;
+//import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.github.gcacace.signaturepad.utils.SvgBuilder;
+//import com.github.gcacace.signaturepad.utils.SvgBuilder;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import com.macbitsgoa.prdrive.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+//import java.io.FileInputStream;
+//import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+//import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -42,15 +42,25 @@ public class SignActivity extends Activity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private SignaturePad mSignaturePad;
-    private Button mClearButton;
-    private Button mSaveButton;
-    private Button mCancelButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         verifyStoragePermissions(this);
         setContentView(R.layout.activity_sign);
+
+        SignaturePad mSignaturePad;
+        Button mClearButton;
+        Button mSaveButton;
+        Button mCancelButton;
+
+
+        mClearButton = findViewById(R.id.clear);
+        mSaveButton = findViewById(R.id.save);
+        mCancelButton = findViewById(R.id.cancel);
+
+
         mSignaturePad = findViewById(R.id.signature_pad);
         mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
@@ -70,10 +80,6 @@ public class SignActivity extends Activity {
                 mClearButton.setEnabled(false);
             }
         });
-
-        mClearButton = findViewById(R.id.clear);
-        mSaveButton = findViewById(R.id.save);
-        mCancelButton = findViewById(R.id.cancel);
 
         mCancelButton.setOnClickListener(view -> {
 
@@ -111,6 +117,7 @@ public class SignActivity extends Activity {
                     Toast.makeText(SignActivity.this, "Cannot write images to external storage", Toast.LENGTH_SHORT).show();
                 }
             }
+            break;
         }
     }
 
@@ -158,7 +165,7 @@ public class SignActivity extends Activity {
         boolean result = false;
         try {
             File svgFile = new File(getAlbumStorageDir("Pictures"), String.format("PR_DRIVE_%d.svg", System.currentTimeMillis()));
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//          ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //          Bitmap bitmap = Bitmap.createBitmap(svgFile);
             OutputStream stream = new FileOutputStream(svgFile);
             OutputStreamWriter writer = new OutputStreamWriter(stream);

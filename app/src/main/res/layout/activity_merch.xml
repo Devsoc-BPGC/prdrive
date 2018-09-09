@@ -22,7 +22,7 @@
         app:subtitleTextAppearance="@color/colorPrimaryDark"
         style="@style/ThemeOverlay.AppCompat.ActionBar"
         >
-        <Button
+       <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/finish"
@@ -36,6 +36,7 @@
             />
 
     </androidx.appcompat.widget.Toolbar>
+
 </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -45,5 +46,4 @@
         android:background="@color/browser_actions_divider_color">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 </LinearLayout>

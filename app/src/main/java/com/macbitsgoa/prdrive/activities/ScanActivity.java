@@ -2,7 +2,6 @@ package com.macbitsgoa.prdrive.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,28 +73,31 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.scanbtn :
                // Log.e("EDITTEXT",scanEdt.getText().toString()+ " ");
-                if(!scanEdt.getText().toString().isEmpty()) {
-                    int roomNo = Integer.parseInt(scanEdt.getText().toString());
-                    if (roomNo > 99 && roomNo <= 400) {
-                        IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-                        scanIntegrator.initiateScan();
-                    }
-                    else {
-                        Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else {
-                    Toast.makeText(this, "Please Enter Room Number", Toast.LENGTH_SHORT).show();
-                }
-               // Log.e("BUTTON","SCANBTN PRESSED");
-                break;
+                                if(!scanEdt.getText().toString().isEmpty()) {
+                                    int roomNo = Integer.parseInt(scanEdt.getText().toString());
+                                    if (roomNo > 99 && roomNo <= 400) {
+                                         IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+                                         scanIntegrator.initiateScan();
+                                    }
+                                    else {
+                                    Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else {
+                                Toast.makeText(this, "Please Enter Room Number", Toast.LENGTH_SHORT).show();
+                                }
+                           // Log.e("BUTTON","SCANBTN PRESSED");
+            break;
+
             case R.id.signbtn :
 
                 Intent intent = new Intent(ScanActivity.this,PopActivity.class);
                 startActivity(intent);
               //  Log.e("BUTTON","SIGN PRESSED");
-                break;
+            break;
+
             default: Toast.makeText(this,"Please Select A Mode",Toast.LENGTH_LONG).show();
+            break;
 
         }
     }

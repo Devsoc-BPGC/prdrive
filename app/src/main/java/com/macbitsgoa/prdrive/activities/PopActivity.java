@@ -21,11 +21,10 @@ public class PopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop);
 
-        TextView tv;
+
         Button btn;
         EditText edtId;
 
-        tv = findViewById(R.id.tv);
         btn = findViewById(R.id.btn);
         edtId = findViewById(R.id.edtId);
 
@@ -35,13 +34,11 @@ public class PopActivity extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8), (int)(height*.7));
+        getWindow().setLayout((int)(width*.8), (int)(height*.2));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
 
-        params.gravity = Gravity.CENTER;
-        params.x=0;
-        params.y=-20;
+       // params.gravity = Gravity.BOTTOM;
 
         getWindow().setAttributes(params);
 
