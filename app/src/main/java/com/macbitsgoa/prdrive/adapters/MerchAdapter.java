@@ -31,10 +31,14 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);    //keeps data in activity even when offline
         DatabaseReference databaseReference;
+
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("orgInfo").child("merch");
         databaseReference.keepSynced(true);
-        databaseReference.addValueEventListener(this);    //adding the firebase listener which currently points to "merch" in orgInfo.
+        databaseReference.addValueEventListener(this);
+        //adding the firebase listener which currently points to "merch" in orgInfo.
     }
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {

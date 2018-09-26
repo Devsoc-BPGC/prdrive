@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PR Drive</string>
     <string name="merch_activity_title">Merch Activity</string>
+    <string name="menu_button">Button</string>
 </resources>
