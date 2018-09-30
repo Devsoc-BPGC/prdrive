@@ -9,12 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.macbitsgoa.prdrive.R;
-import com.macbitsgoa.prdrive.activities.HomeActivity;
-import com.macbitsgoa.prdrive.activities.LoginActivity;
 import com.macbitsgoa.prdrive.activities.MerchActivity;
-
-import java.util.ResourceBundle;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,11 +22,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView hostelName;
     private Context context;
     private Activity activity;
-    private String username;
-    private String password;
-    private String prdrive_id;
 
-    SharedPreferences sharedPreferences;
     public HomeViewHolder(View itemView, Context context) {
         super(itemView);
         CardView cardView;

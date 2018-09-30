@@ -21,20 +21,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText pass;
-    EditText user;
-    EditText prdrive_id;
-    String seller_user;
-    String seller_pass;
-    String seller_prdriveId;
-    Button login_btn;
-    DatabaseReference databaseReference;
-
+    private String seller_user;
+    private String seller_pass;
+    private String seller_prdriveId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        EditText pass;
+        EditText user;
+        EditText prdrive_id;
+
+        Button login_btn;
+        DatabaseReference databaseReference;
 
 
         pass = findViewById(R.id.pass);

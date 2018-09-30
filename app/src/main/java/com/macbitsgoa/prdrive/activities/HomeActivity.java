@@ -20,11 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    RecyclerView rv;
     public static EditText homeEdt;
-    String username;
-    String password;
-    String prdrive_id;
 
 
 
@@ -34,8 +30,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        String username;
+        String password;
+        String prdrive_id;
 
 
+        RecyclerView rv;
         homeEdt = findViewById(R.id.homeedt);
         rv = findViewById(R.id.homerv);
         HomeAdapter homeAdapter = new HomeAdapter();
@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Log.e("FROM FILE","USERNAME "+username+"PASS "+password+"PRDRIVE "+prdrive_id);
 
-        if(username.equals("N/A") || password.equals("N/A") || prdrive_id.equals("N/A") )
+        if(("N/A").equals(username) || ("N/A").equals(password) || ("N/A").equals(prdrive_id) )
         {
             Intent i = new Intent(HomeActivity.this,LoginActivity.class);
             startActivity(i);
