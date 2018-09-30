@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borders"
+        android:backgroundTint="@color/browser_actions_bg_grey"
+        android:text="LOGIN"
+        android:textAllCaps="true"
+        android:textColor="#D2691E"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+       />
+
+    <EditText
+        android:id="@+id/user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:hint="Enter Your Username:"
+        android:textSize="25sp"
+        android:layout_below="@+id/login"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/border_shape"
+       />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:hint="Enter Your Password:"
+        android:textSize="25sp"
+        android:layout_below="@+id/user"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_shape"
+       />
+
+    <EditText
+        android:id="@+id/prdrive_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:hint="Enter The PR DRIVE ID:"
+        android:textSize="25sp"
+        android:layout_below="@+id/pass"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_shape"
+         />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prdrive_id"
+        android:layout_marginTop="43dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_selector"
+        android:backgroundTint="@color/Facebook_blue"
+        android:text="LOGIN"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

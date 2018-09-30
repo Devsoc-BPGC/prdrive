@@ -3,12 +3,17 @@ package com.macbitsgoa.prdrive.viewholders;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.macbitsgoa.prdrive.R;
+import com.macbitsgoa.prdrive.activities.HomeActivity;
+import com.macbitsgoa.prdrive.activities.LoginActivity;
 import com.macbitsgoa.prdrive.activities.MerchActivity;
+
+import java.util.ResourceBundle;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -22,7 +27,11 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView hostelName;
     private Context context;
     private Activity activity;
+    private String username;
+    private String password;
+    private String prdrive_id;
 
+    SharedPreferences sharedPreferences;
     public HomeViewHolder(View itemView, Context context) {
         super(itemView);
         CardView cardView;
@@ -31,6 +40,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         hostelName = itemView.findViewById(R.id.ifhometv);
         cardView = itemView.findViewById(R.id.ifhomecard);
         cardView.setOnClickListener(this);
+
     }
 
     public void populate(@NonNull final String str) {
@@ -43,10 +53,11 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         switch(view.getId()) {
             case R.id.ifhomecard :
                 if (sellerId.length() == 13){
-                    Intent intent = new Intent(context, MerchActivity.class);
-                    hostelname = hostelName.getText().toString();
-                    context.startActivity(intent);
-                    activity.finish();
+
+                        Intent intent = new Intent(context, MerchActivity.class);
+                        hostelname = hostelName.getText().toString();
+                        context.startActivity(intent);
+                        activity.finish();
                 }
                 else {
                     Toast.makeText(context, "Please enter seller ID", Toast.LENGTH_SHORT).show();

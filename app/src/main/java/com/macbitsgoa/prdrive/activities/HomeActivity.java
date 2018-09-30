@@ -1,7 +1,13 @@
 package com.macbitsgoa.prdrive.activities;
 
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+
+import android.util.Log;
 import android.widget.EditText;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -16,6 +22,11 @@ public class HomeActivity extends AppCompatActivity {
 
     RecyclerView rv;
     public static EditText homeEdt;
+    String username;
+    String password;
+    String prdrive_id;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +34,29 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
         homeEdt = findViewById(R.id.homeedt);
         rv = findViewById(R.id.homerv);
         HomeAdapter homeAdapter = new HomeAdapter();
         rv.setAdapter(homeAdapter);
         rv.setLayoutManager(new GridLayoutManager(this, span()));
         rv.setHasFixedSize(true);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserLog",Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("Username","N/A");
+        password = sharedPreferences.getString("Password","N/A");
+        prdrive_id = sharedPreferences.getString("Prdrive_Id","N/A");
+
+        Log.e("FROM FILE","USERNAME "+username+"PASS "+password+"PRDRIVE "+prdrive_id);
+
+        if(username.equals("N/A") || password.equals("N/A") || prdrive_id.equals("N/A") )
+        {
+            Intent i = new Intent(HomeActivity.this,LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+
     }
 
     private int span() {

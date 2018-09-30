@@ -13,37 +13,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activities.HomeActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"></category>
 
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activities.MerchActivity"
             android:label="Merch Activity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+
         </activity>
+
         <activity android:name=".activities.CheckoutActivity"
             android:label="Checkout Activity"
             android:screenOrientation="portrait">
         </activity>
+
         <activity android:name=".activities.ScanActivity"
             android:label="Scan Activity">
         </activity>
+
         <activity android:name=".activities.SignActivity"
             android:label="Sign Activity"
             android:screenOrientation="landscape">
-
         </activity>
+
         <activity android:name=".activities.PopActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.PopAct"
-            >
-
+            android:theme="@style/AppTheme.PopAct">
         </activity>
 
+        <activity android:name=".activities.LoginActivity">
+        </activity>
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
