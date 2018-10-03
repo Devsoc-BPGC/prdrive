@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.activities.MerchActivity;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +30,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         hostelName = itemView.findViewById(R.id.ifhometv);
         cardView = itemView.findViewById(R.id.ifhomecard);
         cardView.setOnClickListener(this);
+
     }
 
     public void populate(@NonNull final String str) {
@@ -43,10 +43,11 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         switch(view.getId()) {
             case R.id.ifhomecard :
                 if (sellerId.length() == 13){
-                    Intent intent = new Intent(context, MerchActivity.class);
-                    hostelname = hostelName.getText().toString();
-                    context.startActivity(intent);
-                    activity.finish();
+
+                        Intent intent = new Intent(context, MerchActivity.class);
+                        hostelname = hostelName.getText().toString();
+                        context.startActivity(intent);
+                        activity.finish();
                 }
                 else {
                     Toast.makeText(context, "Please enter seller ID", Toast.LENGTH_SHORT).show();
