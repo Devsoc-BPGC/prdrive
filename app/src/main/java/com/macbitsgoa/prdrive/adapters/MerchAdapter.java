@@ -26,15 +26,16 @@ import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implements ValueEventListener{
 
     private Context ctx;
-    private String size=null;                                                      //size and qty are to be obtained from user.
-    private String qty=null;
+    private String size1=null;                                                      //size and qty are to be obtained from user.
+    private String size2=null;
+    private String size3=null;
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);    //keeps data in activity even when offline
         DatabaseReference databaseReference;
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("orgInfo").child("merch");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("orgInfo").child("prdrive-meta").child("prdrive-001").child("merch");
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
         //adding the firebase listener which currently points to "merch" in orgInfo.
@@ -45,13 +46,14 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         for (DataSnapshot child: dataSnapshot.getChildren()){                //traversing through each node of "merch".
             String merchName = child.child("name").getValue(String.class);
             String merchDesc = child.child("desc").getValue(String.class);
-            String merchUrl = child.child("imageURL").getValue(String.class);
+            String merchUrl = child.child("imageUrl").getValue(String.class);
             String merchId = child.child("merchId").getValue(String.class);
 
              Uri merchUri;
              merchUri = Uri.parse(merchUrl);
+            merchModelList.add(new MerchModel(merchName,merchDesc,merchUri,size1,size2,size3));
 
-            merchModelList.add(new MerchModel(merchName,merchDesc,merchUri,size,qty,merchId));
+
         }
         notifyDataSetChanged();
     }
@@ -75,24 +77,27 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
 
     private void sizeQuantity(MerchViewHolder holder,int position) {
 
-        ArrayAdapter<CharSequence> adapterSize = ArrayAdapter.createFromResource(ctx,R.array.Size,R.layout.support_simple_spinner_dropdown_item);
-        adapterSize.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        holder.merchSize.setAdapter(adapterSize);
+        ArrayAdapter<CharSequence> adapterSize1 = ArrayAdapter.createFromResource(ctx,R.array.SIZE1,R.layout.support_simple_spinner_dropdown_item);
+        adapterSize1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        holder.merchSize1.setAdapter(adapterSize1);
        //spinner for size is setup with None as default selected.
 
 
-        ArrayAdapter<CharSequence> adapterQty = ArrayAdapter.createFromResource(ctx,R.array.Quantity,R.layout.support_simple_spinner_dropdown_item);
-        adapterQty.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        holder.merchQty.setAdapter(adapterQty);
+        ArrayAdapter<CharSequence> adapterSize2 = ArrayAdapter.createFromResource(ctx,R.array.SIZE2,R.layout.support_simple_spinner_dropdown_item);
+        adapterSize2.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        holder.merchSize2.setAdapter(adapterSize2);
        //spinner for qty is setup with 0 as default selected.
 
+        ArrayAdapter<CharSequence> adapterSize3 = ArrayAdapter.createFromResource(ctx,R.array.SIZE3,R.layout.support_simple_spinner_dropdown_item);
+        adapterSize3.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        holder.merchSize3.setAdapter(adapterSize3);
 
-        holder.merchSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        holder.merchSize1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
          @Override
           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
            Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Size",Toast.LENGTH_LONG).show();
-           size=adapterView.getItemAtPosition(i).toString();
-           merchModelList.get(position).setMerchSize(size);
+           size1=adapterView.getItemAtPosition(i).toString();
+           merchModelList.get(position).setMerchSize1(size1);
           }
        //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
          @Override
@@ -103,12 +108,12 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         });
 
 
-        holder.merchQty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        holder.merchSize2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Quantity",Toast.LENGTH_LONG).show();
-               qty= adapterView.getItemAtPosition(i).toString();
-               merchModelList.get(position).setMerchQty(qty);
+               size2= adapterView.getItemAtPosition(i).toString();
+               merchModelList.get(position).setMerchSize2(size2);
 
             }
             //qty is taken from user and inserted at the merchQty field of the object at index "position" of merchModelList
@@ -117,6 +122,21 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             public void onNothingSelected(AdapterView<?> adapterView) {
 
                 //This method will be empty.
+            }
+        });
+
+        holder.merchSize3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Size",Toast.LENGTH_LONG).show();
+                size3=adapterView.getItemAtPosition(i).toString();
+                merchModelList.get(position).setMerchSize1(size3);
+            }
+            //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                //This is method will be empty.
             }
         });
     }

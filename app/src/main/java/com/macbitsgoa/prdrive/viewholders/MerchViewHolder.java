@@ -11,7 +11,7 @@ import me.relex.photodraweeview.PhotoDraweeView;
 public class MerchViewHolder extends RecyclerView.ViewHolder  {
   public TextView merchName;
   public TextView merchDesc;
-  public Spinner merchSize,merchQty;
+  public Spinner merchSize1,merchSize2,merchSize3;
   public PhotoDraweeView merchImage;
   public Context context;
 
@@ -21,7 +21,8 @@ public class MerchViewHolder extends RecyclerView.ViewHolder  {
         merchName = itemView.findViewById(R.id.merchName);
         merchDesc = itemView.findViewById(R.id.merchDesc);
         merchImage= itemView.findViewById(R.id.merchImage);
-        merchSize = itemView.findViewById(R.id.merchSize);
-        merchQty  = itemView.findViewById(R.id.merchQty);
+        merchSize1 = itemView.findViewById(R.id.merchSize1);
+        merchSize2 = itemView.findViewById(R.id.merchSize2);
+        merchSize3 = itemView.findViewById(R.id.merchSize3);
     }
 }

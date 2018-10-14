@@ -33,7 +33,7 @@
          android:hint="Name:"/>
 
      <TextView
-         android:id="@+id/size"
+         android:id="@+id/size1"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:textColor="#000000"
@@ -41,12 +41,19 @@
          android:hint="Size:"/>
 
      <TextView
-         android:id="@+id/qty"
+         android:id="@+id/size2"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:textColor="#000000"
          android:textSize="25sp"
          android:hint="Qty:"/>
+    <TextView
+        android:id="@+id/size3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:hint="Qty:"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

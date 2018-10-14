@@ -41,16 +41,16 @@ public class BuyerModel extends RealmObject {
             if(merchModelList.get(i).getMerchId().equals("merchId0")){
                 if(j==0) {
                     merchIdquantity1 = "1";
-                    merchIdsize1 = merchModelList.get(i).getMerchSize();
+                    merchIdsize1 = merchModelList.get(i).getMerchSize1();
                 }
                 else{
                     if(j==1) {
                         merchIdquantity2 = "1";
-                        merchIdsize2 = merchModelList.get(i).getMerchSize();
+                        merchIdsize2 = merchModelList.get(i).getMerchSize2();
                     }
                     else{
                         merchIdquantity3 = "1";
-                        merchIdsize3 = merchModelList.get(i).getMerchSize();
+                        merchIdsize3 = merchModelList.get(i).getMerchSize3();
                     }
                 }
                 j++;
@@ -58,16 +58,16 @@ public class BuyerModel extends RealmObject {
             else{
                 if(k==0) {
                     merchId1quantity1 = "1";
-                    merchId1size1 = merchModelList.get(i).getMerchSize();
+                    merchId1size1 = merchModelList.get(i).getMerchSize1();
                 }
                 else{
                     if(k==1) {
                         merchId1quantity2 = "1";
-                        merchId1size2 = merchModelList.get(i).getMerchSize();
+                        merchId1size2 = merchModelList.get(i).getMerchSize2();
                     }
                     else{
                         merchId1quantity3 = "1";
-                        merchId1size3 = merchModelList.get(i).getMerchSize();
+                        merchId1size3 = merchModelList.get(i).getMerchSize3();
                     }
                 }
                 k++;

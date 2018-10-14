@@ -55,7 +55,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/merchSize"
+        android:id="@+id/merchSize1"
         style="@android:style/Widget.Holo.Light.Spinner"
        android:layout_marginLeft="300dp"
         >
@@ -63,7 +63,15 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/merchQty"
+        android:id="@+id/merchSize2"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_marginLeft="300dp"
+        >
+    </Spinner>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/merchSize3"
         style="@android:style/Widget.Holo.Light.Spinner"
         android:layout_marginLeft="300dp"
         >
