@@ -24,10 +24,11 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder> {
 
     @Override
     public void onBindViewHolder(CheckoutViewHolder holder, int position) {
-        if(!(merchModelList.get(position).getMerchSize().equalsIgnoreCase("None"))&&!(merchModelList.get(position).getMerchQty().equalsIgnoreCase("0"))) {
+        if(!(merchModelList.get(position).getMerchSize1().equalsIgnoreCase("None"))&&!(merchModelList.get(position).getMerchSize2().equalsIgnoreCase("None"))&&!(merchModelList.get(position).getMerchSize3().equalsIgnoreCase("None"))) {
             holder.name.setText("Name: "+merchModelList.get(position).getMerchName());
-            holder.size.setText("Size: "+merchModelList.get(position).getMerchSize());
-            holder.qty.setText("Qty: "+merchModelList.get(position).getMerchQty());
+            holder.size1.setText("Size1: "+merchModelList.get(position).getMerchSize1());
+            holder.size2.setText("Size2: "+merchModelList.get(position).getMerchSize2());
+            holder.size3.setText("Size3: "+merchModelList.get(position).getMerchSize3());
 
         }
 

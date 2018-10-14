@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CheckoutViewHolder extends RecyclerView.ViewHolder  {
 
-   public  TextView name,size,qty;
+   public  TextView name,size1,size2,size3;
    public  Context context;
 
      public CheckoutViewHolder(View newView, Context context) {
@@ -18,8 +18,9 @@ public class CheckoutViewHolder extends RecyclerView.ViewHolder  {
           this.context = context;
 
           name = newView.findViewById(R.id.name);
-          size = newView.findViewById(R.id.size);
-          qty = newView.findViewById(R.id.qty);
+          size1 = newView.findViewById(R.id.size1);
+          size2 = newView.findViewById(R.id.size2);
+          size3 = newView.findViewById(R.id.size3);
 
      }
 

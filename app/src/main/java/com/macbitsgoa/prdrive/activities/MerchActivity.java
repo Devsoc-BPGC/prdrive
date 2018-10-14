@@ -41,7 +41,7 @@ public class MerchActivity extends AppCompatActivity {
 
         finishbtn.setOnClickListener(view -> {
             for (int i = 0; i < merchModelList.size(); i++) {
-                Log.e("DATA IN THE LIST",merchModelList.get(i).getMerchName()+" "+merchModelList.get(i).getMerchDesc()+" "+merchModelList.get(i).getMerchSize()+" "+merchModelList.get(i).getMerchQty());
+                Log.e("DATA IN THE LIST",merchModelList.get(i).getMerchName()+" "+merchModelList.get(i).getMerchDesc()+" "+merchModelList.get(i).getMerchSize1()+" "+merchModelList.get(i).getMerchSize2()+" "+merchModelList.get(i).getMerchSize3());
                 //Log to ensure that the merchModelList going to the next activity is populated.
             }
             Intent intent1 = new Intent(MerchActivity.this, CheckoutActivity.class);

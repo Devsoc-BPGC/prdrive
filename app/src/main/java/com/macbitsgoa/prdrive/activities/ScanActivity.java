@@ -49,12 +49,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
             databaseReference.child("idno").child("sellerId").setValue(sellerId);
             int roomNo = Integer.parseInt(scanEdt.getText().toString());
             databaseReference.child("idno").child("room").setValue(roomNo);
-            for (int i=0; i<merchModelList.size(); i++) {
-                if (Integer.parseInt(merchModelList.get(i).getMerchQty()) != 0) {
-                    databaseReference.child("idno").child("merch" + i).child("size").setValue(merchModelList.get(i).getMerchSize());
-                    databaseReference.child("idno").child("merch" + i).child("qty").setValue(merchModelList.get(i).getMerchQty());
-                }
-            }
             Toast.makeText(this, "Order done", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(ScanActivity.this, MerchActivity.class));
         }
