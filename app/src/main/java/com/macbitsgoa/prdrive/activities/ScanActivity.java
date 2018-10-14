@@ -1,6 +1,5 @@
 package com.macbitsgoa.prdrive.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.R;
 
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
-import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
 import androidx.annotation.NonNull;
@@ -33,8 +31,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     private EditText scanEdt;
     private DatabaseReference databaseReference = FirebaseDatabase
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel");
-    static String Id;
-    static String Name;
+    static private String Id;
+    static private String Name;
     public Button scanBtn ;
     public Button signBtn ;
     @Override
@@ -105,15 +103,15 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot child: dataSnapshot.getChildren()) {
-                                        Log.e("database", "" + child.child("AH2").child("212").child("ID").
-                                                getValue(String.class));
+                                        //Log.e("database", "" + child.child("AH2").child("212").child("ID").
+                                        //        getValue(String.class));
 
                                         Id = child.child(hostelname).child(scanEdt.getText().toString()).child("ID").
                                                 getValue(String.class);
                                         Name = child.child(hostelname).child(scanEdt.getText().toString()).child("Name").
                                                 getValue(String.class);
-                                        Log.e("database", Id);
-                                        Log.e("database", Name);
+                                        //Log.e("database", Id);
+                                        //Log.e("database", Name);
                                 }
                                 AlertDialog.Builder builder;
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -121,7 +119,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                 } else {
                                     builder = new AlertDialog.Builder(ScanActivity.this);
                                 }
-                                Log.e("alert", Id + Name);
+                                //Log.e("alert", Id + Name);
                                 builder.setTitle("Buyer Details")
                                         .setMessage("Id:"+ Id +"Name:"+Name)
                                         .setPositiveButton(android.R.string.yes, (dialog, which) -> {
@@ -140,7 +138,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                                Log.e("database", String.valueOf(databaseError));
                             }
                         });
 

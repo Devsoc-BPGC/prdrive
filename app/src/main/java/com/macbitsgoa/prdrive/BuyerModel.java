@@ -30,14 +30,15 @@ public class BuyerModel extends RealmObject {
     }
 
     public BuyerModel (int roomNo, String hostelName, String sign, String sellerId, String buyerId) {
-        int j=0, k=0;
+        int j=0;
+        int k=0;
         this.buyerId = buyerId;
         this.roomNo = roomNo;
         this.hostelName = hostelName;
         this.sign = sign;
         this.sellerId = sellerId;
         for(int i=0; i<merchModelList.size(); i++){
-            if(merchModelList.get(i).getMerchId()=="merchId0"){
+            if(merchModelList.get(i).getMerchId().equals("merchId0")){
                 if(j==0) {
                     merchIdquantity1 = "1";
                     merchIdsize1 = merchModelList.get(i).getMerchSize();
