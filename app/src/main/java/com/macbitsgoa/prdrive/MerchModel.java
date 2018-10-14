@@ -5,21 +5,27 @@ import android.net.Uri;
 public class MerchModel {
 
    private String merchName;
+   private String merchId;
    private String merchDesc;
    private String merchSize;
    private String merchQty;
    private Uri merchUri;
 
-    public MerchModel (String merchName, String merchDesc, Uri merchUri ,String merchSize, String merchQty) {
-
+    public MerchModel (String merchName, String merchDesc, Uri merchUri ,String merchSize, String merchQty, String merchId) {
           this.merchName = merchName;
           this.merchDesc = merchDesc;
           this.merchUri = merchUri;
-          this.merchSize=merchSize;
-          this.merchQty=merchQty;
+          this.merchSize = merchSize;
+          this.merchQty = merchQty;
+          this.merchId = merchId;
     }
+
     public String getMerchName() {
         return merchName;
+    }
+
+    public String getMerchId() {
+        return merchId;
     }
 
     public void setMerchName(String merchName) {

@@ -2,6 +2,7 @@ package com.macbitsgoa.prdrive.activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,6 +10,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 //import android.graphics.Picture;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,6 +24,10 @@ import android.widget.Toast;
 
 //import com.github.gcacace.signaturepad.utils.SvgBuilder;
 import com.github.gcacace.signaturepad.views.SignaturePad;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.macbitsgoa.prdrive.BuildConfig;
+import com.macbitsgoa.prdrive.BuyerModel;
 import com.macbitsgoa.prdrive.R;
 
 import java.io.ByteArrayOutputStream;
@@ -32,17 +39,23 @@ import java.io.IOException;
 //import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 //import java.text.SimpleDateFormat;
 //import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import io.realm.Realm;
+
+import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
+import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
 public class SignActivity extends Activity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private DatabaseReference databaseReference = FirebaseDatabase
+            .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("prdrive-orders").child("prdrive1-001");
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +68,9 @@ public class SignActivity extends Activity {
         Button mSaveButton;
         Button mCancelButton;
 
-
         mClearButton = findViewById(R.id.clear);
         mSaveButton = findViewById(R.id.save);
         mCancelButton = findViewById(R.id.cancel);
-
 
         mSignaturePad = findViewById(R.id.signature_pad);
         mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
@@ -81,6 +92,7 @@ public class SignActivity extends Activity {
             }
         });
 
+
         mCancelButton.setOnClickListener(view -> {
 
             Intent intent = new Intent(SignActivity.this, ScanActivity.class);
@@ -89,12 +101,72 @@ public class SignActivity extends Activity {
         });
 
         mClearButton.setOnClickListener(view -> mSignaturePad.clear());
+        Realm.init(SignActivity.this);
 
+        ArrayList<BuyerModel> buyerList = new ArrayList<>(0);
+        Realm db = Realm.getDefaultInstance();
         mSaveButton.setOnClickListener(view -> {
             Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
-            getEncoded64ImageStringFromBitmap(signatureBitmap);
+            String sign = getEncoded64ImageStringFromBitmap(signatureBitmap);
             if (addJpgSignatureToGallery(signatureBitmap)) {
                 Toast.makeText(SignActivity.this, "Signature saved", Toast.LENGTH_SHORT).show();
+                buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign, sellerId,
+                        getIntent().getStringExtra("Id")));
+                db.executeTransaction(
+                        realm -> db.insertOrUpdate(buyerList.get(buyerList.size()-1))
+                );
+
+                boolean connected = false;
+                ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                assert connectivityManager != null;
+                if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                        connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+                    //we are connected to a network
+                    connected = true;
+                }
+
+                if(connected){
+                    for (int i=(buyerList.size()-1); i>=0; i=(i-1)) {
+                        String key = databaseReference.push().getKey();
+                        assert key != null;
+                        databaseReference.child(key).child("buyerid").setValue(buyerList.get(i).buyerId);
+                        databaseReference.child(key).child("hostel").setValue(buyerList.get(i).hostelName);
+                        databaseReference.child(key).child("room").setValue(buyerList.get(i).roomNo);
+                        databaseReference.child(key).child("sellerid").setValue(buyerList.get(i).sellerId);
+                        databaseReference.child(key).child("timestamp").setValue(buyerList.get(i).timeStamp);
+                        databaseReference.child(key).child("signatureString").setValue(buyerList.get(i).sign);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                .child("merchIdOrderId001").child("quantity").setValue(buyerList.get(i).merchIdquantity1);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                .child("merchIdOrderId001").child("size").setValue(buyerList.get(i).merchIdsize1);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                .child("merchIdOrderId002").child("quantity").setValue(buyerList.get(i).merchIdquantity2);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                .child("merchIdOrderId002").child("size").setValue(buyerList.get(i).merchIdsize2);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                .child("merchIdOrderId003").child("quantity").setValue(buyerList.get(i).merchIdquantity3);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                .child("merchIdOrderId003").child("size").setValue(buyerList.get(i).merchIdsize3);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId001").child("quantity").setValue(buyerList.get(i).merchId1quantity1);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId001").child("size").setValue(buyerList.get(i).merchId1size1);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId002").child("quantity").setValue(buyerList.get(i).merchId1quantity2);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId002").child("size").setValue(buyerList.get(i).merchId1size2);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId003").child("quantity").setValue(buyerList.get(i).merchId1quantity3);
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId003").child("size").setValue(buyerList.get(i).merchId1size3);
+                        buyerList.remove(i);
+                    }
+                }
+
+                Intent intent = new Intent(SignActivity.this, MerchActivity.class);
+                startActivity(intent);
+                finish();
+
             } else {
                 Toast.makeText(SignActivity.this, "Unable to store the signature", Toast.LENGTH_SHORT).show();
             }
