@@ -35,7 +35,6 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);    //keeps data in activity even when offline
         DatabaseReference databaseReference;
 
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("orgInfo").child("prdrive-meta").child("prdrive-001").child("merch");
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
@@ -48,11 +47,13 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             String merchName = child.child("name").getValue(String.class);
             String merchDesc = child.child("desc").getValue(String.class);
             String merchUrl = child.child("imageUrl").getValue(String.class);
+            String merchId = child.child("merchId").getValue(String.class);
 
              Uri merchUri;
              merchUri = Uri.parse(merchUrl);
-
             merchModelList.add(new MerchModel(merchName,merchDesc,merchUri,size1,size2,size3));
+
+
         }
         notifyDataSetChanged();
     }

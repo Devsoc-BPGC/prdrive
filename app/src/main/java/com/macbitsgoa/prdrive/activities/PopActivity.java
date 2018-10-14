@@ -43,12 +43,12 @@ public class PopActivity extends AppCompatActivity {
             if(!edtId.getText().toString().isEmpty())
             {
                 Intent intent = new Intent(PopActivity.this,SignActivity.class);
+                intent.putExtra("roomNo", getIntent().getIntExtra("roomNo", 0));
                 startActivity(intent);
                 finish();
             }
             else
                 Toast.makeText(PopActivity.this,"Please Enter Valid BITS ID",Toast.LENGTH_LONG).show();
-
         });
 
 

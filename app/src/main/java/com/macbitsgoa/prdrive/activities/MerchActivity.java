@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.MerchAdapter;
 
@@ -23,15 +22,10 @@ public class MerchActivity extends AppCompatActivity {
         Button finishbtn;
         setContentView(R.layout.activity_merch);
                                                   //Setting up the Finish order button.
-
-
         finishbtn = findViewById(R.id.finish);
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Merch Activity");
         setSupportActionBar(toolbar);
-
-
-
 
         rv=findViewById(R.id.merchrv);
         rv.setLayoutManager(new LinearLayoutManager(MerchActivity.this));

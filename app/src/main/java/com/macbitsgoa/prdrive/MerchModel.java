@@ -5,6 +5,7 @@ import android.net.Uri;
 public class MerchModel {
 
    private String merchName;
+   private String merchId;
    private String merchDesc;
    private String merchSize1;
    private String merchSize2;
@@ -19,9 +20,15 @@ public class MerchModel {
           this.merchSize1=merchSize1;
           this.merchSize2=merchSize2;
           this.merchSize3=merchSize3;
+          this.merchId = merchId;
     }
+
     public String getMerchName() {
         return merchName;
+    }
+
+    public String getMerchId() {
+        return merchId;
     }
 
     public void setMerchName(String merchName) {
