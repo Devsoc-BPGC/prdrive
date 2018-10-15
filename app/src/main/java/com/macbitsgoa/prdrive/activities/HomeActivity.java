@@ -18,11 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
+
 public class HomeActivity extends AppCompatActivity {
 
-    public static EditText homeEdt;
-
-
+    static String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +30,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        String username;
         String password;
         String prdrive_id;
 
-
         RecyclerView rv;
-        homeEdt = findViewById(R.id.homeedt);
         rv = findViewById(R.id.homerv);
         HomeAdapter homeAdapter = new HomeAdapter();
         rv.setAdapter(homeAdapter);
@@ -52,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if(("N/A").equals(username) || ("N/A").equals(password) || ("N/A").equals(prdrive_id) )
         {
+            sellerId = username;
             Intent i = new Intent(HomeActivity.this,LoginActivity.class);
             startActivity(i);
             finish();

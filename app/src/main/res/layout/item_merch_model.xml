@@ -40,7 +40,6 @@
         android:text="Merch name here"
         android:textSize="25sp"
         android:layout_marginTop="25dp"
-
         />
     <TextView
         android:layout_width="wrap_content"
@@ -49,15 +48,14 @@
         android:text="Merch desc here"
         android:textSize="25sp"
         android:layout_marginTop="25dp"
-
-      />
+        />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/merchSize1"
         style="@android:style/Widget.Holo.Light.Spinner"
-       android:layout_marginLeft="300dp"
+        android:layout_marginLeft="300dp"
         >
     </Spinner>
     <Spinner

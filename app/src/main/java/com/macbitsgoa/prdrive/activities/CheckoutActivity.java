@@ -30,7 +30,6 @@ public class CheckoutActivity extends AppCompatActivity {
         for (int i = 0; i < merchModelList.size(); i++) {
             Log.e("DATA CHECKOUT ACTIVITY", merchModelList.get(i).getMerchName() + " " + merchModelList.get(i).getMerchDesc() + " " + merchModelList.get(i).getMerchSize1() + " " + merchModelList.get(i).getMerchSize2()+" "+merchModelList.get(i).getMerchSize3());
             //to check if the data has reached the CheckoutActivity.
-
         }
 
         rv_checkout = findViewById(R.id.rv_checkout);
