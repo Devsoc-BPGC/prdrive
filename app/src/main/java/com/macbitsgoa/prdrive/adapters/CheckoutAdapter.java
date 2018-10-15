@@ -29,9 +29,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder> {
             holder.size1.setText("Size1: "+merchModelList.get(position).getMerchSize1());
             holder.size2.setText("Size2: "+merchModelList.get(position).getMerchSize2());
             holder.size3.setText("Size3: "+merchModelList.get(position).getMerchSize3());
-
         }
-
     }
 
     @Override
