@@ -2,4 +2,7 @@
     <string name="app_name">PR Drive</string>
     <string name="merch_activity_title">Merch Activity</string>
     <string name="menu_button">Button</string>
+    <string name="Size_1"></string>
+    <string name="Size_2"></string>
+    <string name="Size_3"></string>
 </resources>

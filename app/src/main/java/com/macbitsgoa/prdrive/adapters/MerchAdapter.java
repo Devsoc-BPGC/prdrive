@@ -1,6 +1,7 @@
 package com.macbitsgoa.prdrive.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,7 @@ import com.macbitsgoa.prdrive.viewholders.MerchViewHolder;
 import java.util.ArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
+import static java.security.AccessController.getContext;
 
 public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implements ValueEventListener{
 
@@ -80,25 +83,30 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         ArrayAdapter<CharSequence> adapterSize1 = ArrayAdapter.createFromResource(ctx,R.array.SIZE1,R.layout.support_simple_spinner_dropdown_item);
         adapterSize1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         holder.merchSize1.setAdapter(adapterSize1);
+        holder.merchSize1.setPrompt("Size_1");
        //spinner for size is setup with None as default selected.
 
 
         ArrayAdapter<CharSequence> adapterSize2 = ArrayAdapter.createFromResource(ctx,R.array.SIZE2,R.layout.support_simple_spinner_dropdown_item);
         adapterSize2.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         holder.merchSize2.setAdapter(adapterSize2);
+        holder.merchSize2.setPrompt("Size_2");
        //spinner for qty is setup with 0 as default selected.
 
         ArrayAdapter<CharSequence> adapterSize3 = ArrayAdapter.createFromResource(ctx,R.array.SIZE3,R.layout.support_simple_spinner_dropdown_item);
         adapterSize3.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         holder.merchSize3.setAdapter(adapterSize3);
+        holder.merchSize3.setPrompt("Size_3");
 
         holder.merchSize1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
          @Override
           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-           Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Size",Toast.LENGTH_LONG).show();
-           size1=adapterView.getItemAtPosition(i).toString();
-           merchModelList.get(position).setMerchSize1(size1);
-          }
+
+                 Toast.makeText(ctx, adapterView.getItemAtPosition(i) + " is selected in Size 1", Toast.LENGTH_LONG).show();
+                 size1 = adapterView.getItemAtPosition(i).toString();
+                 merchModelList.get(position).setMerchSize1(size1);
+             }
+
        //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
          @Override
           public void onNothingSelected(AdapterView<?> adapterView) {
@@ -111,7 +119,7 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         holder.merchSize2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Quantity",Toast.LENGTH_LONG).show();
+               Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Size 2",Toast.LENGTH_LONG).show();
                size2= adapterView.getItemAtPosition(i).toString();
                merchModelList.get(position).setMerchSize2(size2);
 
@@ -128,9 +136,9 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         holder.merchSize3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Size",Toast.LENGTH_LONG).show();
+                Toast.makeText(ctx,adapterView.getItemAtPosition(i)+ " is selected in Size 3",Toast.LENGTH_LONG).show();
                 size3=adapterView.getItemAtPosition(i).toString();
-                merchModelList.get(position).setMerchSize1(size3);
+                merchModelList.get(position).setMerchSize3(size3);
             }
             //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
             @Override

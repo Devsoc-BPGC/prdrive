@@ -5,18 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="false"
-    card_view:cardCornerRadius="10dp"
+    card_view:cardCornerRadius="20dp"
     android:layout_margin="5dp"
     card_view:cardElevation="15dp"
     style="@style/Base.CardView"
     android:id="@+id/cv"
-    android:background="@color/red"
     android:requiresFadingEdge="vertical"
-    card_view:cardBackgroundColor="#C0B5B3"
     android:orientation="vertical"
     >
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -39,7 +37,8 @@
         android:id="@+id/merchName"
         android:text="Merch name here"
         android:textSize="25sp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/merchImage"
 
         />
     <TextView
@@ -49,34 +48,51 @@
         android:text="Merch desc here"
         android:textSize="25sp"
         android:layout_marginTop="25dp"
+        android:layout_toRightOf="@+id/merchImage"
+       android:layout_below="@+id/merchName"
 
       />
+    <LinearLayout
+        android:layout_toRightOf="@+id/merchImage"
+        android:layout_below="@id/merchDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="120"
+         >
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="40"
         android:layout_height="wrap_content"
         android:id="@+id/merchSize1"
-        style="@android:style/Widget.Holo.Light.Spinner"
-       android:layout_marginLeft="300dp"
+        style="@android:style/Widget.Material.Spinner.Underlined"
+        android:layout_below="@+id/merchDesc"
+        android:prompt="@string/Size_1"
+
+
         >
     </Spinner>
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="40"
         android:layout_height="wrap_content"
         android:id="@+id/merchSize2"
-        style="@android:style/Widget.Holo.Light.Spinner"
-        android:layout_marginLeft="300dp"
+        style="@android:style/Widget.Material.Spinner.Underlined"
+
         >
     </Spinner>
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="40"
         android:layout_height="wrap_content"
         android:id="@+id/merchSize3"
-        style="@android:style/Widget.Holo.Light.Spinner"
-        android:layout_marginLeft="300dp"
+        style="@android:style/Widget.Material.Light.Spinner.Underlined"
+        android:prompt="@string/Size_3"
+
         >
     </Spinner>
 
-
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
 </androidx.cardview.widget.CardView>
