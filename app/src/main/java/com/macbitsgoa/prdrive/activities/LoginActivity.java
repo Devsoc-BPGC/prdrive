@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private String seller_prdriveId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -37,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         Button login_btn;
         DatabaseReference databaseReference;
 
-
         pass = findViewById(R.id.pass);
         user = findViewById(R.id.user);
         prdrive_id = findViewById(R.id.prdrive_id);
@@ -45,15 +44,15 @@ public class LoginActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("sellers");
         databaseReference.addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             for (DataSnapshot child: dataSnapshot.getChildren()){
-                 seller_pass = child.child("password").getValue(String.class);
-                 seller_user = child.child("username").getValue(String.class);
-                 seller_prdriveId = child.child("prdriveId").getValue(String.class);
-         }
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 for (DataSnapshot child: dataSnapshot.getChildren()){
+                     seller_pass = child.child("password").getValue(String.class);
+                     seller_user = child.child("username").getValue(String.class);
+                     seller_prdriveId = child.child("prdriveId").getValue(String.class);
+                 }
 
-         }
+            }
 
          @Override
          public void onCancelled(@NonNull DatabaseError databaseError) {

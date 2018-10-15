@@ -33,8 +33,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel");
     static private String Id;
     static private String Name;
-    public Button scanBtn ;
-    public Button signBtn ;
+    public Button scanBtn;
+    public Button signBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +99,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                     if (roomNo > 99 && roomNo <= 400) {
                         Toast.makeText(this, ""+scanEdt.getText().toString(), Toast.LENGTH_SHORT).show();
                         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            int i=0;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot child: dataSnapshot.getChildren()) {

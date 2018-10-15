@@ -38,9 +38,10 @@
         android:text="Merch name here"
         android:textSize="25sp"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/merchImage"
+        android:layout_toRightOf="@+id/merchImage">
 
-        />
+    </TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
         android:textSize="25sp"
         android:layout_marginTop="25dp"
         android:layout_toRightOf="@+id/merchImage"
-       android:layout_below="@+id/merchName"
+        android:layout_below="@+id/merchName"
 
       />
     <LinearLayout
@@ -60,27 +61,20 @@
         android:orientation="horizontal"
         android:weightSum="120"
          >
-
     <Spinner
         android:layout_width="0dp"
         android:layout_weight="40"
         android:layout_height="wrap_content"
         android:id="@+id/merchSize1"
         style="@android:style/Widget.Material.Spinner.Underlined"
-        android:layout_below="@+id/merchDesc"
-        android:prompt="@string/Size_1"
-
-
-        >
+        android:layout_below="@+id/merchDesc">
     </Spinner>
     <Spinner
         android:layout_width="0dp"
         android:layout_weight="40"
         android:layout_height="wrap_content"
         android:id="@+id/merchSize2"
-        style="@android:style/Widget.Material.Spinner.Underlined"
-
-        >
+        style="@android:style/Widget.Material.Spinner.Underlined">
     </Spinner>
     <Spinner
         android:layout_width="0dp"
