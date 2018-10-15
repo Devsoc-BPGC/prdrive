@@ -12,8 +12,8 @@ public class MerchModel {
    private String merchSize3;
    private Uri merchUri;
 
-    public MerchModel (String merchName, String merchDesc, Uri merchUri ,String merchSize1, String merchSize2,String merchSize3,
-                       String merchId) {
+
+    public MerchModel (String merchName, String merchDesc, Uri merchUri ,String merchSize1, String merchSize2,String merchSize3,String merchId) {
 
           this.merchName = merchName;
           this.merchDesc = merchDesc;

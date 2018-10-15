@@ -1,6 +1,7 @@
 package com.macbitsgoa.prdrive.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,16 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder> {
 
     @Override
     public void onBindViewHolder(CheckoutViewHolder holder, int position) {
-        if(!(merchModelList.get(position).getMerchSize1().equalsIgnoreCase("None"))&&!(merchModelList.get(position).getMerchSize2().equalsIgnoreCase("None"))&&!(merchModelList.get(position).getMerchSize3().equalsIgnoreCase("None"))) {
+        if(!(merchModelList.get(position).getMerchSize1().equalsIgnoreCase("None"))||!(merchModelList.get(position).getMerchSize2().equalsIgnoreCase("None"))||!(merchModelList.get(position).getMerchSize3().equalsIgnoreCase("None"))) {
+
             holder.name.setText("Name: "+merchModelList.get(position).getMerchName());
             holder.size1.setText("Size1: "+merchModelList.get(position).getMerchSize1());
             holder.size2.setText("Size2: "+merchModelList.get(position).getMerchSize2());
             holder.size3.setText("Size3: "+merchModelList.get(position).getMerchSize3());
+
+
+            //Log.e("DATA:",merchModelList.get(position).getMerchName()+ " "+ "Size1: "+merchModelList.get(position).getMerchSize1()+ " "+"Size2: "+merchModelList.get(position).getMerchSize2()+" " +"Size3: "+merchModelList.get(position).getMerchSize3());
+
         }
     }
 

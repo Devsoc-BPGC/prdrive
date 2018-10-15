@@ -38,7 +38,7 @@
          android:layout_height="wrap_content"
          android:textColor="#000000"
          android:textSize="25sp"
-         android:hint="Size:"/>
+         android:hint="Size 1:"/>
 
      <TextView
          android:id="@+id/size2"
@@ -46,14 +46,15 @@
          android:layout_height="wrap_content"
          android:textColor="#000000"
          android:textSize="25sp"
-         android:hint="Qty:"/>
+         android:hint="Size 2:"/>
+
     <TextView
         android:id="@+id/size3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"
         android:textSize="25sp"
-        android:hint="Qty:"/>
+        android:hint="Size 3:"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

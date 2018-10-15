@@ -3,6 +3,7 @@ package com.macbitsgoa.prdrive.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.MerchAdapter;
@@ -21,8 +22,12 @@ public class MerchActivity extends AppCompatActivity {
         RecyclerView rv;
         Button finishbtn;
         setContentView(R.layout.activity_merch);
-                                                  //Setting up the Finish order button.
+
+        int flag=0;                                          //Setting up the Finish order button.
         finishbtn = findViewById(R.id.finish);
+        finishbtn.setVisibility(View.INVISIBLE);
+
+
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Merch Activity");
         setSupportActionBar(toolbar);
@@ -32,6 +37,21 @@ public class MerchActivity extends AppCompatActivity {
         rv.setHasFixedSize(false);
         MerchAdapter merchAdapter = new MerchAdapter(MerchActivity.this);
         rv.setAdapter(merchAdapter);
+
+
+        for (int i = 0; i < merchModelList.size(); i++) {
+
+            if((merchModelList.get(i).getMerchSize1()=="None")||(merchModelList.get(i).getMerchSize2()=="None")||(merchModelList.get(i).getMerchSize3()=="None"))
+            {
+                flag = 1;
+                break;
+            }
+            //Log to ensure that the merchModelList going to the next activity is populated.
+        }
+
+        if(flag == 0 )
+            finishbtn.setVisibility(View.VISIBLE);
+
 
         finishbtn.setOnClickListener(view -> {
             for (int i = 0; i < merchModelList.size(); i++) {

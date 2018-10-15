@@ -108,13 +108,16 @@ public class SignActivity extends Activity {
         mSaveButton.setOnClickListener(view -> {
             Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
             String sign = getEncoded64ImageStringFromBitmap(signatureBitmap);
-            if (addJpgSignatureToGallery(signatureBitmap)) {
+            Log.e("database", "outside big if");
+            //if (true){//addJpgSignatureToGallery(signatureBitmap)) {
                 Toast.makeText(SignActivity.this, "Signature saved", Toast.LENGTH_SHORT).show();
                 buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign, sellerId,
                         getIntent().getStringExtra("Id")));
                 db.executeTransaction(
                         realm -> db.insertOrUpdate(buyerList.get(buyerList.size()-1))
                 );
+
+                Log.e("database", "outside connect");
 
                 boolean connected = false;
                 ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -124,8 +127,9 @@ public class SignActivity extends Activity {
                     //we are connected to a network
                     connected = true;
                 }
-
+                Log.e("database", "outside above if");
                 if(connected){
+                    Log.e("database", "inside if");
                     for (int i=(buyerList.size()-1); i>=0; i=(i-1)) {
                         String key = databaseReference.push().getKey();
                         assert key != null;
@@ -160,16 +164,17 @@ public class SignActivity extends Activity {
                         databaseReference.child(key).child("ordersPlaced").child("merchId2")
                                 .child("merchId2OrderId003").child("size").setValue(buyerList.get(i).merchId1size3);
                         buyerList.remove(i);
+                        Log.e("database", "inside");
                     }
                 }
-
+                Log.e("database", String.valueOf(getIntent()));
                 Intent intent = new Intent(SignActivity.this, MerchActivity.class);
                 startActivity(intent);
                 finish();
 
-            } else {
+            /*} else {
                 Toast.makeText(SignActivity.this, "Unable to store the signature", Toast.LENGTH_SHORT).show();
-            }
+            }*/
             //   if (addSvgSignatureToGallery(mSignaturePad.getSignatureSvg())) {
             //      Toast.makeText(SignActivity.this, "SVG Signature saved", Toast.LENGTH_SHORT).show();
             // }// else {

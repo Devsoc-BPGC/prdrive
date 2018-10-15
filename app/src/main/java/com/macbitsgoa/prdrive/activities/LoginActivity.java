@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private String seller_prdriveId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
