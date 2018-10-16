@@ -55,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         String prdrive_id;
 
         Button logout_btn;
+
         Realm.init(HomeActivity.this);
         Realm db = Realm.getDefaultInstance();
         RecyclerView rv;
