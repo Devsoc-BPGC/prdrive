@@ -27,10 +27,7 @@ public class MerchActivity extends AppCompatActivity {
         finishbtn = findViewById(R.id.finish);
         finishbtn.setVisibility(View.INVISIBLE);
 
-<<<<<<< e2231a7ffc7380f429623d7fd18b767555be85a4
         final int[] flag = {0};
-=======
->>>>>>> realm and firebase done
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Merch Activity");
         setSupportActionBar(toolbar);

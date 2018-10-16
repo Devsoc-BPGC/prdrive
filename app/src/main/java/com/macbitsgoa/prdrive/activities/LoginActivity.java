@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -86,7 +85,3 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 }
-
-
-                            //  else if(!seller_pass.equals(pass.getText().toString()) || !seller_user.equals(user.getText().toString()) || !seller_prdriveId.equals(prdrive_id.getText().toString()))
-                            //      Toast.makeText(LoginActivity.this,"Please Enter Correct PR DRIVE Credentials",Toast.LENGTH_LONG).show()
