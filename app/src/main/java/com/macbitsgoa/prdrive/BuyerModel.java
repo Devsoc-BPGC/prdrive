@@ -31,13 +31,12 @@ public class BuyerModel extends RealmObject {
     public String merchId2size2="none";
     public String merchId2quantity3="0";
     public String merchId2size3="none";
-    public String sellerId = StaticHelperClass.sellerId;
+    public String sellerId;
     public String timeStamp;
 
     public BuyerModel () {
     }
-
-    public BuyerModel (int roomNo, String hostelName, String sign, String buyerId, String combo) {
+    public BuyerModel (int roomNo, String hostelName, String sign, String sellerId, String buyerId) {
         this.buyerId = buyerId;
         this.roomNo = roomNo;
         this.combo = combo;

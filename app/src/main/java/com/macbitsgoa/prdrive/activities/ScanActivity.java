@@ -17,6 +17,8 @@ import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.IdModel;
 import com.macbitsgoa.prdrive.R;
 
+import java.util.Objects;
+
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
@@ -112,7 +114,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                 Id = model.getBuyerId();
                                 Name = model.getName();
                             });
-                        /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot child: dataSnapshot.getChildren()) {
@@ -165,7 +167,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                         } else {
                             Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                     else{
                         Toast.makeText(this, "room no does not exist", Toast.LENGTH_SHORT).show();
