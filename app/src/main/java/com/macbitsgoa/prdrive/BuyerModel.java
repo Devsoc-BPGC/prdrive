@@ -11,6 +11,7 @@ public class BuyerModel extends RealmObject {
     public String buyerId;
     public String hostelName;
     public String sign;
+    public String combo;
     public int isUploaded = 0;
     public String merchIdquantity1="0";
     public String merchIdsize1="none";
@@ -36,9 +37,10 @@ public class BuyerModel extends RealmObject {
     public BuyerModel () {
     }
 
-    public BuyerModel (int roomNo, String hostelName, String sign, String sellerId, String buyerId) {
+    public BuyerModel (int roomNo, String hostelName, String sign, String sellerId, String buyerId, String combo) {
         this.buyerId = buyerId;
         this.roomNo = roomNo;
+        this.combo = combo;
         this.hostelName = hostelName;
         this.sign = sign;
         this.sellerId = sellerId;
