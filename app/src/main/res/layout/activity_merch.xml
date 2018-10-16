@@ -33,6 +33,7 @@
             style="@style/Widget.AppCompat.Button"
             android:clickable="true"
             android:layout_gravity = "right"
+            android:visibility="invisible"
             />
     </androidx.appcompat.widget.Toolbar>
 

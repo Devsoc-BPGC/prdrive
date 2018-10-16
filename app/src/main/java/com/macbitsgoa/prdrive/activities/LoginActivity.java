@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private String seller_user;
     private String seller_pass;
     private String seller_prdriveId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -35,10 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         login_btn = findViewById(R.id.login_btn);
 
         login_btn.setOnClickListener(view -> {
-
             SellerCred();
-
-
         });
 
     }
@@ -63,36 +61,36 @@ public class LoginActivity extends AppCompatActivity {
                     seller_user = child.child("username").getValue(String.class);
                     seller_prdriveId = child.child("prdriveId").getValue(String.class);
 
-                    Log.e("CRED",seller_pass+" "+seller_user);
+                    Log.e("CRED", seller_pass + " " + seller_user);
 
-                    if (seller_pass.equals(pass.getText().toString()) && seller_user.equals(user.getText().toString()) && seller_prdriveId.equals(prdrive_id.getText().toString()))
-                    {
-                        SharedPreferences sharedPreferences = getSharedPreferences("UserLog",Context.MODE_PRIVATE);
+                    if (seller_pass.equals(pass.getText().toString()) && seller_user.equals(user.getText().toString()) && seller_prdriveId.equals(prdrive_id.getText().toString())) {
+                        SharedPreferences sharedPreferences = getSharedPreferences("UserLog", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                        editor.putString("Username",user.getText().toString());
-                        editor.putString("Password",pass.getText().toString());
-                        editor.putString("Prdrive_Id",prdrive_id.getText().toString());
+                        editor.putString("Username", user.getText().toString());
+                        editor.putString("Password", pass.getText().toString());
+                        editor.putString("Prdrive_Id", prdrive_id.getText().toString());
                         editor.commit();
 
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
+                        Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
                         finish();
+
+
                     }
-                    else
-                        Toast.makeText(LoginActivity.this,"Please Enter Correct Credentials",Toast.LENGTH_LONG).show();
+                 //  else if(!seller_pass.equals(pass.getText().toString()) || !seller_user.equals(user.getText().toString()) || !seller_prdriveId.equals(prdrive_id.getText().toString()))
+                  //      Toast.makeText(LoginActivity.this,"Please Enter Correct PR DRIVE Credentials",Toast.LENGTH_LONG).show();
 
 
-                }}
+                    }
+                }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //NOt used as of now
+                //nothing here
             }
         });
-
-
     }
-
-
 }

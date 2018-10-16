@@ -73,10 +73,11 @@ public class SignActivity extends Activity {
         mCancelButton = findViewById(R.id.cancel);
 
         mSignaturePad = findViewById(R.id.signature_pad);
+        mSaveButton.setEnabled(false);
         mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
-                // Toast.makeText(SignActivity.this, "OnStartSigning", Toast.LENGTH_SHORT).show();
+                mSaveButton.setEnabled(true);// Toast.makeText(SignActivity.this, "OnStartSigning", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -92,9 +93,7 @@ public class SignActivity extends Activity {
             }
         });
 
-
         mCancelButton.setOnClickListener(view -> {
-
             Intent intent = new Intent(SignActivity.this, ScanActivity.class);
             startActivity(intent);
             finish();
@@ -108,29 +107,28 @@ public class SignActivity extends Activity {
         mSaveButton.setOnClickListener(view -> {
             Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
             String sign = getEncoded64ImageStringFromBitmap(signatureBitmap);
-            Log.e("database", "outside big if");
-            //if (true){//addJpgSignatureToGallery(signatureBitmap)) {
+            //Log.e("database", "outside big if");
+            if (addJpgSignatureToGallery(signatureBitmap)) {
                 Toast.makeText(SignActivity.this, "Signature saved", Toast.LENGTH_SHORT).show();
                 buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign, sellerId,
                         getIntent().getStringExtra("Id")));
                 db.executeTransaction(
-                        realm -> db.insertOrUpdate(buyerList.get(buyerList.size()-1))
+                        realm -> db.insertOrUpdate(buyerList.get(buyerList.size() - 1))
                 );
-
-                Log.e("database", "outside connect");
+                //Log.e("database", "outside connct");
 
                 boolean connected = false;
-                ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 assert connectivityManager != null;
-                if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                         connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
                     //we are connected to a network
                     connected = true;
                 }
-                Log.e("database", "outside above if");
-                if(connected){
-                    Log.e("database", "inside if");
-                    for (int i=(buyerList.size()-1); i>=0; i=(i-1)) {
+                //Log.e("database", "outside above if");
+                if (connected) {
+                    //Log.e("database", "inside if");
+                    for (int i = (buyerList.size() - 1); i >= 0; i = (i - 1)) {
                         String key = databaseReference.push().getKey();
                         assert key != null;
                         databaseReference.child(key).child("buyerid").setValue(buyerList.get(i).buyerId);
@@ -139,35 +137,71 @@ public class SignActivity extends Activity {
                         databaseReference.child(key).child("sellerid").setValue(buyerList.get(i).sellerId);
                         databaseReference.child(key).child("timestamp").setValue(buyerList.get(i).timeStamp);
                         databaseReference.child(key).child("signatureString").setValue(buyerList.get(i).sign);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId")
-                                .child("merchIdOrderId001").child("quantity").setValue(buyerList.get(i).merchIdquantity1);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId")
-                                .child("merchIdOrderId001").child("size").setValue(buyerList.get(i).merchIdsize1);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId")
-                                .child("merchIdOrderId002").child("quantity").setValue(buyerList.get(i).merchIdquantity2);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId")
-                                .child("merchIdOrderId002").child("size").setValue(buyerList.get(i).merchIdsize2);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId")
-                                .child("merchIdOrderId003").child("quantity").setValue(buyerList.get(i).merchIdquantity3);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId")
-                                .child("merchIdOrderId003").child("size").setValue(buyerList.get(i).merchIdsize3);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId001").child("quantity").setValue(buyerList.get(i).merchId1quantity1);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId001").child("size").setValue(buyerList.get(i).merchId1size1);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId002").child("quantity").setValue(buyerList.get(i).merchId1quantity2);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId002").child("size").setValue(buyerList.get(i).merchId1size2);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId003").child("quantity").setValue(buyerList.get(i).merchId1quantity3);
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId003").child("size").setValue(buyerList.get(i).merchId1size3);
+                        //Log.e("data", ""+buyerList.get(i).merchIdsize1);
+                        if (!buyerList.get(i).merchIdsize1.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                    .child("merchIdOrderId001").child("quantity").setValue(buyerList.get(i).merchIdquantity1);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                    .child("merchIdOrderId001").child("size").setValue(buyerList.get(i).merchIdsize1);
+                        }
+                        //Log.e("data", ""+buyerList.get(i).merchIdsize2);
+                        if (!buyerList.get(i).merchIdsize2.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                    .child("merchIdOrderId002").child("quantity").setValue(buyerList.get(i).merchIdquantity2);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                    .child("merchIdOrderId002").child("size").setValue(buyerList.get(i).merchIdsize2);
+                        }
+                        //Log.e("data", ""+buyerList.get(i).merchIdsize3);
+                        if (!buyerList.get(i).merchIdsize3.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                    .child("merchIdOrderId003").child("quantity").setValue(buyerList.get(i).merchIdquantity3);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId")
+                                    .child("merchIdOrderId003").child("size").setValue(buyerList.get(i).merchIdsize3);
+                        }
+                        if (!buyerList.get(i).merchId1size1.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                    .child("merchId2OrderId001").child("quantity").setValue(buyerList.get(i).merchId1quantity1);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                    .child("merchId2OrderId001").child("size").setValue(buyerList.get(i).merchId1size1);
+                        }
+                        if (!buyerList.get(i).merchId1size2.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                    .child("merchId2OrderId002").child("quantity").setValue(buyerList.get(i).merchId1quantity2);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                    .child("merchId2OrderId002").child("size").setValue(buyerList.get(i).merchId1size2);
+                        }
+                        if (!buyerList.get(i).merchId1size3.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                    .child("merchId2OrderId003").child("quantity").setValue(buyerList.get(i).merchId1quantity3);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                    .child("merchId2OrderId003").child("size").setValue(buyerList.get(i).merchId1size3);
+                        }
+                        if (!buyerList.get(i).merchId2size1.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId3")
+                                    .child("merchId3OrderId001").child("quantity").setValue(buyerList.get(i).merchId2quantity1);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId3")
+                                    .child("merchId3OrderId001").child("size").setValue(buyerList.get(i).merchId2size1);
+                        }
+                        if (!buyerList.get(i).merchId2size2.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId3")
+                                    .child("merchId3OrderId002").child("quantity").setValue(buyerList.get(i).merchId2quantity2);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId3")
+                                    .child("merchId3OrderId002").child("size").setValue(buyerList.get(i).merchId2size2);
+                        }
+                        if (!buyerList.get(i).merchId2size3.equals("none")) {
+                            databaseReference.child(key).child("ordersPlaced").child("merchId3")
+                                    .child("merchId3OrderId003").child("quantity").setValue(buyerList.get(i).merchId2quantity3);
+                            databaseReference.child(key).child("ordersPlaced").child("merchId3")
+                                    .child("merchId3OrderId003").child("size").setValue(buyerList.get(i).merchId2size3);
+                        }
+                        buyerList.get(i).isUploaded = 1;
+                        BuyerModel model = buyerList.get(i);
+                        db.executeTransaction(realm -> db.insertOrUpdate(model));
                         buyerList.remove(i);
-                        Log.e("database", "inside");
+                  //      Log.e("database", "inside");
                     }
                 }
-                Log.e("database", String.valueOf(getIntent()));
+                //Log.e("database", String.valueOf(getIntent()));
                 Intent intent = new Intent(SignActivity.this, MerchActivity.class);
                 startActivity(intent);
                 finish();
@@ -175,14 +209,15 @@ public class SignActivity extends Activity {
             /*} else {
                 Toast.makeText(SignActivity.this, "Unable to store the signature", Toast.LENGTH_SHORT).show();
             }*/
-            //   if (addSvgSignatureToGallery(mSignaturePad.getSignatureSvg())) {
-            //      Toast.makeText(SignActivity.this, "SVG Signature saved", Toast.LENGTH_SHORT).show();
-            // }// else {
-            //  Toast.makeText(SignActivity.this, "Unable to store the SVG signature", Toast.LENGTH_SHORT).show();
-            //  }
+                //   if (addSvgSignatureToGallery(mSignaturePad.getSignatureSvg())) {
+                //      Toast.makeText(SignActivity.this, "SVG Signature saved", Toast.LENGTH_SHORT).show();
+                // }// else {
+                //  Toast.makeText(SignActivity.this, "Unable to store the SVG signature", Toast.LENGTH_SHORT).show();
+                //  }
+            }
         });
-    }
 
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[], @NonNull int[] grantResults) {
@@ -205,9 +240,9 @@ public class SignActivity extends Activity {
         // Get the directory for the user's public pictures directory.
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
-        if (!file.mkdirs()) {
+        /*if (!file.mkdirs()) {
             Log.e("Pictures", "Directory not created");
-        }
+        }*/
         return file;
     }
 
@@ -224,7 +259,7 @@ public class SignActivity extends Activity {
     public boolean addJpgSignatureToGallery(Bitmap signature) {
         boolean result = false;
         try {
-            File photo = new File(getAlbumStorageDir("Pictures"), String.format("PRDRIVE_SIGN_%d.jpg", System.currentTimeMillis()));
+            File photo = new File(getAlbumStorageDir(""), String.format(" ", System.currentTimeMillis()));
             saveBitmapToJPG(signature, photo);
             scanMediaFile(photo);
             result = true;
@@ -241,25 +276,7 @@ public class SignActivity extends Activity {
         SignActivity.this.sendBroadcast(mediaScanIntent);
     }
 
-    public boolean addSvgSignatureToGallery(String signatureSvg) {
-        boolean result = false;
-        try {
-            File svgFile = new File(getAlbumStorageDir("Pictures"), String.format("PR_DRIVE_%d.svg", System.currentTimeMillis()));
-//          ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//          Bitmap bitmap = Bitmap.createBitmap(svgFile);
-            OutputStream stream = new FileOutputStream(svgFile);
-            OutputStreamWriter writer = new OutputStreamWriter(stream);
-            writer.write(signatureSvg);
-            writer.close();
-            stream.flush();
-            stream.close();
-            scanMediaFile(svgFile);
-            result = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
+
 
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

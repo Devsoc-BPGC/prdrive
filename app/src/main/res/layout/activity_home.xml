@@ -10,9 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         app:titleTextColor="#FFFFFF"
         android:background="#8B008B"
         app:title="HOME ACTIVITY"
@@ -24,7 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGOUT"
-        android:background="@drawable/button_selector"
+        style="@style/Base.Widget.AppCompat.Button"
+
         android:textColor="@color/Facebook_blue"
         android:layout_gravity="right"/>
     </androidx.appcompat.widget.Toolbar>
@@ -33,6 +32,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/homerv" />
+
+    <ProgressBar
+        android:id="@+id/item_format_archive_progressbar"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:progress="0"
+        android:max="100"
+        android:visibility="gone"
+        android:indeterminate="false"
+        android:layout_gravity="center"
+        android:progressDrawable="@drawable/progress_circle"/>
 
 </LinearLayout>
 
