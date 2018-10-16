@@ -1,7 +1,6 @@
 package com.macbitsgoa.prdrive.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,15 +23,12 @@ import com.macbitsgoa.prdrive.viewholders.MerchViewHolder;
 
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
-import static java.security.AccessController.getContext;
 
 public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implements ValueEventListener {
 
-    int i = 0;
     private Context ctx;
 
     private String size1 = null;                                                      //sizes are to be obtained from user.
@@ -43,11 +38,8 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
-
-        //keeps data in activity even when offline
-        DatabaseReference databaseReference;
-
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("orgInfo").child("prdrive-meta").child("prdrive-001").child("merch");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE)
+                .child("main").child("orgInfo").child("prdrive-meta").child("prdrive1-001").child("merch");
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
         //adding the firebase listener which currently points to "merch" in orgInfo.
@@ -62,10 +54,9 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             String merchUrl = child.child("imageUrl").getValue(String.class);
             String merchId = child.child("merchId").getValue(String.class);
 
-
             Uri merchUri;
             merchUri = Uri.parse(merchUrl);
-            merchModelList.add(new MerchModel(merchName, merchDesc, merchUri, size1, size2, size3,merchId));
+            merchModelList.add(new MerchModel(merchName, merchDesc, merchUri, size1, size2, size3, merchId));
             notifyDataSetChanged();
         }
     }
