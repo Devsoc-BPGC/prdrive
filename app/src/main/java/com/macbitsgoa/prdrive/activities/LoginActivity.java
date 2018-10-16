@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     private String seller_prdriveId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -60,10 +59,9 @@ public class LoginActivity extends AppCompatActivity {
          }
      });
 
-
-
       login_btn.setOnClickListener(view -> {
-          if (seller_pass.equals(pass.getText().toString()) && seller_user.equals(user.getText().toString()) && seller_prdriveId.equals(prdrive_id.getText().toString()))
+          if (seller_pass.equals(pass.getText().toString()) && seller_user.equals(user.getText().toString()) &&
+                  seller_prdriveId.equals(prdrive_id.getText().toString()))
           {
               SharedPreferences sharedPreferences = getSharedPreferences("UserLog",Context.MODE_PRIVATE);
               SharedPreferences.Editor editor = sharedPreferences.edit();

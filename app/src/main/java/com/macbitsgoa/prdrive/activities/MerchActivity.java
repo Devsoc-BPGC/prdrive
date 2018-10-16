@@ -27,7 +27,6 @@ public class MerchActivity extends AppCompatActivity {
         finishbtn = findViewById(R.id.finish);
         finishbtn.setVisibility(View.INVISIBLE);
 
-
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Merch Activity");
         setSupportActionBar(toolbar);
@@ -41,7 +40,7 @@ public class MerchActivity extends AppCompatActivity {
 
         for (int i = 0; i < merchModelList.size(); i++) {
 
-            if((merchModelList.get(i).getMerchSize1()=="None")||(merchModelList.get(i).getMerchSize2()=="None")||(merchModelList.get(i).getMerchSize3()=="None"))
+            if((merchModelList.get(i).getMerchSize1().equals("None"))||(merchModelList.get(i).getMerchSize2().equals("None"))||(merchModelList.get(i).getMerchSize3().equals("None")))
             {
                 flag = 1;
                 break;
