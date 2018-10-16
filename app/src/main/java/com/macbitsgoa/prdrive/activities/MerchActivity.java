@@ -22,7 +22,7 @@ public class MerchActivity extends AppCompatActivity {
         RecyclerView rv;
         Button finishbtn;
         setContentView(R.layout.activity_merch);
-
+Log.e("MERCH ACTIVITY","HERE I AM ");
         int flag=0;                                          //Setting up the Finish order button.
         finishbtn = findViewById(R.id.finish);
         finishbtn.setVisibility(View.INVISIBLE);

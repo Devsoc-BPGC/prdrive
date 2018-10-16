@@ -46,7 +46,7 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
 
         //keeps data in activity even when offline
         DatabaseReference databaseReference;
-
+Log.e("MERCH","I AM IN MERCH");
         databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("orgInfo").child("prdrive-meta").child("prdrive-001").child("merch");
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
@@ -62,7 +62,7 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             String merchUrl = child.child("imageUrl").getValue(String.class);
             String merchId = child.child("merchId").getValue(String.class);
 
-
+            Log.e("MERCH","HERE INSIDE ONDATA CHANGE");
             Uri merchUri;
             merchUri = Uri.parse(merchUrl);
             merchModelList.add(new MerchModel(merchName, merchDesc, merchUri, size1, size2, size3,merchId));
@@ -148,8 +148,8 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+                merchModelList.get(position).setMerchSize3("none");
 
-                //This is method will be empty.
             }
         });
     }

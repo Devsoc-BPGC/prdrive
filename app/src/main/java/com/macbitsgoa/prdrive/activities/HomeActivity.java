@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.google.firebase.database.FirebaseDatabase;
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.HomeAdapter;
 
@@ -26,15 +29,19 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Fresco.initialize(this);
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         String password;
         String prdrive_id;
-
+        Button logout_btn;
         RecyclerView rv;
+
         rv = findViewById(R.id.homerv);
+        logout_btn = findViewById(R.id.logout);
+
         HomeAdapter homeAdapter = new HomeAdapter();
         rv.setAdapter(homeAdapter);
         rv.setLayoutManager(new GridLayoutManager(this, span()));
@@ -55,6 +62,16 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         }
 
+        logout_btn.setOnClickListener(view -> {
+
+            SharedPreferences sharedPreferences1 = this.getSharedPreferences("UserLog",Context.MODE_PRIVATE);
+            sharedPreferences1.edit().clear().commit();
+
+            Intent i = new Intent(HomeActivity.this,LoginActivity.class);
+            startActivity(i);
+            finish();
+
+        });
     }
 
     private int span() {

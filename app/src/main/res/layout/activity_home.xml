@@ -7,6 +7,28 @@
     tools:context=".activities.HomeActivity"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_height="50dp"
+        app:titleTextColor="#FFFFFF"
+        android:background="#8B008B"
+        app:title="HOME ACTIVITY"
+        style="@style/ThemeOverlay.AppCompat.ActionBar">
+
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGOUT"
+        android:background="@drawable/button_selector"
+        android:textColor="@color/Facebook_blue"
+        android:layout_gravity="right"/>
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
