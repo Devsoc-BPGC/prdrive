@@ -36,7 +36,7 @@ public class BuyerModel extends RealmObject {
 
     public BuyerModel () {
     }
-    public BuyerModel (int roomNo, String hostelName, String sign, String sellerId, String buyerId) {
+    public BuyerModel (int roomNo, String hostelName, String sign, String sellerId, String buyerId, String combo) {
         this.buyerId = buyerId;
         this.roomNo = roomNo;
         this.combo = combo;

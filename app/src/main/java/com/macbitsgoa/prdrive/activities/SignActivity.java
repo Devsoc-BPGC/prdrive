@@ -112,7 +112,7 @@ public class SignActivity extends Activity {
             if (addJpgSignatureToGallery(signatureBitmap)) {
                 Toast.makeText(SignActivity.this, "Signature saved", Toast.LENGTH_SHORT).show();
                 buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign, sellerId,
-                        getIntent().getStringExtra("Id")));
+                        getIntent().getStringExtra("Id"), ""+combo));
                 db.executeTransaction(
                         realm -> db.insertOrUpdate(buyerList.get(buyerList.size() - 1))
                 );
@@ -138,7 +138,6 @@ public class SignActivity extends Activity {
                         databaseReference.child(key).child("sellerid").setValue(buyerList.get(i).sellerId);
                         databaseReference.child(key).child("timestamp").setValue(buyerList.get(i).timeStamp);
                         databaseReference.child(key).child("signatureString").setValue(buyerList.get(i).sign);
-
                         if ((buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchIdsize1.equals("none") && !buyerList.get(i).merchIdsize1.equals("none") &&
                                 !buyerList.get(i).merchIdsize1.equals("none")) ||
                                 (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId1size1.equals("none") && !buyerList.get(i).merchId1size1.equals("none") &&
@@ -146,7 +145,6 @@ public class SignActivity extends Activity {
                                 (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId2size1.equals("none") && !buyerList.get(i).merchId2size1.equals("none") &&
                                         !buyerList.get(i).merchId2size1.equals("none"))){
                             databaseReference.child(key).child("combo").setValue("true");
-
                         }
                         else
                             databaseReference.child(key).child("combo").setValue("false");

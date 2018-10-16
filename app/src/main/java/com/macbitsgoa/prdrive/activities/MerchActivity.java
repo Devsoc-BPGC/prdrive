@@ -28,6 +28,7 @@ public class MerchActivity extends AppCompatActivity {
         finishbtn.setVisibility(View.INVISIBLE);
 
         final int[] flag = {0};
+
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Merch Activity");
         setSupportActionBar(toolbar);
