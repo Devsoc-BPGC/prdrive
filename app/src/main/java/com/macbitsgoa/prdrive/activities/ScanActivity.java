@@ -17,6 +17,8 @@ import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.IdModel;
 import com.macbitsgoa.prdrive.R;
 
+import java.util.Objects;
+
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
@@ -141,7 +143,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         //Log.e("alert", Id + Name);
                         builder.setTitle("Buyer Details")
-
                                 .setMessage("Id: "+ Id +'\n'+"Name: "+Name)
                                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                                     Intent intent = new Intent(ScanActivity.this,SignActivity.class);

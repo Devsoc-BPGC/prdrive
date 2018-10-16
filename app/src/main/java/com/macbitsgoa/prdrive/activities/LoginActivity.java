@@ -28,7 +28,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+<<<<<<< e2231a7ffc7380f429623d7fd18b767555be85a4
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+=======
+>>>>>>> realm and firebase done
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -83,7 +86,37 @@ public class LoginActivity extends AppCompatActivity {
 
             }
 
+<<<<<<< e2231a7ffc7380f429623d7fd18b767555be85a4
         });
+=======
+         @Override
+         public void onCancelled(@NonNull DatabaseError databaseError) {
+                    //NOt used as of now
+         }
+     });
+
+      login_btn.setOnClickListener(view -> {
+          if (seller_pass.equals(pass.getText().toString()) && seller_user.equals(user.getText().toString()) &&
+                  seller_prdriveId.equals(prdrive_id.getText().toString()))
+          {
+              SharedPreferences sharedPreferences = getSharedPreferences("UserLog",Context.MODE_PRIVATE);
+              SharedPreferences.Editor editor = sharedPreferences.edit();
+
+              editor.putString("Username",user.getText().toString());
+              editor.putString("Password",pass.getText().toString());
+              editor.putString("Prdrive_Id",prdrive_id.getText().toString());
+              editor.commit();
+
+              Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+              startActivity(intent);
+              finish();
+          }
+          else
+              Toast.makeText(LoginActivity.this,"Please Enter Correct Credentials",Toast.LENGTH_LONG).show();
+
+      });
+
+>>>>>>> realm and firebase done
     }
 }
 

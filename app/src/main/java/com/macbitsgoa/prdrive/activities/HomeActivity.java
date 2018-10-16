@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         String password;
         String prdrive_id;
         Button logout_btn;
+
         Realm.init(HomeActivity.this);
         Realm db = Realm.getDefaultInstance();
         RecyclerView rv;
@@ -89,7 +90,6 @@ public class HomeActivity extends AppCompatActivity {
                 size[1] = db.where(IdModel.class).findAll().size();
                 notUploadList.addAll(db.where(BuyerModel.class).findAll().where().equalTo("isUploaded", 0).
                         findAll());
-
                 Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
                 //Log.e("database", "inside if1" + model);
                 //Log.e("database", "inside if1" + size[1]);
