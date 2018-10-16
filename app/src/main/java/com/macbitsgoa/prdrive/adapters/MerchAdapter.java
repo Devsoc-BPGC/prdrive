@@ -40,8 +40,10 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
 
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE)
                 .child("main").child("orgInfo").child("prdrive-meta").child("prdrive1-001").child("merch");
+
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
         //adding the firebase listener which currently points to "merch" in orgInfo.
