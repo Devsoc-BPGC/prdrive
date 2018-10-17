@@ -24,6 +24,14 @@
         android:text="@string/combo"
         android:id="@+id/comboCB"/>
 
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="combo"
+        android:id="@+id/comboCB"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
