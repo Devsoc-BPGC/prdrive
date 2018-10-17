@@ -75,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
                         finish();
-
                     }
                 }
             }
@@ -89,4 +88,5 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 }
+
 
