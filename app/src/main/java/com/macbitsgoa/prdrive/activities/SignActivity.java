@@ -110,8 +110,8 @@ public class SignActivity extends Activity {
             String sign = getEncoded64ImageStringFromBitmap(signatureBitmap);
             //Log.e("database", "outside big if");
             if (addJpgSignatureToGallery(signatureBitmap)) {
-                Toast.makeText(SignActivity.this, "Signature saved", Toast.LENGTH_SHORT).show();
-                buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign, sellerId,
+                Toast.makeText(SignActivity.this, ""+sellerId, Toast.LENGTH_SHORT).show();
+                buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign,
                         getIntent().getStringExtra("Id"), ""+combo));
                 db.executeTransaction(
                         realm -> db.insertOrUpdate(buyerList.get(buyerList.size() - 1))
