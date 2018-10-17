@@ -25,7 +25,11 @@ import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.macbitsgoa.prdrive.StaticHelperClass.finishbtn;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
+
+
+
 
 public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implements ValueEventListener {
 
@@ -38,8 +42,10 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE)
                 .child("main").child("orgInfo").child("prdrive-meta").child("prdrive1-001").child("merch");
+
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
         //adding the firebase listener which currently points to "merch" in orgInfo.
@@ -98,10 +104,12 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-
                 Toast.makeText(ctx, adapterView.getItemAtPosition(i) + " is selected in Size 1", Toast.LENGTH_LONG).show();
                 size1 = adapterView.getItemAtPosition(i).toString();
                 merchModelList.get(position).setMerchSize1(size1);
+
+                if(!size1.equalsIgnoreCase("none"))
+                    finishbtn.setVisibility(View.VISIBLE);
             }
 
             //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
@@ -117,6 +125,9 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
                 Toast.makeText(ctx, adapterView.getItemAtPosition(i) + " is selected in Size 2", Toast.LENGTH_LONG).show();
                 size2 = adapterView.getItemAtPosition(i).toString();
                 merchModelList.get(position).setMerchSize2(size2);
+
+                if(!size2.equalsIgnoreCase("none"))
+                    finishbtn.setVisibility(View.VISIBLE);
 
             }
 
@@ -134,15 +145,22 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
                 Toast.makeText(ctx, adapterView.getItemAtPosition(i) + " is selected in Size 3", Toast.LENGTH_LONG).show();
                 size3 = adapterView.getItemAtPosition(i).toString();
                 merchModelList.get(position).setMerchSize3(size3);
+
+                if(!size3.equalsIgnoreCase("none"))
+                    finishbtn.setVisibility(View.VISIBLE);
+
+                if(size1.equalsIgnoreCase("none")&&size2.equalsIgnoreCase("none")&&size3.equalsIgnoreCase("none"))
+                    finishbtn.setVisibility(View.INVISIBLE);
             }
 
             //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+                merchModelList.get(position).setMerchSize3("none");
 
-                //This is method will be empty.
             }
         });
+
     }
 
     @Override

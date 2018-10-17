@@ -10,15 +10,13 @@ import android.util.DisplayMetrics;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.facebook.drawee.backends.pipeline.Fresco;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.BuyerModel;
@@ -40,24 +38,28 @@ public class HomeActivity extends AppCompatActivity {
 
     static String username;
     ProgressBar progressBar;
+
     private DatabaseReference databaseReference = FirebaseDatabase
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("prdrive-orders").child("prdrive1-001");
     private DatabaseReference databaseReference1 = FirebaseDatabase
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel").child("Students");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Fresco.initialize(this);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         String password;
         String prdrive_id;
+        Button logout_btn;
         Realm.init(HomeActivity.this);
         Realm db = Realm.getDefaultInstance();
         RecyclerView rv;
         progressBar = findViewById(R.id.item_format_archive_progressbar);
         rv = findViewById(R.id.homerv);
+        logout_btn = findViewById(R.id.logout);
+
         HomeAdapter homeAdapter = new HomeAdapter();
         ArrayList<IdModel> idList = new ArrayList<>(0);
         ArrayList<BuyerModel> notUploadList = new ArrayList<>(0);
@@ -86,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
                 size[1] = db.where(IdModel.class).findAll().size();
                 notUploadList.addAll(db.where(BuyerModel.class).findAll().where().equalTo("isUploaded", 0).
                         findAll());
-                Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
                 //Log.e("database", "inside if1" + model);
                 //Log.e("database", "inside if1" + size[1]);
                 //Log.e("database", "inside if1" + size[0]);
@@ -212,6 +214,16 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         }
 
+        logout_btn.setOnClickListener(view -> {
+
+            SharedPreferences sharedPreferences1 = this.getSharedPreferences("UserLog",Context.MODE_PRIVATE);
+            sharedPreferences1.edit().clear().commit();
+
+            Intent i = new Intent(HomeActivity.this,LoginActivity.class);
+            startActivity(i);
+            finish();
+
+        });
     }
 
     private int span() {

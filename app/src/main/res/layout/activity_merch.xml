@@ -28,13 +28,13 @@
             android:id="@+id/finish"
             android:text="FINISH ORDER"
             android:textColor="#000000"
+            android:background="@drawable/button_selector"
             android:shadowColor="@color/colorPrimaryDark"
             style="@style/Widget.AppCompat.Button"
             android:clickable="true"
-            android:gravity="right"
-            android:layout_marginRight="2dp"
+            android:layout_gravity = "right"
+            android:visibility="invisible"
             />
-
     </androidx.appcompat.widget.Toolbar>
 
 </RelativeLayout>

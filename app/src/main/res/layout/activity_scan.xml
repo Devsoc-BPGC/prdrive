@@ -5,33 +5,39 @@
     android:layout_height="match_parent">
 
     <EditText
+        android:id="@+id/scanedt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scanedt"
-        android:hint="Please Enter Room Number"
-        android:layout_margin="@dimen/browser_actions_context_menu_min_padding"
-        android:gravity="center"/>
+        android:layout_gravity="center_vertical"
+        android:hint="Enter Your Room Number:"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:layout_below="@+id/pass"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_shape"
+        />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scanbtn"
         android:text="Scan BITS ID"
         android:layout_margin="@dimen/browser_actions_context_menu_min_padding"
-        android:gravity="center"/>
-    <TextView
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@drawable/button_selector"
+     ></Button>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OR"
-        android:layout_marginLeft="175dp"
-        android:gravity="center"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="USE SIGNATURE"
+        android:text="SIGNATURE"
         android:id="@+id/signbtn"
         android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/button_selector"
+        android:backgroundTint="#ff9900	"
         />
 
 </LinearLayout>

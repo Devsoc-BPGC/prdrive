@@ -73,10 +73,11 @@ public class SignActivity extends Activity {
         mCancelButton = findViewById(R.id.cancel);
 
         mSignaturePad = findViewById(R.id.signature_pad);
+        mSaveButton.setEnabled(false);
         mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
-                // Toast.makeText(SignActivity.this, "OnStartSigning", Toast.LENGTH_SHORT).show();
+                mSaveButton.setEnabled(true);// Toast.makeText(SignActivity.this, "OnStartSigning", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -239,9 +240,9 @@ public class SignActivity extends Activity {
         // Get the directory for the user's public pictures directory.
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
-        if (!file.mkdirs()) {
+        /*if (!file.mkdirs()) {
             Log.e("Pictures", "Directory not created");
-        }
+        }*/
         return file;
     }
 
@@ -258,7 +259,7 @@ public class SignActivity extends Activity {
     public boolean addJpgSignatureToGallery(Bitmap signature) {
         boolean result = false;
         try {
-            File photo = new File(getAlbumStorageDir("Pictures"), String.format("PRDRIVE_SIGN_%d.jpg", System.currentTimeMillis()));
+            File photo = new File(getAlbumStorageDir(""), String.format(" ", System.currentTimeMillis()));
             saveBitmapToJPG(signature, photo);
             scanMediaFile(photo);
             result = true;
@@ -275,25 +276,7 @@ public class SignActivity extends Activity {
         SignActivity.this.sendBroadcast(mediaScanIntent);
     }
 
-    public boolean addSvgSignatureToGallery(String signatureSvg) {
-        boolean result = false;
-        try {
-            File svgFile = new File(getAlbumStorageDir("Pictures"), String.format("PR_DRIVE_%d.svg", System.currentTimeMillis()));
-//          ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//          Bitmap bitmap = Bitmap.createBitmap(svgFile);
-            OutputStream stream = new FileOutputStream(svgFile);
-            OutputStreamWriter writer = new OutputStreamWriter(stream);
-            writer.write(signatureSvg);
-            writer.close();
-            stream.flush();
-            stream.close();
-            scanMediaFile(svgFile);
-            result = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
+
 
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

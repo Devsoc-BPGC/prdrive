@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     >
-<androidx.appcompat.widget.Toolbar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:titleTextColor="#FFFFFF"
+        android:background="#8B00"
+        app:title="CHECKOUT ACTIVITY"
+        style="@style/ThemeOverlay.AppCompat.ActionBar">
+
 
     <Button
     android:id="@+id/confirm"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="CONFIRM ORDER"
+    style="@style/Base.Widget.AppCompat.Button"
+    android:layout_gravity ="right"
     android:textColor="#000000"
     android:shadowColor="@color/colorPrimaryDark"
     android:layout_marginLeft="15dp"
-    android:background="@drawable/button_selector"
     android:clickable="true"
         />
 
@@ -33,24 +41,5 @@
 </androidx.recyclerview.widget.RecyclerView>
 
 
-<EditText
-    android:id="@+id/room"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:hint="Room"
-    android:textColorHint="#FFFFFF"
-    android:text="#FFFFFF"
-    android:inputType="number"
-    />
-    <Button
-        android:id="@+id/edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EDIT ORDER"
-        android:textColor="#000000"
-        android:shadowColor="@color/colorPrimaryDark"
-        android:layout_marginLeft="100dp"
-        android:background="@drawable/button_selector"
-        android:clickable="true"
-        />
+
 </LinearLayout>
