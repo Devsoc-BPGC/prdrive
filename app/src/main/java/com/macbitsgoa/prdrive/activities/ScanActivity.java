@@ -112,6 +112,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                 Id = model.getBuyerId();
                                 Name = model.getName();
                             });
+
                             /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 =======
                     int roomNo = Integer.parseInt(scanEdt.getText().toString());
@@ -129,6 +130,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                             Id = model.getBuyerId();
                             Name = model.getName();
                         });
+=======
+>>>>>>> done
                         /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 >>>>>>> done
                             @Override
