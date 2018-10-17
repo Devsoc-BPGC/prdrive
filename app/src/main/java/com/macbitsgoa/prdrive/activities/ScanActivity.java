@@ -142,7 +142,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                             }
                             //Log.e("alert", Id + Name);
                             builder.setTitle("Buyer Details")
-
                                     .setMessage("Id: " + Id + '\n' + "Name: " + Name)
                                     .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                                         Intent intent = new Intent(ScanActivity.this, SignActivity.class);
