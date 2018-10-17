@@ -43,7 +43,7 @@ public class MerchActivity extends AppCompatActivity {
         finishbtn.setOnClickListener(view -> {
         for (int i = 0; i < merchModelList.size(); i++) {
 
-            if((merchModelList.get(i).getMerchSize1().equals("None"))||(merchModelList.get(i).getMerchSize2().equals("None"))||(merchModelList.get(i).getMerchSize3().equals("None")))
+            if((merchModelList.get(i).getMerchSize1().equals("none"))||(merchModelList.get(i).getMerchSize2().equals("none"))||(merchModelList.get(i).getMerchSize3().equals("none")))
             {
                 flag[0] = 1;
                 break;
