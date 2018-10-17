@@ -28,19 +28,14 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-<<<<<<< HEAD
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-=======
->>>>>>> 0b491d10ca8d35973adbd612cb4a99ae4de768ad
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         Button login_btn;
         login_btn = findViewById(R.id.login_btn);
 
-        login_btn.setOnClickListener(view -> {
-            SellerCred();
-        });
+        login_btn.setOnClickListener(view -> SellerCred());
 
     }
 
@@ -70,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences("UserLog", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-<<<<<<< HEAD
                         editor.putString("Username", user.getText().toString());
                         editor.putString("Password", pass.getText().toString());
                         editor.putString("Prdrive_Id", prdrive_id.getText().toString());
@@ -80,29 +74,18 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
                         finish();
-
-=======
-      login_btn.setOnClickListener(view -> {
-          if (seller_pass.equals(pass.getText().toString()) && seller_user.equals(user.getText().toString()) &&
-                  seller_prdriveId.equals(prdrive_id.getText().toString()))
-          {
-              SharedPreferences sharedPreferences = getSharedPreferences("UserLog",Context.MODE_PRIVATE);
-              SharedPreferences.Editor editor = sharedPreferences.edit();
->>>>>>> 0b491d10ca8d35973adbd612cb4a99ae4de768ad
-
-                    }
-                 //  else if(!seller_pass.equals(pass.getText().toString()) || !seller_user.equals(user.getText().toString()) || !seller_prdriveId.equals(prdrive_id.getText().toString()))
-                  //      Toast.makeText(LoginActivity.this,"Please Enter Correct PR DRIVE Credentials",Toast.LENGTH_LONG).show();
+                            //  else if(!seller_pass.equals(pass.getText().toString()) || !seller_user.equals(user.getText().toString()) || !seller_prdriveId.equals(prdrive_id.getText().toString()))
+                            //      Toast.makeText(LoginActivity.this,"Please Enter Correct PR DRIVE Credentials",Toast.LENGTH_LONG).show();
 
 
+                        }
                     }
                 }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //nothing here
+
             }
         });
-    }
+
+}
 }

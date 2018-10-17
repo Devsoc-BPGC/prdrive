@@ -138,12 +138,12 @@ public class SignActivity extends Activity {
                         databaseReference.child(key).child("sellerid").setValue(buyerList.get(i).sellerId);
                         databaseReference.child(key).child("timestamp").setValue(buyerList.get(i).timeStamp);
                         databaseReference.child(key).child("signatureString").setValue(buyerList.get(i).sign);
-                        if ((combo && !buyerList.get(i).merchIdsize1.equals("none") && !buyerList.get(i).merchIdsize1.equals("none") &&
-                                !buyerList.get(i).merchIdsize1.equals("none")) ||
-                                (combo && !buyerList.get(i).merchId1size1.equals("none") && !buyerList.get(i).merchId1size1.equals("none") &&
-                                        !buyerList.get(i).merchId1size1.equals("none")) ||
-                                (combo && !buyerList.get(i).merchId2size1.equals("none") && !buyerList.get(i).merchId2size1.equals("none") &&
-                                        !buyerList.get(i).merchId2size1.equals("none"))){
+                        if ((combo && (!buyerList.get(i).merchIdsize1.equals("none")) && (!buyerList.get(i).merchIdsize1.equals("none")) &&
+                                (!buyerList.get(i).merchIdsize1.equals("none"))) ||
+                                (combo && (!buyerList.get(i).merchId1size1.equals("none")) && (!buyerList.get(i).merchId1size1.equals("none")) &&
+                                        (!buyerList.get(i).merchId1size1.equals("none"))) ||
+                                (combo && (!buyerList.get(i).merchId2size1.equals("none")) && (!buyerList.get(i).merchId2size1.equals("none")) &&
+                                        (!buyerList.get(i).merchId2size1.equals("none")))){
                             databaseReference.child(key).child("combo").setValue("true");
                             combo = false;
                         }

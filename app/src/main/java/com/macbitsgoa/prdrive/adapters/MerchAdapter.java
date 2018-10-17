@@ -27,12 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static com.macbitsgoa.prdrive.StaticHelperClass.finishbtn;
 import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 0b491d10ca8d35973adbd612cb4a99ae4de768ad
 
 public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implements ValueEventListener {
 
@@ -45,15 +39,10 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
-<<<<<<< HEAD
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE)
                 .child("main").child("orgInfo").child("prdrive-meta").child("prdrive1-001").child("merch");
 
-=======
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE)
-                .child("main").child("orgInfo").child("prdrive-meta").child("prdrive1-001").child("merch");
->>>>>>> 0b491d10ca8d35973adbd612cb4a99ae4de768ad
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
         //adding the firebase listener which currently points to "merch" in orgInfo.
