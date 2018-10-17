@@ -113,6 +113,8 @@ public class HomeActivity extends AppCompatActivity {
                                     !notUploadList.get(i).merchId2size1.equals("none"))){
                         databaseReference.child(key).child("combo").setValue("true");
                     }
+                    else
+                        databaseReference.child(key).child("combo").setValue("false");
                     if (!notUploadList.get(i).merchIdsize1.equals("none")) {
                         databaseReference.child(key).child("ordersPlaced").child("merchId")
                                 .child("merchIdOrderId001").child("quantity").setValue(notUploadList.get(i).merchIdquantity1);
@@ -221,7 +223,6 @@ public class HomeActivity extends AppCompatActivity {
 
         if(("N/A").equals(username) || ("N/A").equals(password) || ("N/A").equals(prdrive_id) )
         {
-            sellerId = username;
             Intent i = new Intent(HomeActivity.this,LoginActivity.class);
             startActivity(i);
             finish();

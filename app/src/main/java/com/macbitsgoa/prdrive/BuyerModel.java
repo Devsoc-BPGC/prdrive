@@ -31,19 +31,18 @@ public class BuyerModel extends RealmObject {
     public String merchId2size2="none";
     public String merchId2quantity3="0";
     public String merchId2size3="none";
-    public String sellerId;
+    public String sellerId = StaticHelperClass.sellerId;
     public String timeStamp;
 
     public BuyerModel () {
     }
 
-    public BuyerModel (int roomNo, String hostelName, String sign, String sellerId, String buyerId, String combo) {
+    public BuyerModel (int roomNo, String hostelName, String sign, String buyerId, String combo) {
         this.buyerId = buyerId;
         this.roomNo = roomNo;
         this.combo = combo;
         this.hostelName = hostelName;
         this.sign = sign;
-        this.sellerId = sellerId;
         for(int i=0; i<merchModelList.size(); i++){
             if(merchModelList.get(i).getMerchId().equals("merchId0")){
                 merchIdquantity1 = "1";
