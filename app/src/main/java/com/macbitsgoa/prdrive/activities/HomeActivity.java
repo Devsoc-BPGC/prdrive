@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+
 import com.google.firebase.database.ValueEventListener;
 import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.BuyerModel;
@@ -39,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
 
     static String username;
     ProgressBar progressBar;
-
     private DatabaseReference databaseReference = FirebaseDatabase
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("prdrive-orders").child("prdrive1-001");
     private DatabaseReference databaseReference1 = FirebaseDatabase
@@ -90,6 +90,7 @@ public class HomeActivity extends AppCompatActivity {
                 notUploadList.addAll(db.where(BuyerModel.class).findAll().where().equalTo("isUploaded", 0).
                         findAll());
               //  Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
                 //Log.e("database", "inside if1" + model);
                 //Log.e("database", "inside if1" + size[1]);
                 //Log.e("database", "inside if1" + size[0]);

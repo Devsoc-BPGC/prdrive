@@ -141,6 +141,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         //Log.e("alert", Id + Name);
                         builder.setTitle("Buyer Details")
+
                                 .setMessage("Id: "+ Id +'\n'+"Name: "+Name)
                                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                                     Intent intent = new Intent(ScanActivity.this,SignActivity.class);
@@ -153,6 +154,10 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                 {
                                     scanEdt.setText(null);
                                     Toast.makeText(ScanActivity.this, "Please Enter A Room Number", Toast.LENGTH_SHORT).show();
+                                })
+                                .setNegativeButton(android.R.string.no, (dialog, which) ->
+                                {
+                                    Toast.makeText(ScanActivity.this, "Please enter a room no", Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                 })
                                 .setIcon(android.R.drawable.ic_dialog_alert)
