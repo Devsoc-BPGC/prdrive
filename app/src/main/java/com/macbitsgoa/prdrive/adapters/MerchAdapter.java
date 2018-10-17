@@ -39,15 +39,9 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
         this.ctx = ctx;
-<<<<<<< e2231a7ffc7380f429623d7fd18b767555be85a4
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE)
                 .child("main").child("orgInfo").child("prdrive-meta").child("prdrive1-001").child("merch");
-
-=======
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(BuildConfig.BUILD_TYPE)
-                .child("main").child("orgInfo").child("prdrive-meta").child("prdrive1-001").child("merch");
->>>>>>> realm and firebase done
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(this);
         //adding the firebase listener which currently points to "merch" in orgInfo.
