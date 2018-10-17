@@ -17,8 +17,6 @@ import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.IdModel;
 import com.macbitsgoa.prdrive.R;
 
-import java.util.Objects;
-
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
