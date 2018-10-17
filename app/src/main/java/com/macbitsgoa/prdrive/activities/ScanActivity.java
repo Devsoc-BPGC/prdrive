@@ -17,8 +17,6 @@ import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.IdModel;
 import com.macbitsgoa.prdrive.R;
 
-import java.util.Objects;
-
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
@@ -115,6 +113,24 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                 Name = model.getName();
                             });
                             /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+=======
+                    int roomNo = Integer.parseInt(scanEdt.getText().toString());
+                    //Name[0] = databaseReference.child(hostelname).child(scanEdt.getText().toString()).child("Name").toString();
+                    if (roomNo > 99 && roomNo <= 400) {
+                        if (comboCb.isChecked()){
+                            combo = true;
+                        }
+                        Toast.makeText(this, ""+scanEdt.getText().toString(), Toast.LENGTH_SHORT).show();
+                        db.executeTransaction(realm -> {
+                            IdModel model = db.where(IdModel.class).findAll().where()
+                                    .equalTo("hostelName", hostelname).findAll().where()
+                                    .equalTo("roomNo", scanEdt.getText().toString()).findFirst();
+                            //Log.e("data", ""+model.getBuyerId());
+                            Id = model.getBuyerId();
+                            Name = model.getName();
+                        });
+                        /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+>>>>>>> done
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot child: dataSnapshot.getChildren()) {

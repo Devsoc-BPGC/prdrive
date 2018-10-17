@@ -24,11 +24,24 @@
         android:text="@string/combo"
         android:id="@+id/comboCB"/>
 
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="combo"
+        android:id="@+id/comboCB"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scanbtn"
+<<<<<<< 23b5a4099299b5eba7244999b105f476297cd6fc
         android:text="@string/scan_bits_id"
+=======
+        android:text="Scan BITS ID"
+        android:visibility="invisible"
+>>>>>>> done
         android:layout_margin="@dimen/browser_actions_context_menu_min_padding"
         android:gravity="center"
         android:visibility="gone"
@@ -37,7 +50,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< 23b5a4099299b5eba7244999b105f476297cd6fc
         android:text="@string/or"
+=======
+        android:text="OR"
+>>>>>>> done
         android:visibility="invisible"
         android:layout_marginLeft="175dp"
         android:gravity="center"/>
