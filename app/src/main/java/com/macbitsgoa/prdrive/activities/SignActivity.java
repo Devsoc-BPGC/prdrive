@@ -145,7 +145,6 @@ public class SignActivity extends Activity {
                                 (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId2size1.equals("none") && !buyerList.get(i).merchId2size1.equals("none") &&
                                         !buyerList.get(i).merchId2size1.equals("none"))){
                             databaseReference.child(key).child("combo").setValue("true");
-
                         }
                         else
                             databaseReference.child(key).child("combo").setValue("false");
