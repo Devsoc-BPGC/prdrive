@@ -20,6 +20,8 @@ import com.macbitsgoa.prdrive.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
+
 public class LoginActivity extends AppCompatActivity {
 
     private String seller_user;
@@ -28,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -69,21 +70,22 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("Password", pass.getText().toString());
                         editor.putString("Prdrive_Id", prdrive_id.getText().toString());
                         editor.commit();
-
+                        sellerId = user.getText().toString();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
                         finish();
-
-                        }
                     }
                 }
+            }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
 
         });
+
     }
 }
 
