@@ -147,6 +147,8 @@ public class SignActivity extends Activity {
                             databaseReference.child(key).child("combo").setValue("true");
 
                         }
+                        else
+                            databaseReference.child(key).child("combo").setValue("false");
                         //Log.e("data", ""+buyerList.get(i).merchIdsize1);
                         if (!buyerList.get(i).merchIdsize1.equals("none")) {
                             databaseReference.child(key).child("ordersPlaced").child("merchId")
