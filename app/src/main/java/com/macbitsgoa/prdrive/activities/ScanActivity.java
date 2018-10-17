@@ -96,21 +96,22 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.signbtn :
                 if(!scanEdt.getText().toString().isEmpty()) {
-                    int roomNo = Integer.parseInt(scanEdt.getText().toString());
-                    //Name[0] = databaseReference.child(hostelname).child(scanEdt.getText().toString()).child("Name").toString();
-                    if (roomNo > 99 && roomNo <= 400) {
-                        if (comboCb.isChecked()){
-                            combo = true;
-                        }
-                        Toast.makeText(this, ""+scanEdt.getText().toString(), Toast.LENGTH_SHORT).show();
-                        db.executeTransaction(realm -> {
-                            IdModel model = db.where(IdModel.class).findAll().where()
-                                    .equalTo("hostelName", hostelname).findAll().where()
-                                    .equalTo("roomNo", scanEdt.getText().toString()).findFirst();
-                            //Log.e("data", ""+model.getBuyerId());
-                            Id = model.getBuyerId();
-                            Name = model.getName();
-                        });
+                    String roomNo1 = scanEdt.getText().toString();
+                    if (isInteger(roomNo1)) {
+                        int roomNo = Integer.parseInt(roomNo1);
+                        if (roomNo > 99 && roomNo <= 400) {
+                            if (comboCb.isChecked()) {
+                                combo = true;
+                            }
+                            Toast.makeText(this, "" + scanEdt.getText().toString(), Toast.LENGTH_SHORT).show();
+                            db.executeTransaction(realm -> {
+                                IdModel model = db.where(IdModel.class).findAll().where()
+                                        .equalTo("hostelName", hostelname).findAll().where()
+                                        .equalTo("roomNo", scanEdt.getText().toString()).findFirst();
+                                //Log.e("data", ""+model.getBuyerId());
+                                Id = model.getBuyerId();
+                                Name = model.getName();
+                            });
                         /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -133,38 +134,41 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                             }
                         });*/
 
-                        AlertDialog.Builder builder;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            builder = new AlertDialog.Builder(ScanActivity.this, android.R.style.Theme_Material_Dialog_Alert);
-                        } else {
-                            builder = new AlertDialog.Builder(ScanActivity.this);
-                        }
-                        //Log.e("alert", Id + Name);
-                        builder.setTitle("Buyer Details")
+                            AlertDialog.Builder builder;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                builder = new AlertDialog.Builder(ScanActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                            } else {
+                                builder = new AlertDialog.Builder(ScanActivity.this);
+                            }
+                            //Log.e("alert", Id + Name);
+                            builder.setTitle("Buyer Details")
 
-                                .setMessage("Id: "+ Id +'\n'+"Name: "+Name)
-                                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                                    Intent intent = new Intent(ScanActivity.this,SignActivity.class);
-                                    intent.putExtra("roomNo", roomNo);
-                                    intent.putExtra("Id", Id);
-                                    startActivity(intent);
-                                    finish();
-                                })
-                                .setNegativeButton(android.R.string.no, (dialog, which) ->
-                                {
-                                    scanEdt.setText(null);
-                                    Toast.makeText(ScanActivity.this, "Please Enter A Room Number", Toast.LENGTH_SHORT).show();
-                                })
-                                .setNegativeButton(android.R.string.no, (dialog, which) ->
-                                {
-                                    Toast.makeText(ScanActivity.this, "Please enter a room no", Toast.LENGTH_SHORT).show();
-                                    dialog.cancel();
-                                })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
+                                    .setMessage("Id: " + Id + '\n' + "Name: " + Name)
+                                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                                        Intent intent = new Intent(ScanActivity.this, SignActivity.class);
+                                        intent.putExtra("roomNo", roomNo);
+                                        intent.putExtra("Id", Id);
+                                        startActivity(intent);
+                                        finish();
+                                    })
+                                    .setNegativeButton(android.R.string.no, (dialog, which) ->
+                                    {
+                                        scanEdt.setText(null);
+                                        Toast.makeText(ScanActivity.this, "Please Enter A Room Number", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .setNegativeButton(android.R.string.no, (dialog, which) ->
+                                    {
+                                        Toast.makeText(ScanActivity.this, "Please enter a room no", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+                                    })
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+                        } else {
+                            Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    else {
-                        Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
+                    else{
+                        Toast.makeText(this, "room no does not exist", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
@@ -177,6 +181,17 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+    public boolean isInteger( String input ) {
+        try {
+            Integer.parseInt( input );
+            return true;
+        }
+        catch( Exception e ) {
+            return false;
+        }
+    }
+
 
 }
 
