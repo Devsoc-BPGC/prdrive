@@ -44,9 +44,9 @@ public class HomeActivity extends AppCompatActivity {
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("prdrive-orders").child("prdrive1-001");
     private DatabaseReference databaseReference1 = FirebaseDatabase
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel").child("Students");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
                 size[1] = db.where(IdModel.class).findAll().size();
                 notUploadList.addAll(db.where(BuyerModel.class).findAll().where().equalTo("isUploaded", 0).
                         findAll());
-              //  Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
+
                 Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
                 //Log.e("database", "inside if1" + model);
                 //Log.e("database", "inside if1" + size[1]);
@@ -105,6 +105,14 @@ public class HomeActivity extends AppCompatActivity {
                     databaseReference.child(key).child("sellerid").setValue(notUploadList.get(i).sellerId);
                     databaseReference.child(key).child("timestamp").setValue(notUploadList.get(i).timeStamp);
                     databaseReference.child(key).child("signatureString").setValue(notUploadList.get(i).sign);
+                    if ((notUploadList.get(i).combo.equals("true") && !notUploadList.get(i).merchIdsize1.equals("none") && !notUploadList.get(i).merchIdsize1.equals("none") &&
+                            !notUploadList.get(i).merchIdsize1.equals("none")) ||
+                            (notUploadList.get(i).combo.equals("true") && !notUploadList.get(i).merchId1size1.equals("none") && !notUploadList.get(i).merchId1size1.equals("none") &&
+                                    !notUploadList.get(i).merchId1size1.equals("none")) ||
+                            (notUploadList.get(i).combo.equals("true") && !notUploadList.get(i).merchId2size1.equals("none") && !notUploadList.get(i).merchId2size1.equals("none") &&
+                                    !notUploadList.get(i).merchId2size1.equals("none"))){
+                        databaseReference.child(key).child("combo").setValue("true");
+                    }
                     if (!notUploadList.get(i).merchIdsize1.equals("none")) {
                         databaseReference.child(key).child("ordersPlaced").child("merchId")
                                 .child("merchIdOrderId001").child("quantity").setValue(notUploadList.get(i).merchIdquantity1);
