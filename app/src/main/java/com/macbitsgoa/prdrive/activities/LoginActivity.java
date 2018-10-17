@@ -35,9 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         Button login_btn;
         login_btn = findViewById(R.id.login_btn);
 
-        login_btn.setOnClickListener(view -> {
-            SellerCred();
-        });
+        login_btn.setOnClickListener(view -> SellerCred());
 
     }
 
@@ -76,15 +74,18 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
                         finish();
-
                     }
                 }
             }
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //nothing here
+
             }
+
         });
     }
 }
+
 
