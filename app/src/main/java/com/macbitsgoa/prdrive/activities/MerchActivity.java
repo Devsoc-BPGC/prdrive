@@ -26,7 +26,7 @@ public class MerchActivity extends AppCompatActivity {
                                                   //Setting up the Finish order button.
         finishbtn = findViewById(R.id.finish);
         finishbtn.setVisibility(View.INVISIBLE);
-        
+
         final int[] flag = {0};
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Merch Activity");
