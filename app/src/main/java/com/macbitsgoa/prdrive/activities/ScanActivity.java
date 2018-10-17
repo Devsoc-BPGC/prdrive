@@ -165,7 +165,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                         } else {
                             Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
                         }
-                        //Log.e("alert", Id + Name);
+
                     }
                     else{
                         Toast.makeText(this, "room no does not exist", Toast.LENGTH_SHORT).show();
