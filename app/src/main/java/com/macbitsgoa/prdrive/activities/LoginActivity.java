@@ -74,11 +74,10 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
                         finish();
+
+                        }
                     }
                 }
-            }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -87,5 +86,4 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-
 
