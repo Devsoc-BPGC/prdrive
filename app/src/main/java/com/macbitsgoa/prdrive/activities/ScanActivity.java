@@ -113,6 +113,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                 Name = model.getName();
                             });
 
+
                             /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 =======
                     int roomNo = Integer.parseInt(scanEdt.getText().toString());
@@ -130,6 +131,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                             Id = model.getBuyerId();
                             Name = model.getName();
                         });
+=======
+>>>>>>> done
 =======
 >>>>>>> done
                         /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -186,7 +189,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                         } else {
                             Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                     else{
                         Toast.makeText(this, "room no does not exist", Toast.LENGTH_SHORT).show();
