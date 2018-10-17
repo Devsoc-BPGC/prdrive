@@ -205,6 +205,12 @@ public class HomeActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+                db.executeTransaction(realm -> {
+                    int size1 = db.where(IdModel.class).findAll().size();
+                    Toast.makeText(HomeActivity.this, ""+size1, Toast.LENGTH_SHORT).show();
+                });
+                Toast.makeText(this, "data downloaded", Toast.LENGTH_SHORT).show();
+                progressBar.setProgress(100);
             }
 
         }
