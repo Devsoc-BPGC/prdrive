@@ -10,7 +10,6 @@ import android.util.DisplayMetrics;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -95,9 +94,6 @@ public class HomeActivity extends AppCompatActivity {
                 for (int i = (size[0] - 1); i >= 0; i = (i - 1)) {
                     String key = databaseReference.push().getKey();
                     assert key != null;
-                    db.executeTransaction(realm -> {
-
-                    });
                     databaseReference.child(key).child("buyerid").setValue(notUploadList.get(i).buyerId);
                     databaseReference.child(key).child("hostel").setValue(notUploadList.get(i).hostelName);
                     databaseReference.child(key).child("room").setValue(notUploadList.get(i).roomNo);

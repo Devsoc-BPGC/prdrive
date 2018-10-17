@@ -3,29 +3,23 @@ package com.macbitsgoa.prdrive.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.IdModel;
 import com.macbitsgoa.prdrive.R;
 
-import java.util.Objects;
-
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import io.realm.Realm;
@@ -33,17 +27,21 @@ import io.realm.Realm;
 public class ScanActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText scanEdt;
+    private CheckBox comboCb;
     private DatabaseReference databaseReference = FirebaseDatabase
             .getInstance().getReference().child(BuildConfig.BUILD_TYPE).child("main").child("hostel");
     static private String Id;
     static private String Name;
     public Button scanBtn;
     public Button signBtn;
+    static boolean combo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
+
+        comboCb = findViewById(R.id.comboCB);
 
         scanEdt = findViewById(R.id.scanedt);
         signBtn = findViewById(R.id.signbtn);
@@ -101,6 +99,9 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                     int roomNo = Integer.parseInt(scanEdt.getText().toString());
                     //Name[0] = databaseReference.child(hostelname).child(scanEdt.getText().toString()).child("Name").toString();
                     if (roomNo > 99 && roomNo <= 400) {
+                        if (comboCb.isChecked()){
+                            combo = true;
+                        }
                         Toast.makeText(this, ""+scanEdt.getText().toString(), Toast.LENGTH_SHORT).show();
                         db.executeTransaction(realm -> {
                             IdModel model = db.where(IdModel.class).findAll().where()
@@ -162,8 +163,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                 else {
                     Toast.makeText(this, "Please Enter Room Number", Toast.LENGTH_SHORT).show();
                 }
-
-              //  Log.e("BUTTON","SIGN PRESSED");
             break;
 
             default: Toast.makeText(this,"Please Select A Mode",Toast.LENGTH_LONG).show();
