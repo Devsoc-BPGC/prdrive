@@ -5,4 +5,9 @@
     <string name="Size_1"></string>
     <string name="Size_2"></string>
     <string name="Size_3"></string>
+    <string name="signature">SIGNATURE</string>
+    <string name="or">OR</string>
+    <string name="scan_bits_id">Scan BITS ID</string>
+    <string name="combo">combo</string>
+    <string name="enter_your_room_number">Enter Your Room Number:</string>
 </resources>

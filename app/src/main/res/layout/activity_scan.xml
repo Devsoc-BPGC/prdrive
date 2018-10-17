@@ -9,29 +9,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:hint="Enter Your Room Number:"
+        android:hint="@string/enter_your_room_number"
         android:textSize="25sp"
         android:padding="5dp"
-        android:layout_below="@+id/pass"
         android:layout_marginTop="20dp"
         android:background="@drawable/border_shape"
         />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="@string/combo"
+        android:id="@+id/comboCB"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scanbtn"
-        android:text="Scan BITS ID"
+        android:text="@string/scan_bits_id"
         android:layout_margin="@dimen/browser_actions_context_menu_min_padding"
         android:gravity="center"
         android:visibility="gone"
-        android:background="@drawable/button_selector"
-     ></Button>
+        android:background="@drawable/button_selector" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/or"
+        android:visibility="invisible"
+        android:layout_marginLeft="175dp"
+        android:gravity="center"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGNATURE"
+        android:text="@string/signature"
         android:id="@+id/signbtn"
         android:gravity="center"
         android:layout_gravity="center"

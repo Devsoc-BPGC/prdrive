@@ -3,6 +3,8 @@ package com.macbitsgoa.prdrive.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.MerchAdapter;
 
@@ -23,7 +25,9 @@ public class MerchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_merch);
                                                   //Setting up the Finish order button.
         finishbtn = findViewById(R.id.finish);
+        finishbtn.setVisibility(View.INVISIBLE);
 
+        final int[] flag = {0};
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Merch Activity");
         setSupportActionBar(toolbar);
@@ -35,7 +39,20 @@ public class MerchActivity extends AppCompatActivity {
         rv.setAdapter(merchAdapter);
 
 
+
         finishbtn.setOnClickListener(view -> {
+        for (int i = 0; i < merchModelList.size(); i++) {
+
+            if((merchModelList.get(i).getMerchSize1().equals("None"))||(merchModelList.get(i).getMerchSize2().equals("None"))||(merchModelList.get(i).getMerchSize3().equals("None")))
+            {
+                flag[0] = 1;
+                break;
+            }
+            //Log to ensure that the merchModelList going to the next activity is populated.
+        }
+
+        if(flag[0] == 0 )
+            finishbtn.setVisibility(View.VISIBLE);
 
 
             for (int i = 0; i < merchModelList.size(); i++) {

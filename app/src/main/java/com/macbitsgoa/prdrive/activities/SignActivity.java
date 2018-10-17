@@ -49,6 +49,7 @@ import io.realm.Realm;
 
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
+import static com.macbitsgoa.prdrive.activities.ScanActivity.combo;
 
 public class SignActivity extends Activity {
 
@@ -137,6 +138,15 @@ public class SignActivity extends Activity {
                         databaseReference.child(key).child("sellerid").setValue(buyerList.get(i).sellerId);
                         databaseReference.child(key).child("timestamp").setValue(buyerList.get(i).timeStamp);
                         databaseReference.child(key).child("signatureString").setValue(buyerList.get(i).sign);
+                        if ((combo && !buyerList.get(i).merchIdsize1.equals("none") && !buyerList.get(i).merchIdsize1.equals("none") &&
+                                !buyerList.get(i).merchIdsize1.equals("none")) ||
+                                (combo && !buyerList.get(i).merchId1size1.equals("none") && !buyerList.get(i).merchId1size1.equals("none") &&
+                                        !buyerList.get(i).merchId1size1.equals("none")) ||
+                                (combo && !buyerList.get(i).merchId2size1.equals("none") && !buyerList.get(i).merchId2size1.equals("none") &&
+                                        !buyerList.get(i).merchId2size1.equals("none"))){
+                            databaseReference.child(key).child("combo").setValue("true");
+                            combo = false;
+                        }
                         //Log.e("data", ""+buyerList.get(i).merchIdsize1);
                         if (!buyerList.get(i).merchIdsize1.equals("none")) {
                             databaseReference.child(key).child("ordersPlaced").child("merchId")
