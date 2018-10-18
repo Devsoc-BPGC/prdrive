@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity {
                 notUploadList.addAll(db.where(BuyerModel.class).findAll().where().equalTo("isUploaded", 0).
                         findAll());
                 Log.e("database", size[0]+"");
-                Log.e("database", ""+notUploadList.get(0).getBuyerId());
+                //Log.e("database", ""+notUploadList.get(0).getBuyerId());
                 Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
                 //Log.e("database", "inside if1" + model);
                 //Log.e("database", "inside if1" + size[1]);
@@ -116,17 +116,10 @@ public class HomeActivity extends AppCompatActivity {
                     String key = databaseReference.push().getKey();
                     assert key != null;
                     Log.e("database", "inside if4");
-                    //model[0].setHostelName("ah2");
-                    //model[0].setRoomNo("212");
-                    //model[0].setSellerId("aoob");
                     databaseReference.child(key).child("buyerid").setValue(notUploadList.get(i).getBuyerId());
                     //Log.e("database", ""+model[0]);
                     //Log.e("database", ""+model[0]);
-                    //Log.e("database", ""+model[0].buyerId);
-                    Log.e("database", ""+notUploadList.get(i).hostelName);
-                    Log.e("database", ""+notUploadList.get(i).combo);
-                    Log.e("database", ""+notUploadList.get(i).sellerId);
-                    Log.e("database", ""+notUploadList.get(i).roomNo);
+                    Log.e("database", ""+notUploadList.get(i).getBuyerId());
                     databaseReference.child(key).child("hostel").setValue(notUploadList.get(i).getHostelName());
                     databaseReference.child(key).child("room").setValue(notUploadList.get(i).getRoomNo());
                     databaseReference.child(key).child("sellerid").setValue(notUploadList.get(i).getSellerId());
@@ -142,65 +135,82 @@ public class HomeActivity extends AppCompatActivity {
                     }
                     else
                         databaseReference.child(key).child("combo").setValue("false");
-                    if (!notUploadList.get(i).getMerchId1size1().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
-                                .child("merchId0OrderId001").child("quantity").setValue(notUploadList.get(i).getMerchId1quantity1());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
-                                .child("merchId0OrderId001").child("size").setValue(notUploadList.get(i).getMerchId1size1());
-                    }
-                    if (!notUploadList.get(i).getMerchId1size2().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
-                                .child("merchId0OrderId002").child("quantity").setValue(notUploadList.get(i).getMerchId1quantity2());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
-                                .child("merchId0OrderId002").child("size").setValue(notUploadList.get(i).getMerchId1size2());
-                    }
-                    if (!notUploadList.get(i).getMerchId1size3().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
-                                .child("merchId0OrderId003").child("quantity").setValue(notUploadList.get(i).getMerchId1quantity3());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
-                                .child("merchId0OrderId003").child("size").setValue(notUploadList.get(i).getMerchId1size3());
-                    }
-                    if (!notUploadList.get(i).getMerchId2size1().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
-                                .child("merchId1OrderId001").child("quantity").setValue(notUploadList.get(i).getMerchId2quantity1());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
-                                .child("merchId1OrderId001").child("size").setValue(notUploadList.get(i).getMerchId2size1());
-                    }
-                    if (!notUploadList.get(i).getMerchId2size2().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
-                                .child("merchId1OrderId002").child("quantity").setValue(notUploadList.get(i).getMerchId2quantity2());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
-                                .child("merchId1OrderId002").child("size").setValue(notUploadList.get(i).getMerchId2size2());
-                    }
-                    if (!notUploadList.get(i).getMerchId2size3().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
-                                .child("merchId1OrderId003").child("quantity").setValue(notUploadList.get(i).getMerchId2quantity3());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
-                                .child("merchId1OrderId003").child("size").setValue(notUploadList.get(i).getMerchId2size3());
-                    }
+                    //Log.e("database", ""+notUploadList.get(i).getMerchId1size1());
                     if (!notUploadList.get(i).getMerchIdsize1().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId001").child("quantity").setValue(notUploadList.get(i).getMerchIdquantity1());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId001").child("size").setValue(notUploadList.get(i).getMerchIdsize1());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
+                                .child("merchId0OrderId001").child("quantity").setValue(notUploadList.get(i).getMerchIdquantity1());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
+                                .child("merchId0OrderId001").child("size").setValue(notUploadList.get(i).getMerchIdsize1());
                     }
+                    //Log.e("database", ""+notUploadList.get(i).getBuyerId());
                     if (!notUploadList.get(i).getMerchIdsize2().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId002").child("quantity").setValue(notUploadList.get(i).getMerchIdquantity2());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId002").child("size").setValue(notUploadList.get(i).getMerchIdsize2());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
+                                .child("merchId0OrderId002").child("quantity").setValue(notUploadList.get(i).getMerchIdquantity2());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
+                                .child("merchId0OrderId002").child("size").setValue(notUploadList.get(i).getMerchIdsize2());
                     }
+                    //Log.e("database", ""+notUploadList.get(i).getBuyerId());
                     if (!notUploadList.get(i).getMerchIdsize3().equals("none")) {
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId003").child("quantity").setValue(notUploadList.get(i).getMerchIdquantity3());
-                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
-                                .child("merchId2OrderId003").child("size").setValue(notUploadList.get(i).getMerchIdsize3());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
+                                .child("merchId0OrderId003").child("quantity").setValue(notUploadList.get(i).getMerchIdquantity3());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId0")
+                                .child("merchId0OrderId003").child("size").setValue(notUploadList.get(i).getMerchIdsize3());
                     }
+                    //Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                    if (!notUploadList.get(i).getMerchId1size1().equals("none")) {
+                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
+                                .child("merchId1OrderId001").child("quantity").setValue(notUploadList.get(i).getMerchId1quantity1());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
+                                .child("merchId1OrderId001").child("size").setValue(notUploadList.get(i).getMerchId1size1());
+                    }
+                    //Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                    if (!notUploadList.get(i).getMerchId1size2().equals("none")) {
+                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
+                                .child("merchId1OrderId002").child("quantity").setValue(notUploadList.get(i).getMerchId1quantity2());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
+                                .child("merchId1OrderId002").child("size").setValue(notUploadList.get(i).getMerchId1size2());
+                    }
+                    //Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                    if (!notUploadList.get(i).getMerchId1size3().equals("none")) {
+                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
+                                .child("merchId1OrderId003").child("quantity").setValue(notUploadList.get(i).getMerchId1quantity3());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId1")
+                                .child("merchId1OrderId003").child("size").setValue(notUploadList.get(i).getMerchId1size3());
+                    }
+                    //Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                    //Log.e("database", ""+notUploadList.get(i).getMerchId2size1());
+                    //Log.e("database", ""+notUploadList.get(i).getMerchId2size2());
+                    //Log.e("database", ""+notUploadList.get(i).getMerchId2size3());
+                    if (!notUploadList.get(i).getMerchId2size1().equals("none")) {
+                        Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId001").child("quantity").setValue(notUploadList.get(i).getMerchId2quantity1());
+                        Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId001").child("size").setValue(notUploadList.get(i).getMerchId2size1());
+                        Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                    }
+                    //Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                    if (!notUploadList.get(i).getMerchId2size2().equals("none")) {
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId002").child("quantity").setValue(notUploadList.get(i).getMerchId2quantity2());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId002").child("size").setValue(notUploadList.get(i).getMerchId2size2());
+                    }
+                    //Log.e("database1", ""+notUploadList.get(i).getBuyerId());
+                    if (!notUploadList.get(i).getMerchId2size3().equals("none")) {
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId003").child("quantity").setValue(notUploadList.get(i).getMerchId2quantity3());
+                        databaseReference.child(key).child("ordersPlaced").child("merchId2")
+                                .child("merchId2OrderId003").child("size").setValue(notUploadList.get(i).getMerchId2size3());
+                    }
+                    //Log.e("database", "inside");
                     notUploadList.get(i).isUploaded = 1;
-                    BuyerModel model = notUploadList.get(i);
-                    db.executeTransaction(realm -> db.insertOrUpdate(model));
+                    String bid = notUploadList.get(i).getBuyerId();
+                    db.executeTransaction(realm -> db.where(BuyerModel.class).findAll().where()
+                            .equalTo("buyerId", bid).findFirst().setIsUploaded(1));
                     notUploadList.remove(i);
-                    Log.e("database", "inside");
+                    Log.e("database", "inside1");
                 }
             }
 

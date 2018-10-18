@@ -65,12 +65,14 @@ public class BuyerModel extends RealmObject {
                     merchId1size3 = merchModelList.get(i).getMerchSize3();
                 }
                 else{
-                    merchId2quantity1 = "1";
-                    merchId2size1 = merchModelList.get(i).getMerchSize1();
-                    merchId2quantity2 = "1";
-                    merchId2size2 = merchModelList.get(i).getMerchSize2();
-                    merchId2quantity3 = "1";
-                    merchId2size3 = merchModelList.get(i).getMerchSize3();
+                    if(merchModelList.get(i).getMerchId().equals("merchId2")) {
+                        merchId2quantity1 = "1";
+                        merchId2size1 = merchModelList.get(i).getMerchSize1();
+                        merchId2quantity2 = "1";
+                        merchId2size2 = merchModelList.get(i).getMerchSize2();
+                        merchId2quantity3 = "1";
+                        merchId2size3 = merchModelList.get(i).getMerchSize3();
+                    }
                 }
             }
         }
@@ -81,11 +83,15 @@ public class BuyerModel extends RealmObject {
     public int getRoomNo() {
         return roomNo;
     }
+
     public String getBuyerId() {
         return buyerId;
     }
-    public void setRoomNo(String merchName) {
+    public void setRoomNo(int roomNo) {
         this.roomNo = roomNo;
+    }
+    public void setIsUploaded(int isUploaded) {
+        this.isUploaded = isUploaded;
     }
     public String getHostelName() {
         return hostelName;

@@ -32,9 +32,9 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
 
     private Context ctx;
 
-    private String size1 = null;                                                      //sizes are to be obtained from user.
-    private String size2 = null;
-    private String size3 = null;
+    private String size1 = "none";                                                      //sizes are to be obtained from user.
+    private String size2 = "none";
+    private String size3 = "none";
 
     public MerchAdapter(Context ctx) {
         merchModelList = new ArrayList<>();
