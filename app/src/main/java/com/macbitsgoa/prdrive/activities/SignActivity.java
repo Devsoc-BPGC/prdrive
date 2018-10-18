@@ -138,12 +138,12 @@ public class SignActivity extends Activity {
                         databaseReference.child(key).child("sellerid").setValue(buyerList.get(i).sellerId);
                         databaseReference.child(key).child("timestamp").setValue(buyerList.get(i).timeStamp);
                         databaseReference.child(key).child("signatureString").setValue(buyerList.get(i).sign);
-                        if ((buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchIdsize1.equals("none") && !buyerList.get(i).merchIdsize1.equals("none") &&
-                                !buyerList.get(i).merchIdsize1.equals("none")) ||
-                                (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId1size1.equals("none") && !buyerList.get(i).merchId1size1.equals("none") &&
-                                        !buyerList.get(i).merchId1size1.equals("none")) ||
-                                (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId2size1.equals("none") && !buyerList.get(i).merchId2size1.equals("none") &&
-                                        !buyerList.get(i).merchId2size1.equals("none"))){
+                        if ((buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchIdsize1.equals("none") && !buyerList.get(i).merchIdsize2.equals("none") &&
+                                !buyerList.get(i).merchIdsize3.equals("none")) ||
+                                (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId1size1.equals("none") && !buyerList.get(i).merchId1size2.equals("none") &&
+                                        !buyerList.get(i).merchId1size3.equals("none")) ||
+                                (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId2size1.equals("none") && !buyerList.get(i).merchId2size2.equals("none") &&
+                                        !buyerList.get(i).merchId2size3.equals("none"))){
                             databaseReference.child(key).child("combo").setValue("true");
 
                         }
