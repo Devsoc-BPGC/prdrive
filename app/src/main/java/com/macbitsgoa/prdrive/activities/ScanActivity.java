@@ -72,7 +72,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-
+        final int[] flag = {0};
         Realm db = Realm.getDefaultInstance();
         switch (view.getId())
         {
@@ -109,8 +109,12 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                         .equalTo("hostelName", hostelname).findAll().where()
                                         .equalTo("roomNo", scanEdt.getText().toString()).findFirst();
                                 //Log.e("data", ""+model.getBuyerId());
-                                Id = model.getBuyerId();
-                                Name = model.getName();
+                                assert model != null;
+                                if(model != null) {
+                                    Id = model.getBuyerId();
+                                    Name = model.getName();
+                                    flag[0] = 1;
+                                }
                             });
 
 
@@ -159,36 +163,41 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                                 Log.e("database", String.valueOf(databaseError));
                             }
                         });*/
-
-                            AlertDialog.Builder builder;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                builder = new AlertDialog.Builder(ScanActivity.this, android.R.style.Theme_Material_Dialog_Alert);
-                            } else {
-                                builder = new AlertDialog.Builder(ScanActivity.this);
+                            if (flag[0]==1) {
+                                AlertDialog.Builder builder;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                    builder = new AlertDialog.Builder(ScanActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                                } else {
+                                    builder = new AlertDialog.Builder(ScanActivity.this);
+                                }
+                                //Log.e("alert", Id + Name);
+                                builder.setTitle("Buyer Details")
+                                        .setMessage("Id: " + Id + '\n' + "Name: " + Name)
+                                        .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                                            Intent intent = new Intent(ScanActivity.this, SignActivity.class);
+                                            intent.putExtra("roomNo", roomNo);
+                                            intent.putExtra("Id", Id);
+                                            startActivity(intent);
+                                            finish();
+                                        })
+                                        .setNegativeButton(android.R.string.no, (dialog, which) ->
+                                        {
+                                            scanEdt.setText(null);
+                                            Toast.makeText(ScanActivity.this, "Please Enter A Room Number", Toast.LENGTH_SHORT).show();
+                                        })
+                                        .setNegativeButton(android.R.string.no, (dialog, which) ->
+                                        {
+                                            Toast.makeText(ScanActivity.this, "Please enter a room no", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        })
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .show();
                             }
-                            //Log.e("alert", Id + Name);
-                            builder.setTitle("Buyer Details")
-                                    .setMessage("Id: " + Id + '\n' + "Name: " + Name)
-                                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                                        Intent intent = new Intent(ScanActivity.this, SignActivity.class);
-                                        intent.putExtra("roomNo", roomNo);
-                                        intent.putExtra("Id", Id);
-                                        startActivity(intent);
-                                        finish();
-                                    })
-                                    .setNegativeButton(android.R.string.no, (dialog, which) ->
-                                    {
-                                        scanEdt.setText(null);
-                                        Toast.makeText(ScanActivity.this, "Please Enter A Room Number", Toast.LENGTH_SHORT).show();
-                                    })
-                                    .setNegativeButton(android.R.string.no, (dialog, which) ->
-                                    {
-                                        Toast.makeText(ScanActivity.this, "Please enter a room no", Toast.LENGTH_SHORT).show();
-                                        dialog.cancel();
-                                    })
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
-                                    .show();
-                        } else {
+                            else {
+                                Toast.makeText(this, "please enter correct room number", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else {
                             Toast.makeText(this, "Please Enter Correct Room Number", Toast.LENGTH_SHORT).show();
                         }
                     }
