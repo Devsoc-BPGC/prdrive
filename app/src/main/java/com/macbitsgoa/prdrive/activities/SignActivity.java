@@ -111,6 +111,7 @@ public class SignActivity extends Activity {
             //Log.e("database", "outside big if");
             if (addJpgSignatureToGallery(signatureBitmap)) {
                 Toast.makeText(SignActivity.this, ""+sellerId, Toast.LENGTH_SHORT).show();
+
                 buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign,sellerId,
                         getIntent().getStringExtra("Id"), ""+combo));
                 db.executeTransaction(

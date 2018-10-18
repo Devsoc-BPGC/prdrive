@@ -135,6 +135,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 >>>>>>> done
 =======
 >>>>>>> done
+=======
+>>>>>>> 2eccdda4c3f0d2c902a200e5d429c8cce3d713ea
                         /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 >>>>>>> done
                             @Override
