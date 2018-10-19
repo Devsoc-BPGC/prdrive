@@ -71,6 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         username = sharedPreferences.getString("Username","N/A");
         password = sharedPreferences.getString("Password","N/A");
         prdrive_id = sharedPreferences.getString("Prdrive_Id","N/A");
+        sellerId = sharedPreferences.getString("seller_Id", "N/A");
 
         Log.e("FROM FILE","USERNAME "+username+"PASS "+password+"PRDRIVE "+prdrive_id);
 

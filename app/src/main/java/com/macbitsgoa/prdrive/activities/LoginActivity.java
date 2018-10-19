@@ -69,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("Username", user.getText().toString());
                         editor.putString("Password", pass.getText().toString());
                         editor.putString("Prdrive_Id", prdrive_id.getText().toString());
+                        sellerId = user.getText().toString();
+                        editor.putString("seller_Id", sellerId);
                         editor.commit();
                         sellerId = user.getText().toString();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
