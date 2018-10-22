@@ -207,9 +207,11 @@ public class HomeActivity extends AppCompatActivity {
                     }
                     //Log.e("database", "inside");
                     notUploadList.get(i).isUploaded = 1;
-                    String bid = notUploadList.get(i).getBuyerId();
-                    db.executeTransaction(realm -> db.where(BuyerModel.class).findAll().where()
-                            .equalTo("buyerId", bid).findFirst().setIsUploaded(1));
+                    //BuyerModel model = notUploadList.get(i);
+                    String buyerId = notUploadList.get(i).getBuyerId();
+                    db.executeTransaction(realm ->
+                            db.where(BuyerModel.class).findAll().where().equalTo("buyerId", buyerId).findFirst().setIsUploaded(1)
+                    );
                     notUploadList.remove(i);
                     Log.e("database", "inside1");
                 }
