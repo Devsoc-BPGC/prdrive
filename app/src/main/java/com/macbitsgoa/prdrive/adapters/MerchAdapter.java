@@ -102,14 +102,33 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                String size="none";
                 Toast.makeText(ctx, adapterView.getItemAtPosition(i) + " is selected in Size 1", Toast.LENGTH_LONG).show();
                 size1 = adapterView.getItemAtPosition(i).toString();
-                merchModelList.get(position).setMerchSize1(size1);
+
+                switch (size1)
+                {
+                    case "50" : size = "S";
+                    break;
+
+                    case "75" : size = "M";
+                        break;
+
+                    case "100" : size = "L";
+                        break;
+
+                    case "150" : size = "XL";
+                        break;
+
+                    case "200" : size = "XXL";
+                        break;
+                }
+
+                merchModelList.get(position).setMerchSize1(size);
 
                 if(!size1.equalsIgnoreCase("none"))
                     finishbtn.setVisibility(View.VISIBLE);
             }
-
             //size is taken from user and inserted at the merchSize field of the object at index "position" of merchModelList.
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -119,10 +138,33 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
 
         holder.merchSize2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
+
+
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String size="none";
                 Toast.makeText(ctx, adapterView.getItemAtPosition(i) + " is selected in Size 2", Toast.LENGTH_LONG).show();
                 size2 = adapterView.getItemAtPosition(i).toString();
-                merchModelList.get(position).setMerchSize2(size2);
+
+                switch (size2)
+                {
+                    case "50" : size = "S";
+                        break;
+
+                    case "75" : size = "M";
+                        break;
+
+                    case "100" : size = "L";
+                        break;
+
+                    case "150" : size = "XL";
+                        break;
+
+                    case "200" : size = "XXL";
+                        break;
+                }
+
+
+                merchModelList.get(position).setMerchSize2(size);
 
                 if(!size2.equalsIgnoreCase("none"))
                     finishbtn.setVisibility(View.VISIBLE);
@@ -140,9 +182,28 @@ public class MerchAdapter extends RecyclerView.Adapter<MerchViewHolder> implemen
         holder.merchSize3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               String size = "none";
                 Toast.makeText(ctx, adapterView.getItemAtPosition(i) + " is selected in Size 3", Toast.LENGTH_LONG).show();
                 size3 = adapterView.getItemAtPosition(i).toString();
-                merchModelList.get(position).setMerchSize3(size3);
+                switch (size3)
+                {
+                    case "50" : size = "S";
+                        break;
+
+                    case "75" : size = "M";
+                        break;
+
+                    case "100" : size = "L";
+                        break;
+
+                    case "150" : size = "XL";
+                        break;
+
+                    case "200" : size = "XXL";
+                        break;
+                }
+
+                merchModelList.get(position).setMerchSize3(size);
 
                 if(!size3.equalsIgnoreCase("none"))
                     finishbtn.setVisibility(View.VISIBLE);
