@@ -7,26 +7,27 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-
 import android.util.Log;
 import android.view.View;
-
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.BuyerModel;
 import com.macbitsgoa.prdrive.IdModel;
 import com.macbitsgoa.prdrive.R;
+import com.macbitsgoa.prdrive.Student;
 import com.macbitsgoa.prdrive.adapters.HomeAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,43 +64,74 @@ public class HomeActivity extends AppCompatActivity {
         rv = findViewById(R.id.homerv);
         logout_btn = findViewById(R.id.logout);
 
+        ImageButton refreshBtn = findViewById(R.id.ib_fetch_data);
+        DatabaseReference studentsRef = FirebaseDatabase.getInstance().getReference(BuildConfig.BUILD_TYPE)
+                .child("main").child("hostel").child("Students");
+        ValueEventListener studentsDataListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                List<Student> studentList = new ArrayList<>();
+                for (DataSnapshot hostel : dataSnapshot.getChildren()) {
+                    String hostelName = hostel.getKey();
+                    for (DataSnapshot room : hostel.getChildren()) {
+                        String roomNo = room.getKey();
+                        Student student = new Student(
+                                room.child("Name").getValue(String.class),
+                                room.child("ID").getValue(String.class),
+                                hostelName,
+                                roomNo);
+                        studentList.add(student);
+                    }
+                }
+                db.beginTransaction();
+                db.insertOrUpdate(studentList);
+                db.commitTransaction();
+            }
+
+            @Override
+            public void onCancelled(@NonNull final DatabaseError databaseError) {
+
+            }
+        };
+        refreshBtn.setOnClickListener(v -> studentsRef.addListenerForSingleValueEvent(studentsDataListener));
+
         HomeAdapter homeAdapter = new HomeAdapter();
         ArrayList<IdModel> idList = new ArrayList<>(0);
         ArrayList<BuyerModel> notUploadList = new ArrayList<>(0);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserLog",Context.MODE_PRIVATE);
-        username = sharedPreferences.getString("Username","N/A");
-        password = sharedPreferences.getString("Password","N/A");
-        prdrive_id = sharedPreferences.getString("Prdrive_Id","N/A");
+        SharedPreferences sharedPreferences = getSharedPreferences("UserLog", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("Username", "N/A");
+        password = sharedPreferences.getString("Password", "N/A");
+        prdrive_id = sharedPreferences.getString("Prdrive_Id", "N/A");
         sellerId = sharedPreferences.getString("seller_Id", "N/A");
 
-        Log.e("FROM FILE","USERNAME "+username+"PASS "+password+"PRDRIVE "+prdrive_id);
+        Log.e("FROM FILE", "USERNAME " + username + "PASS " + password + "PRDRIVE " + prdrive_id);
 
         boolean connected = false;
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         assert connectivityManager != null;
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             connected = true;
         }
         Log.e("database", "outside above if");
         final int[] size = new int[2];
-        if(connected){
+        if (connected) {
             Log.e("database", "inside if");
             db.executeTransaction(realm -> {
                 size[0] = db.where(BuyerModel.class).findAll().where().equalTo("isUploaded", 0).findAll().size();
                 size[1] = db.where(IdModel.class).findAll().size();
                 notUploadList.addAll(db.where(BuyerModel.class).findAll().where().equalTo("isUploaded", 0).
                         findAll());
-                Log.e("database", size[0]+"");
+                Log.e("database", size[0] + "");
                 //Log.e("database", ""+notUploadList.get(0).getBuyerId());
-                Toast.makeText(this, ""+size[1], Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "" + size[1], Toast.LENGTH_SHORT).show();
                 //Log.e("database", "inside if1" + model);
                 //Log.e("database", "inside if1" + size[1]);
                 //Log.e("database", "inside if1" + size[0]);
             });
-            if (size[0]!=0) {
+            if (size[0] != 0) {
                 for (int i = (size[0] - 1); i >= 0; i = (i - 1)) {
                     //final BuyerModel[] model = new BuyerModel[1];
                     Log.e("database", "inside if1");
@@ -120,7 +152,7 @@ public class HomeActivity extends AppCompatActivity {
                     databaseReference.child(key).child("buyerid").setValue(notUploadList.get(i).getBuyerId());
                     //Log.e("database", ""+model[0]);
                     //Log.e("database", ""+model[0]);
-                    Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                    Log.e("database", "" + notUploadList.get(i).getBuyerId());
                     databaseReference.child(key).child("hostel").setValue(notUploadList.get(i).getHostelName());
                     databaseReference.child(key).child("room").setValue(notUploadList.get(i).getRoomNo());
                     databaseReference.child(key).child("sellerid").setValue(notUploadList.get(i).getSellerId());
@@ -131,11 +163,11 @@ public class HomeActivity extends AppCompatActivity {
                             (notUploadList.get(i).getCombo().equals("true") && !notUploadList.get(i).getMerchId1size1().equals("none") && !notUploadList.get(i).getMerchId1size2().equals("none") &&
                                     !notUploadList.get(i).getMerchId1size3().equals("none")) ||
                             (notUploadList.get(i).getCombo().equals("true") && !notUploadList.get(i).getMerchId2size1().equals("none") && !notUploadList.get(i).getMerchId2size2().equals("none") &&
-                                    !notUploadList.get(i).getMerchId2size3().equals("none"))){
+                                    !notUploadList.get(i).getMerchId2size3().equals("none"))) {
                         databaseReference.child(key).child("combo").setValue("true");
-                    }
-                    else
+                    } else {
                         databaseReference.child(key).child("combo").setValue("false");
+                    }
                     //Log.e("database", ""+notUploadList.get(i).getMerchId1size1());
                     if (!notUploadList.get(i).getMerchIdsize1().equals("none")) {
                         databaseReference.child(key).child("ordersPlaced").child("merchId0")
@@ -183,13 +215,13 @@ public class HomeActivity extends AppCompatActivity {
                     //Log.e("database", ""+notUploadList.get(i).getMerchId2size2());
                     //Log.e("database", ""+notUploadList.get(i).getMerchId2size3());
                     if (!notUploadList.get(i).getMerchId2size1().equals("none")) {
-                        Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                        Log.e("database", "" + notUploadList.get(i).getBuyerId());
                         databaseReference.child(key).child("ordersPlaced").child("merchId2")
                                 .child("merchId2OrderId001").child("quantity").setValue(notUploadList.get(i).getMerchId2quantity1());
-                        Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                        Log.e("database", "" + notUploadList.get(i).getBuyerId());
                         databaseReference.child(key).child("ordersPlaced").child("merchId2")
                                 .child("merchId2OrderId001").child("size").setValue(notUploadList.get(i).getMerchId2size1());
-                        Log.e("database", ""+notUploadList.get(i).getBuyerId());
+                        Log.e("database", "" + notUploadList.get(i).getBuyerId());
                     }
                     //Log.e("database", ""+notUploadList.get(i).getBuyerId());
                     if (!notUploadList.get(i).getMerchId2size2().equals("none")) {
@@ -217,7 +249,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
 
-            if (size[1]==0) {
+            if (size[1] == 0) {
                 //Log.e("database", "inside if2");
                 databaseReference1.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -233,7 +265,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
                         db.executeTransaction(realm -> {
                             int size1 = db.where(IdModel.class).findAll().size();
-                            Toast.makeText(HomeActivity.this, ""+size1, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HomeActivity.this, "" + size1, Toast.LENGTH_SHORT).show();
                         });
                         progressBar.setProgress(100);
                     }
@@ -247,7 +279,7 @@ public class HomeActivity extends AppCompatActivity {
                 });
                 db.executeTransaction(realm -> {
                     int size1 = db.where(IdModel.class).findAll().size();
-                    Toast.makeText(HomeActivity.this, ""+size1, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "" + size1, Toast.LENGTH_SHORT).show();
                 });
                 Toast.makeText(this, "data downloaded", Toast.LENGTH_SHORT).show();
                 progressBar.setProgress(100);
@@ -259,19 +291,18 @@ public class HomeActivity extends AppCompatActivity {
         rv.setLayoutManager(new GridLayoutManager(this, span()));
         rv.setHasFixedSize(true);
 
-        if(("N/A").equals(username) || ("N/A").equals(password) || ("N/A").equals(prdrive_id) )
-        {
-            Intent i = new Intent(HomeActivity.this,LoginActivity.class);
+        if (("N/A").equals(username) || ("N/A").equals(password) || ("N/A").equals(prdrive_id)) {
+            Intent i = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
         }
 
         logout_btn.setOnClickListener(view -> {
 
-            SharedPreferences sharedPreferences1 = this.getSharedPreferences("UserLog",Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences1 = this.getSharedPreferences("UserLog", Context.MODE_PRIVATE);
             sharedPreferences1.edit().clear().commit();
 
-            Intent i = new Intent(HomeActivity.this,LoginActivity.class);
+            Intent i = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
 

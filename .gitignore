@@ -132,3 +132,6 @@ fabric.properties
 # End of https://www.gitignore.io/api/androidstudio
 
 .idea
+.idea/misc.xml
+.idea/gradle.xml
+.idea/inspectionProfiles
