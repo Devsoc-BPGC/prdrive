@@ -4,45 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HomeActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activities.HomeActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/ThemeOverlay.AppCompat.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        app:titleTextColor="#FFFFFF"
         android:background="#8B008B"
         app:title="HOME ACTIVITY"
-        style="@style/ThemeOverlay.AppCompat.ActionBar">
+        app:titleTextColor="#FFFFFF">
 
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGOUT"
-        style="@style/Base.Widget.AppCompat.Button"
-        android:textColor="@color/Facebook_blue"
-        android:layout_gravity="right"/>
+        <Button
+            android:id="@+id/logout"
+            style="@style/Base.Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="LOGOUT"
+            android:textColor="@color/Facebook_blue" />
+
+        <ImageButton
+            android:id="@+id/ib_fetch_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:src="@drawable/ic_refresh_24dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homerv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/homerv" />
+        android:layout_height="wrap_content" />
 
     <ProgressBar
         android:id="@+id/item_format_archive_progressbar"
         style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:progress="0"
-        android:max="100"
-        android:visibility="gone"
-        android:indeterminate="false"
         android:layout_gravity="center"
-        android:progressDrawable="@drawable/progress_circle"/>
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/progress_circle"
+        android:visibility="gone" />
 
 </LinearLayout>
 
