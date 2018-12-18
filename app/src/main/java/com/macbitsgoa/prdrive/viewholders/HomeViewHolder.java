@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.macbitsgoa.prdrive.BuildConfig;
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.activities.MerchActivity;
+import com.macbitsgoa.prdrive.activities.ResidentActivity;
 
 import java.util.Objects;
 
@@ -61,7 +62,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                     killSwitch[0] = Objects.requireNonNull(child.child("killSwitch").getValue(String.class));
                 }
                 if (killSwitch[0].equals("1")) {
-                    Intent intent = new Intent(context, MerchActivity.class);
+                    Intent intent = new Intent(context, ResidentActivity.class);
                     hostelname = hostelName.getText().toString();
                     context.startActivity(intent);
                     activity.finish();

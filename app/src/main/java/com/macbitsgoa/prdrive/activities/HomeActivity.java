@@ -54,7 +54,6 @@ public class HomeActivity extends AppCompatActivity {
 
         String password;
         String prdrive_id;
-
         Button logout_btn;
 
         Realm.init(HomeActivity.this);
