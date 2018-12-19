@@ -15,13 +15,13 @@
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="70" />
 
         <TextView
-            android:id="@+id/roomNo"
+            android:id="@+id/tv_room_no"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="30" />

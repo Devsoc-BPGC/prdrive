@@ -1,39 +1,36 @@
 package com.macbitsgoa.prdrive.viewholders;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+
 import com.macbitsgoa.prdrive.R;
-import com.macbitsgoa.prdrive.activities.MerchActivity;
+import com.macbitsgoa.prdrive.Student;
+
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.macbitsgoa.prdrive.activities.MerchActivity.launchMerch;
 
 
 public class ResidentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private Context ctx;
-    public TextView name;
-    public TextView roomNo;
+    public TextView nameTv;
+    public TextView roomNoTv;
 
-
-    public ResidentViewHolder(@NonNull View itemView , Context ctx) {
+    public ResidentViewHolder(@NonNull View itemView) {
         super(itemView);
+        nameTv = itemView.findViewById(R.id.tv_name);
+        roomNoTv = itemView.findViewById(R.id.tv_room_no);
+    }
 
-        CardView cardView;
-        this.ctx = ctx;
-        name =itemView.findViewById(R.id.name);
-        roomNo = itemView.findViewById(R.id.roomNo);
-        cardView = itemView.findViewById(R.id.cv);
-        cardView.setOnClickListener(this);
+    public void populate(Student student) {
+        nameTv.setText(student.name);
+        roomNoTv.setText(student.roomNo);
+        itemView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
-            Intent i = new Intent(ctx,MerchActivity.class);
-            ctx.startActivity(i);
-    //take the activity to merchActivity
+        launchMerch(itemView.getContext());
     }
 }
