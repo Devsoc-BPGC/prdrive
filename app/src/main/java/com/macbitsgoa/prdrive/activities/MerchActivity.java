@@ -1,5 +1,6 @@
 package com.macbitsgoa.prdrive.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,10 +18,16 @@ import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
 import static com.macbitsgoa.prdrive.StaticHelperClass.finishbtn;
 public class MerchActivity extends AppCompatActivity {
 
+    // TODO: add necessary arguments to be passed via intent
+    public static void launchMerch(Context context) {
+        Intent intent = new Intent(context, MerchActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        androidx.appcompat.widget.Toolbar toolbar = null;
+        androidx.appcompat.widget.Toolbar toolbar;
         RecyclerView rv;
         setContentView(R.layout.activity_merch);
                                                   //Setting up the Finish order button.
@@ -69,7 +76,3 @@ public class MerchActivity extends AppCompatActivity {
     }
 
 }
-
-
-
-

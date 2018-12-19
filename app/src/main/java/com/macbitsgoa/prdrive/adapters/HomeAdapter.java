@@ -1,37 +1,53 @@
 package com.macbitsgoa.prdrive.adapters;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.macbitsgoa.prdrive.R;
+import com.macbitsgoa.prdrive.Student;
 import com.macbitsgoa.prdrive.viewholders.HomeViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
 
+    private List<String> hostelNames;
 
-    private String hostelNames[] = {"AH1", "AH2", "AH3", "AH4", "AH5", "AH6", "AH7",
-            "AH8", "AH9", "CH1", "CH2", "CH3", "CH4", "CH5", "CH6", "CH7", "DH1", "DH2"};
-
-
+    public HomeAdapter() {
+        hostelNames = new ArrayList<>();
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<Student> query = realm.where(Student.class).distinct("hostel");
+        RealmResults<Student> results = query.findAll();
+        for (Student s : results) {
+            hostelNames.add(s.hostel);
+        }
+        realm.close();
+    }
 
     @NonNull
     @Override
     public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new HomeViewHolder(View.inflate(parent.getContext(), R.layout.item_format_home, null),
-                                    parent.getContext());
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_format_home, parent, false);
+        return new HomeViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
-        holder.populate(hostelNames[position]);
+        holder.populate(hostelNames.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return hostelNames.length;
+        return hostelNames.size();
     }
 }
