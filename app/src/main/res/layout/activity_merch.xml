@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         app:titleTextColor="#FFFFFF"
         android:background="#228B22"
         app:subtitle="Choose Your Merchandise"
@@ -38,12 +39,36 @@
     </androidx.appcompat.widget.Toolbar>
 
 </RelativeLayout>
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="100">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="2">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/merchrv"
         android:padding="4dp"
-        android:background="@color/browser_actions_divider_color">
+        android:layout_weight="1"
+        android:background="@color/browser_actions_divider_color"
+       >
 
     </androidx.recyclerview.widget.RecyclerView>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/merchrv2"
+    android:padding="4dp"
+    android:layout_weight="1"
+    android:background="@color/browser_actions_divider_color">
+</androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

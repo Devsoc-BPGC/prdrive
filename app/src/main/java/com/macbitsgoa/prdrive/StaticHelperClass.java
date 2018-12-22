@@ -12,4 +12,5 @@ public class StaticHelperClass extends AppCompatActivity{
     public static String hostelname;
     public static Button finishbtn;
 
+    public static ArrayList<DonationModel> donationModelList = new ArrayList<>();
 }
