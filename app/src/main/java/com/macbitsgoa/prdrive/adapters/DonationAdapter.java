@@ -1,7 +1,6 @@
 package com.macbitsgoa.prdrive.adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -22,12 +21,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.macbitsgoa.prdrive.StaticHelperClass.donationModelList;
-import static com.macbitsgoa.prdrive.StaticHelperClass.merchModelList;
+
 
 public class DonationAdapter extends RecyclerView.Adapter<DonationViewHolder> {
 
 
-    Context ctx;
+    public Context ctx;
     public DonationAdapter(Context ctx) {
 
         this.ctx = ctx;
@@ -53,7 +52,7 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationViewHolder> {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                //nothing here yet
             }
         });
     }

@@ -14,8 +14,8 @@ public class DonationViewHolder extends RecyclerView.ViewHolder implements View.
 
     public TextView title;
     public TextView desc;
-    EditText donate_edt;
-    Context ctx;
+    public EditText donate_edt;
+   public Context ctx;
 
     public DonationViewHolder(@NonNull View itemView, Context ctx) {
         super(itemView);
