@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.macbitsgoa.prdrive.R;
+import com.macbitsgoa.prdrive.adapters.DonationAdapter;
 import com.macbitsgoa.prdrive.adapters.MerchAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,8 @@ public class MerchActivity extends AppCompatActivity {
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         androidx.appcompat.widget.Toolbar toolbar;
-        RecyclerView rv;
+        RecyclerView Tees_rv;                            //recyclerview for tees
+        RecyclerView Donation_rv;
         setContentView(R.layout.activity_merch);
                                                   //Setting up the Finish order button.
         finishbtn = findViewById(R.id.finish);
@@ -39,11 +41,21 @@ public class MerchActivity extends AppCompatActivity {
         toolbar.setTitle("Merch Activity");
         setSupportActionBar(toolbar);
 
-        rv=findViewById(R.id.merchrv);
-        rv.setLayoutManager(new LinearLayoutManager(MerchActivity.this));
-        rv.setHasFixedSize(false);
+        Tees_rv=findViewById(R.id.merchrv);
+        Tees_rv.setLayoutManager(new LinearLayoutManager(MerchActivity.this));
+        Tees_rv.setHasFixedSize(false);
+        Tees_rv.setNestedScrollingEnabled(false);
         MerchAdapter merchAdapter = new MerchAdapter(MerchActivity.this);
-        rv.setAdapter(merchAdapter);
+        Tees_rv.setAdapter(merchAdapter);
+
+        //Donation rv
+        Donation_rv=findViewById(R.id.merchrv2);
+        Donation_rv.setLayoutManager(new LinearLayoutManager(MerchActivity.this));
+        Donation_rv.setHasFixedSize(true);
+        Donation_rv.setNestedScrollingEnabled(false);
+
+        DonationAdapter donationAdapter = new DonationAdapter(MerchActivity.this);
+        Donation_rv.setAdapter(donationAdapter);
 
 
 
