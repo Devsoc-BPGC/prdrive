@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.macbitsgoa.prdrive.R;
 import com.macbitsgoa.prdrive.adapters.ResidentAdapter;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 
 
 public class ResidentActivity extends Activity {
@@ -24,7 +27,8 @@ public class ResidentActivity extends Activity {
      */
     public static void launchHostel(Context parent, String hostelName) {
         Intent intent = new Intent(parent, ResidentActivity.class);
-        intent.putExtra(INTENT_KEY_HOSTEL_NAME, hostelName);
+        intent.putExtra(INTENT_KEY_HOSTEL_NAME, hostelname);
+        Log.e("HOSTEL",hostelname);
         parent.startActivity(intent);
     }
 

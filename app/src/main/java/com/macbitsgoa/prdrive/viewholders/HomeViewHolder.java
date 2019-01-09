@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static com.macbitsgoa.prdrive.activities.ResidentActivity.launchHostel;
 
+import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
+
 public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private TextView hostelNameTv;
@@ -53,8 +55,8 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                     killSwitch[0] = Objects.requireNonNull(child.child("killSwitch").getValue(String.class));
                 }
                 if (killSwitch[0].equals("1")) {
-                    String hostelName = hostelNameTv.getText().toString();
-                    launchHostel(itemView.getContext(), hostelName);
+                     hostelname = hostelNameTv.getText().toString();
+                    launchHostel(itemView.getContext(), hostelname);
                     //activity.finish();
                 } else {
                     //activity.finish();
