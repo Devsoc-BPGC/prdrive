@@ -49,11 +49,6 @@
             android:screenOrientation="landscape">
         </activity>
 
-        <activity android:name=".activities.PopActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.PopAct">
-        </activity>
-
         <activity android:name=".activities.LoginActivity">
         </activity>
         

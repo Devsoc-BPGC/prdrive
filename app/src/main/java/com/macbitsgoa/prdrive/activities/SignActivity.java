@@ -47,9 +47,11 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import io.realm.Realm;
 
+import static com.macbitsgoa.prdrive.StaticHelperClass.buyerList;
 import static com.macbitsgoa.prdrive.StaticHelperClass.hostelname;
 import static com.macbitsgoa.prdrive.StaticHelperClass.sellerId;
 import static com.macbitsgoa.prdrive.activities.ScanActivity.combo;
+
 
 public class SignActivity extends Activity {
 
@@ -103,20 +105,24 @@ public class SignActivity extends Activity {
         mClearButton.setOnClickListener(view -> mSignaturePad.clear());
         Realm.init(SignActivity.this);
 
-        ArrayList<BuyerModel> buyerList = new ArrayList<>(0);
+        ArrayList<BuyerModel> buyerList_realm = new ArrayList<>(0);
         Realm db = Realm.getDefaultInstance();
         mSaveButton.setOnClickListener(view -> {
             Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
             String sign = getEncoded64ImageStringFromBitmap(signatureBitmap);
+            buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign, sellerId,
+                    getIntent().getStringExtra("Id"), "" + combo));
             //Log.e("database", "outside big if");
             if (addJpgSignatureToGallery(signatureBitmap)) {
-                Toast.makeText(SignActivity.this, ""+sellerId, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignActivity.this, "" + sellerId, Toast.LENGTH_SHORT).show();
 
-                buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign,sellerId,
-                        getIntent().getStringExtra("Id"), ""+combo));
-                db.executeTransaction(
-                        realm -> db.insertOrUpdate(buyerList.get(buyerList.size() - 1))
-                );
+//                buyerList_realm.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign,sellerId,
+//                        getIntent().getStringExtra("Id"), ""+combo));
+//                buyerList.add(new BuyerModel(getIntent().getIntExtra("roomNo", 0), hostelname, sign, sellerId,
+//                        getIntent().getStringExtra("Id"), "" + combo));
+//                db.executeTransaction(
+//                        realm -> db.insertOrUpdate(buyerList_realm.get(buyerList_realm.size() - 1))
+            }
                 //Log.e("database", "outside connct");
 
                 boolean connected = false;
@@ -130,9 +136,13 @@ public class SignActivity extends Activity {
                 //Log.e("database", "outside above if");
                 if (connected) {
                     //Log.e("database", "inside if");
+
                     for (int i = (buyerList.size() - 1); i >= 0; i = (i - 1)) {
+
+
                         String key = databaseReference.push().getKey();
                         assert key != null;
+                        databaseReference.child(key).child("buyerid").setValue(buyerList.get(i).buyerId);
                         databaseReference.child(key).child("buyerid").setValue(buyerList.get(i).buyerId);
                         databaseReference.child(key).child("hostel").setValue(buyerList.get(i).hostelName);
                         databaseReference.child(key).child("room").setValue(buyerList.get(i).roomNo);
@@ -142,7 +152,7 @@ public class SignActivity extends Activity {
                         if ((buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchIdsize1.equals("none") && !buyerList.get(i).merchIdsize2.equals("none") &&
                                 !buyerList.get(i).merchIdsize3.equals("none")) ||
                                 (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId1size1.equals("none") && !buyerList.get(i).merchId1size2.equals("none") &&
-                                        !buyerList.get(i).merchId1size3.equals("none")) ||
+                                        !buyerList.get(0).merchId1size3.equals("none")) ||
                                 (buyerList.get(i).combo.equals("true") && !buyerList.get(i).merchId2size1.equals("none") && !buyerList.get(i).merchId2size2.equals("none") &&
                                         !buyerList.get(i).merchId2size3.equals("none"))){
                             databaseReference.child(key).child("combo").setValue("true");
@@ -150,21 +160,21 @@ public class SignActivity extends Activity {
                         }
                         else
                             databaseReference.child(key).child("combo").setValue("false");
-                        //Log.e("data", ""+buyerList.get(i).merchIdsize1);
+                        //Log.e("data", ""+buyerList_realm.get(i).merchIdsize1);
                         if (!buyerList.get(i).merchIdsize1.equals("none")) {
                             databaseReference.child(key).child("ordersPlaced").child("merchId0")
                                     .child("merchId0OrderId001").child("quantity").setValue(buyerList.get(i).merchIdquantity1);
                             databaseReference.child(key).child("ordersPlaced").child("merchId0")
                                     .child("merchId0OrderId001").child("size").setValue(buyerList.get(i).merchIdsize1);
                         }
-                        //Log.e("data", ""+buyerList.get(i).merchIdsize2);
+                        //Log.e("data", ""+buyerList_realm.get(i).merchIdsize2);
                         if (!buyerList.get(i).merchIdsize2.equals("none")) {
                             databaseReference.child(key).child("ordersPlaced").child("merchId0")
                                     .child("merchId0OrderId002").child("quantity").setValue(buyerList.get(i).merchIdquantity2);
                             databaseReference.child(key).child("ordersPlaced").child("merchId0")
                                     .child("merchId0OrderId002").child("size").setValue(buyerList.get(i).merchIdsize2);
                         }
-                        //Log.e("data", ""+buyerList.get(i).merchIdsize3);
+                        //Log.e("data", ""+buyerList_realm.get(i).merchIdsize3);
                         if (!buyerList.get(i).merchIdsize3.equals("none")) {
                             databaseReference.child(key).child("ordersPlaced").child("merchId0")
                                     .child("merchId0OrderId003").child("quantity").setValue(buyerList.get(i).merchIdquantity3);
@@ -208,9 +218,10 @@ public class SignActivity extends Activity {
                                     .child("merchId2OrderId003").child("size").setValue(buyerList.get(i).merchId2size3);
                         }
                         buyerList.get(i).isUploaded = 1;
-                        BuyerModel model = buyerList.get(i);
-                        db.executeTransaction(realm -> db.insertOrUpdate(model));
                         buyerList.remove(i);
+                     //   BuyerModel model = buyerList.get(i);
+//                        db.executeTransaction(realm -> db.insertOrUpdate(model));
+//
                   //      Log.e("database", "inside");
                     }
                 }
@@ -228,7 +239,7 @@ public class SignActivity extends Activity {
                 // }// else {
                 //  Toast.makeText(SignActivity.this, "Unable to store the SVG signature", Toast.LENGTH_SHORT).show();
                 //  }
-            }
+
         });
 
     }

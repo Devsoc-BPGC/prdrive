@@ -1,5 +1,6 @@
 package com.macbitsgoa.prdrive.viewholders;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.macbitsgoa.prdrive.activities.MerchActivity.launchMerch;
-
+import static com.macbitsgoa.prdrive.StaticHelperClass.RoomNumber;
 
 public class ResidentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -27,10 +28,18 @@ public class ResidentViewHolder extends RecyclerView.ViewHolder implements View.
         nameTv.setText(student.name);
         roomNoTv.setText(student.roomNo);
         itemView.setOnClickListener(this);
+
+
+
+
+
+
     }
 
     @Override
     public void onClick(View view) {
         launchMerch(itemView.getContext());
+        RoomNumber = Integer.parseInt(roomNoTv.getText().toString());
+       // Log.e("ROOM NUMBER",RoomNumber+" ");
     }
 }

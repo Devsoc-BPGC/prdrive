@@ -23,6 +23,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+<!--<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/title"
+    android:hint="ORDER SLIP"
+    android:textSize="25sp"/> -->
 
         <TextView
             android:id="@+id/name"
@@ -31,6 +37,13 @@
             android:textColor="	#228B22"
             android:textSize="25sp"
             android:hint="Name:"/>
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="ID:"-->
+            <!--android:textSize="25sp"-->
+            <!--android:id="@+id/id"/>-->
 
         <TextView
             android:id="@+id/size1"
@@ -56,5 +69,6 @@
             android:textSize="25sp"
             android:hint="Size 3:"/>
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
